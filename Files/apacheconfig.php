@@ -69,10 +69,13 @@ $directivetowrite .= "#END PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL\n";
 // Update httpd.conf
 $filename = $foldername . "\httpd.conf";
 if (!file($filename)) {
-	windowsPopup("The file '$filename' is not found. You will need to manually configure Apache.","Apache Config",16);	
-	exit;
+	$filename = $foldername . "\conf\httpd.conf";
+	if (!file($filename)) {
+		windowsPopup("The file '$filename' is not found. You will need to manually configure Apache.","Apache Config",16);	
+		exit;
+	}
 }
-elseif (!is_writable($filename)) {
+if (!is_writable($filename)) {
 	windowsPopup("The file '$filename' is not writable. You will need to manually configure Apache.","Apache Config",16);
 	exit;
 }
@@ -98,10 +101,13 @@ $directivetowrite = "application/x-httpd-php\tphp\n";
 $directivetowrite .= "application/x-httpd-php-source\tphps\n";
 $filename = $foldername . "\mime.types";
 if (!file($filename)) {
-	windowsPopup("The file '$filename' is not found. You will need to manually configure Apache.","Apache Config",16);	
-	exit;
+	$filename = $foldername . "\conf\mime.types";
+	if (!file($filename)) {
+		windowsPopup("The file '$filename' is not found. You will need to manually configure Apache.","Apache Config",16);	
+		exit;
+	}
 }
-elseif (!is_writable($filename)) {
+if (!is_writable($filename)) {
 	windowsPopup("The file '$filename' is not writable. You will need to manually configure Apache.","Apache Config",16);
 	exit;
 }

@@ -1,0 +1,16 @@
+Pre-requisites:
+
+- .NET Framework 1.1 SP1 Runtime installed
+- PHP Windows zip binary distribution
+- The pre-compiled PECL extensions for Windows from http://pecl4win.php.net/branch.php
+- Local Checked out copy of this directory
+
+1) Unzip the PHP Windows zip binary distribution into the "Files" directory.
+2) Unzip the PECL extensions zip file for the branch into the "Files/pecl" directory.
+3) Run the "build.bat" script with the first arguement as the version you are building for.
+
+	Example:
+
+	build.bat "5.2.0" when building for PHP version 5.2.0
+
+The script will produce the installer as php-VERSION-win32-install.msi where VERSION is the string passed to the build.bat script.

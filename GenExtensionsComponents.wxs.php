@@ -14,10 +14,10 @@ function genGUID() {
    return strtoupper($guidstr);
 }   
 function getshortname($filename) {
-	$output = array();
-	exec("dir /x \"$filename\"",$output);
-
-	return str_replace('~','_',substr($output[5],39,12));
+	$fso = new COM("Scripting.FileSystemObject");
+	$file = $fso->GetFile($filename);
+	
+	return str_replace('~','_',$file->ShortName);
 }
 
 $xmlsource = <<<XML
@@ -145,7 +145,7 @@ $Directory_extdirectory = $res->item(0);
 
 $it = new DirectoryIterator('Files\ext');
 foreach ( $it as $filename ) {
-	if ( $filename->isDot() ) continue;
+	if ( $filename->isDot() || $filename == "CVS" ) continue;
 	list($basename,$ext) = explode('.',$filename);
 	$cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
     $Component = $extensionsWXS->createElement('Component');
@@ -194,7 +194,7 @@ foreach ( $it as $filename ) {
 
 $it = new DirectoryIterator('Files\PECL');
 foreach ( $it as $filename ) {
-	if ( $filename->isDot() ) continue;
+	if ( $filename->isDot() || $filename == "CVS" ) continue;
 	list($basename,$ext) = explode('.',$filename);
     $cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
     $Component = $extensionsWXS->createElement('Component');

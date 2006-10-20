@@ -96,7 +96,6 @@
 	<Extension Name="php_rar" Guid="3A6C5598-A5F4-46E2-91AC-414D301EE685"/>
 	<Extension Name="php_runkit" Guid="FDA4A992-8DFA-4B75-B3BD-10624C3AABB8"/>
 	<Extension Name="php_sdo" Guid="ABA0356D-FED5-4184-AF72-AEBD66F1CA93"/>
-	<Extension Name="php_sdo_das_xml" Guid="84FB8962-0DD8-4309-AFFE-599EB54346D9"/>
 	<Extension Name="php_smtp" Guid="09209DDA-E017-4293-82EA-944AB17EE3B5"/>
 	<Extension Name="php_ssh2" Guid="760512D5-F212-4BE9-9618-C2538ACBC6DD"/>
 	<Extension Name="php_stats" Guid="379FE51A-4634-4977-A8F8-2BB9A840637B"/>
@@ -118,4 +117,4 @@
 	<Extension Name="phpsrvltJAR" Guid="5475C98F-9D4D-4BA0-868F-59F80752BA6D"/>
 	<Extension Name="php_javaJAR" Guid="972FF757-2E3D-478F-8514-636CD3CD82C7"/>
 	<Extension Name="php_memcache" Guid="51005DF7-B7C4-4BD5-BCB2-A5B998E10279"/>
-</Extensions>
+<Extension Name="CVS" Guid="3CD36F87-25FD-4422-8C57-F33808592303"/></Extensions>

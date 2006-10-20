@@ -273,9 +273,6 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_sdo" Title="$(loc.Featureext_php_sdoTitle)" Description="$(loc.Featureext_php_sdoDescription)" Level="10">
 				<ComponentRef Id="php_sdo"/>
-				<Feature AllowAdvertise="no" Id="ext_php_sdo_das_xml" Title="$(loc.Featureext_php_sdo_das_xmlTitle)" Description="$(loc.Featureext_php_sdo_das_xmlDescription)" Level="10">
-					<ComponentRef Id="php_sdo_das_xml"/>
-				</Feature>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_shmop" Title="$(loc.Featureext_php_shmopTitle)" Description="$(loc.Featureext_php_shmopDescription)" Level="10">
 				<ComponentRef Id="php_shmop"/>

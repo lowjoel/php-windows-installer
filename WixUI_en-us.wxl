@@ -756,8 +756,6 @@
 	<String Id="Featureext_php_runkitDescription">For all those things you.... probably shouldn't have been doing anyway....</String>
 	<String Id="Featureext_php_sdoTitle">sdo</String>
 	<String Id="Featureext_php_sdoDescription">Service Data Objects (SDOs) for PHP</String>
-	<String Id="Featureext_php_sdo_das_xmlTitle">XML Data Access</String>
-	<String Id="Featureext_php_sdo_das_xmlDescription">SDO XML Data Access Service Functions</String>
 	<String Id="Featureext_php_shmopTitle">Shared Memory</String>
 	<String Id="Featureext_php_shmopDescription">Shared Memory functions</String>
 	<String Id="Featureext_php_smtpTitle">SMTP</String>

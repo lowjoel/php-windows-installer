@@ -68,9 +68,9 @@ $directivetowrite .= "#END PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL\n";
 
 // Update httpd.conf
 $filename = $foldername . "\httpd.conf";
-if (!file($filename)) {
+if (!is_file($filename)) {
 	$filename = $foldername . "\conf\httpd.conf";
-	if (!file($filename)) {
+	if (!is_file($filename)) {
 		windowsPopup("The file '$filename' is not found. You will need to manually configure Apache.","Apache Config",16);	
 		exit;
 	}
@@ -100,9 +100,9 @@ else {
 $directivetowrite = "application/x-httpd-php\tphp\n";
 $directivetowrite .= "application/x-httpd-php-source\tphps\n";
 $filename = $foldername . "\mime.types";
-if (!file($filename)) {
+if (!is_file($filename)) {
 	$filename = $foldername . "\conf\mime.types";
-	if (!file($filename)) {
+	if (!is_file($filename)) {
 		windowsPopup("The file '$filename' is not found. You will need to manually configure Apache.","Apache Config",16);	
 		exit;
 	}

@@ -2,7 +2,7 @@
 // params APACHEVERSION, APACHEDIR
 $path_parts = pathinfo(realpath($_SERVER['SCRIPT_FILENAME']));
 $phpdir = $path_parts['dirname'];
-$foldername = str_replace('"','',$argv[2]);
+$foldername = str_replace(array('"', ';'), array('',''), $argv[2]);
 $apacheversion = $argv[1];
 
 print_r($argv);

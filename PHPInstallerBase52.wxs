@@ -96,8 +96,8 @@
 					</Component>
 					<Component Id="phprecommendedINI" DiskId="1" Guid="B32D6227-3160-4D57-9724-0B35DC128519" Permanent="yes">
 						<File Id="file17" Name="PHP_2.INI" LongName="php.ini" Source="Files\php.ini-recommended"/>
-						<IniFile Id="uploadtmpdirINI" Action="addLine" Key="upload_tmp_dir" Directory="INSTALLDIR" Name="php.ini" Section="PHP" Value="&quot;[TempFolder]php\session&quot;"/>
-						<IniFile Id="sessionsavepathINI" Action="addLine" Key="session.save_path" Directory="INSTALLDIR" Name="php.ini" Section="PHP" Value="&quot;[TempFolder]php\upload&quot;"/>
+						<IniFile Id="uploadtmpdirINI" Action="addLine" Key="upload_tmp_dir" Directory="INSTALLDIR" Name="php.ini" Section="PHP" Value="&quot;[TempFolder]php\upload&quot;"/>
+						<IniFile Id="sessionsavepathINI" Action="addLine" Key="session.save_path" Directory="INSTALLDIR" Name="php.ini" Section="PHP" Value="&quot;[TempFolder]php\session&quot;"/>
 						<Condition>NOT PHPINIEXISTS</Condition>
 					</Component>
 					<Component Id="php5embedLIB" DiskId="1" Guid="8C0B065E-41DB-43DB-ABB2-716BE38988C7">
@@ -236,7 +236,7 @@
 			</Feature>
 		</Feature>
 
-		<CustomAction Id="iisextVBS" ExeCommand="&quot;[WindowsFolder]system32\iisext.vbs&quot; /AddFile &quot;[INSTALLDIR]php-cgi.exe&quot;" Return="check" Directory="INSTALLDIR"/>
+		<CustomAction Id="iisextVBS" ExeCommand="&quot;[WindowsFolder]system32\iisext.vbs&quot; /AddFile &quot;[INSTALLDIR]php-cgi.exe&quot; 1 PHP 1 &quot;PHP: Hypertext Processor&quot;" Return="check" Directory="INSTALLDIR"/>
 		
 		<CustomAction Id="iisconfig" ExeCommand="&quot;[INSTALLDIR]iisconfig.exe&quot; &quot;[INSTALLDIR]php-cgi.exe&quot; .php" Return="check" Directory="INSTALLDIR"/>
 			

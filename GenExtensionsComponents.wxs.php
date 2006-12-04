@@ -65,7 +65,7 @@ $xmlsource = <<<XML
 				<Component Id="extdir" DiskId="1" Guid="3AB11270-4135-4C8C-9578-B034CEF2659F">
 					<IniFile Id="extdirINI" Action="addLine" 
 							Key="extension_dir" Directory="INSTALLDIR" Name="php.ini"
-							Section="PHP" Value="[INSTALLDIR]ext" />
+							Section="PHP" Value="&quot;[INSTALLDIR]ext&quot;" />
 				</Component>
 			</Directory>
 			<Directory Id="extrasdirectory" Name="extras">

@@ -117,4 +117,4 @@
 	<Extension Name="phpsrvltJAR" Guid="5475C98F-9D4D-4BA0-868F-59F80752BA6D"/>
 	<Extension Name="php_javaJAR" Guid="972FF757-2E3D-478F-8514-636CD3CD82C7"/>
 	<Extension Name="php_memcache" Guid="51005DF7-B7C4-4BD5-BCB2-A5B998E10279"/>
-<Extension Name="CVS" Guid="3CD36F87-25FD-4422-8C57-F33808592303"/></Extensions>
+</Extensions>

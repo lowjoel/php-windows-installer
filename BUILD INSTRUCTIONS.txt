@@ -3,11 +3,13 @@ Pre-requisites:
 - .NET Framework 1.1 SP1 Runtime installed
 - PHP Windows zip binary distribution
 - The pre-compiled PECL extensions for Windows from http://pecl4win.php.net/branch.php
+- Copy of PHP Manual in CHM format.
 - Local Checked out copy of this directory
 
 1) Unzip the PHP Windows zip binary distribution into the "Files" directory.
 2) Unzip the PECL extensions zip file for the branch into the "Files/pecl" directory.
-3) Run the "build.bat" script with the first arguement as the version you are building for.
+3) Copy PHP Manual CHM File into the "Files" directory.
+4) Run the "build.bat" script with the first arguement as the version you are building for.
 
 	Example:
 

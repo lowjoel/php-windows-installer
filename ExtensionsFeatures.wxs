@@ -271,6 +271,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_rar" Title="$(loc.Featureext_php_rarTitle)" Description="$(loc.Featureext_php_rarDescription)" Level="10">
 				<ComponentRef Id="php_rar"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_runkit" Title="$(loc.Featureext_php_runkitTitle)" Description="$(loc.Featureext_php_runkitDescription)" Level="10">
+				<ComponentRef Id="php_runkit"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_sdo" Title="$(loc.Featureext_php_sdoTitle)" Description="$(loc.Featureext_php_sdoDescription)" Level="10">
 				<ComponentRef Id="php_sdo"/>
 			</Feature>

@@ -98,6 +98,9 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_http" Title="$(loc.Featureext_php_httpTitle)" Description="$(loc.Featureext_php_httpDescription)" Level="10">
 				<ComponentRef Id="php_http"/>
+				<ComponentRef Id="php_curl"/>
+				<ComponentRef Id="libeay32DLL"/>
+				<ComponentRef Id="ssleay32DLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_hyperwave" Title="$(loc.Featureext_php_hyperwaveTitle)" Description="$(loc.Featureext_php_hyperwaveDescription)" Level="10">
 				<ComponentRef Id="php_hyperwave"/>

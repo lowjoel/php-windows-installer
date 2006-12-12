@@ -1,14 +1,11 @@
 <?php
 // params APACHEVERSION, APACHEDIR
 $path_parts = pathinfo(realpath($_SERVER['SCRIPT_FILENAME']));
-$phpdir = $path_parts['dirname'];
+$phpdir = addslashes($path_parts['dirname']);
 $foldername = str_replace(array('"', ';'), array('',''), $argv[2]);
 $apacheversion = $argv[1];
 
-print_r($argv);
-echo "$phpdir\n";
-
-ini_set("error_log","{$phpdir}\installapache.err");
+ini_set("error_log","{$phpdir}\phpinstallapache.err");
 
 function windowsPopup($text,$title,$flags) {
 	$wscript = new COM("WScript.Shell");
@@ -43,28 +40,28 @@ if ( $foldername === FALSE ) {
 }
 
 // Build directives to write
-$directivetowrite = "\n\n#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL\n";
+$directivetowrite = "\r\n\r\n#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL\r\n";
 switch ($apacheversion) {
 	case "CGI":
-		$directivetowrite .= "ScriptAlias /php/ \"{$phpdir}\"\n";
-		$directivetowrite .= "Action application/x-httpd-php \"{$phpdir}\php-cgi.exe\"\n";
+		$directivetowrite .= "ScriptAlias /php/ \"{$phpdir}\"\r\n";
+		$directivetowrite .= "Action application/x-httpd-php \"{$phpdir}\\\\php-cgi.exe\"\r\n";
 		break;
 	case "MODULE22":
-		$directivetowrite .= "PHPIniDir \"{$phpdir}\\\"\n";
-		$directivetowrite .= "LoadModule php5_module \"{$phpdir}\php5apache2_2.dll\"\n";
+		$directivetowrite .= "PHPIniDir \"{$phpdir}\\\\\"\r\n";
+		$directivetowrite .= "LoadModule php5_module \"{$phpdir}\\\\php5apache2_2.dll\"\r\n";
 		break;	
 	case "MODULE2":
-		$directivetowrite .= "PHPIniDir \"{$phpdir}\\\"\n";
-		$directivetowrite .= "LoadModule php5_module \"{$phpdir}\php5apache2.dll\"\n";
+		$directivetowrite .= "PHPIniDir \"{$phpdir}\\\\\"\r\n";
+		$directivetowrite .= "LoadModule php5_module \"{$phpdir}\\\\php5apache2.dll\"\r\n";
 		break;
 	case "MODULE1":
-		$directivetowrite .= "PHPIniDir \"{$phpdir}\\\"\n";
-		$directivetowrite .= "LoadModule php5_module \"{$phpdir}\php5apache.dll\"\nAddModule mod_php5.c\n";
+		$directivetowrite .= "PHPIniDir \"{$phpdir}\\\\\"\r\n";
+		$directivetowrite .= "LoadModule php5_module \"{$phpdir}\\\\php5apache.dll\"\r\nAddModule mod_php5.c\r\n";
 		break;
 	default:
 		windowsPopup("Invalid option '{$apacheversion}'","Error editing Apache Config File",16);
 }
-$directivetowrite .= "#END PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL\n";
+$directivetowrite .= "#END PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL\r\n";
 
 // Update httpd.conf
 $filename = $foldername . "\httpd.conf";
@@ -97,8 +94,8 @@ else {
 }
 
 // Update mime.types
-$directivetowrite = "application/x-httpd-php\tphp\n";
-$directivetowrite .= "application/x-httpd-php-source\tphps\n";
+$directivetowrite = "application/x-httpd-php\tphp\r\n";
+$directivetowrite .= "application/x-httpd-php-source\tphps\r\n";
 $filename = $foldername . "\mime.types";
 if (!is_file($filename)) {
 	$filename = $foldername . "\conf\mime.types";

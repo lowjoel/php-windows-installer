@@ -51,6 +51,24 @@
 		</Property>
 		
 		<Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="TempFolder" Name="TFolder">
+                <Directory Id="TempPHP" Name="PHP">
+                    <Directory Id="TempSession" Name="session">
+                        <Component Id="sessionsavepathDIR" Guid="B8B341C0-8EB2-11DB-B606-0800200C9A66"
+                            SharedDllRefCount="no" KeyPath="no" NeverOverwrite="no" Permanent="no" Transitive="no"
+                            Win64="no" Location="either">
+                            <CreateFolder/>
+                        </Component>
+                    </Directory>
+                    <Directory Id="TempUpload" Name="upload">
+                        <Component Id="uploadtmpdirDIR" Guid="B8B341C1-8EB2-11DB-B606-0800200C9A66"
+                            SharedDllRefCount="no" KeyPath="no" NeverOverwrite="no" Permanent="no" Transitive="no"
+                            Win64="no" Location="either">
+                            <CreateFolder/>
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
 			<Directory Id="ProgramFilesFolder" Name="PFiles">
 				<Directory Id="INSTALLDIR" Name="PHP">
 					<Component Id="gopearBAT" DiskId="1" Guid="C8385835-A5DD-4A90-9A44-5F49DE05B0B7">
@@ -140,7 +158,9 @@
 			<ComponentRef Id="installTXT"/>
 			<ComponentRef Id="phpGIF"/>
 			<ComponentRef Id="phprecommendedINI"/>
-			<ComponentRef Id="win2003eventlog"/>
+			<ComponentRef Id="sessionsavepathDIR"/>
+            <ComponentRef Id="uploadtmpdirDIR"/>
+            <ComponentRef Id="win2003eventlog"/>
 			<ComponentRef Id="PHPRegistry"/>
 			
 			<Feature AllowAdvertise="no" Id="MainProgram" Title="$(loc.FeatureMainProgramTitle)" Description="$(loc.FeatureMainProgramDescription)" TypicalDefault="install" Level="1">

@@ -594,7 +594,6 @@
 					<Publish Event="AddLocal" Value="apacheCGI"><![CDATA[WEBSERVERPICKER = "apacheCGI"]]></Publish>
 					<Publish Event="AddLocal" Value="iis4ISAPI"><![CDATA[WEBSERVERPICKER = "iis4ISAPI"]]></Publish>
 					<Publish Event="AddLocal" Value="iis4CGI"><![CDATA[WEBSERVERPICKER = "iis4CGI"]]></Publish>
-					<Publish Event="AddLocal" Value="iis3"><![CDATA[WEBSERVERPICKER = "iis3"]]></Publish>
 					<Publish Event="AddLocal" Value="nsapi"><![CDATA[WEBSERVERPICKER = "nsapi"]]></Publish>
 					<Publish Event="AddLocal" Value="xitami"><![CDATA[WEBSERVERPICKER = "xitami"]]></Publish>
 					<Publish Event="AddLocal" Value="sambar"><![CDATA[WEBSERVERPICKER = "sambar"]]></Publish>
@@ -605,7 +604,6 @@
 					<Publish Event="Remove" Value="apacheCGI"><![CDATA[WEBSERVERPICKER <> "apacheCGI"]]></Publish>
 					<Publish Event="Remove" Value="iis4ISAPI"><![CDATA[WEBSERVERPICKER <> "iis4ISAPI"]]></Publish>
 					<Publish Event="Remove" Value="iis4CGI"><![CDATA[WEBSERVERPICKER <> "iis4CGI"]]></Publish>
-					<Publish Event="Remove" Value="iis3"><![CDATA[WEBSERVERPICKER <> "iis3"]]></Publish>
 					<Publish Event="Remove" Value="nsapi"><![CDATA[WEBSERVERPICKER <> "nsapi"]]></Publish>
 					<Publish Event="Remove" Value="xitami"><![CDATA[WEBSERVERPICKER <> "xitami"]]></Publish>
 					<Publish Event="Remove" Value="sambar"><![CDATA[WEBSERVERPICKER <> "sambar"]]></Publish>

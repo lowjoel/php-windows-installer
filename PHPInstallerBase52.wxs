@@ -210,21 +210,13 @@
 				</Feature>
 				<Feature AllowAdvertise="no" Id="iis4ISAPI" Title="$(loc.Featureiis4ISAPITitle)" Description="$(loc.Featureiis4ISAPIDescription)" Level="10">
 					<ComponentRef Id="php5isapiDLL"/>
+					<ComponentRef Id="iisconfigEXE"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="iis4CGI" Title="$(loc.Featureiis4CGITitle)" Description="$(loc.Featureiis4CGIDescription)" Level="1">
 					<ComponentRef Id="phpcgiEXE"/>
 					<ComponentRef Id="cgiforceredirect"/>
 					<ComponentRef Id="iisconfigEXE"/>
-				</Feature>
-				<Feature AllowAdvertise="no" Id="pws4" Title="$(loc.Featurepws4Title)" Description="$(loc.Featurepws4Description)" Level="1">
-					<ComponentRef Id="phpcgiEXE"/>
-					<ComponentRef Id="cgiforceredirect"/>
-					<ComponentRef Id="iis3CGI"/>
-				</Feature>
-				<Feature AllowAdvertise="no" Id="iis3" Title="$(loc.Featureiis3Title)" Description="$(loc.Featureiis3Description)" Level="1">
-					<ComponentRef Id="phpcgiEXE"/>
-					<ComponentRef Id="cgiforceredirect"/>
-					<ComponentRef Id="iis3CGI"/>
+                    <ComponentRef Id="iis3CGI"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="nsapi" Title="$(loc.FeaturensapiTitle)" Description="$(loc.FeaturensapiDescription)" Level="10">
 					<ComponentRef Id="php5nsapiDLL"/>
@@ -256,24 +248,54 @@
 			</Feature>
 		</Feature>
 
-		<CustomAction Id="iisextVBS" ExeCommand="&quot;[WindowsFolder]system32\iisext.vbs&quot; /AddFile &quot;[INSTALLDIR]php-cgi.exe&quot; 1 PHP 1 &quot;PHP: Hypertext Processor&quot;" Return="check" Directory="INSTALLDIR"/>
+        <CustomAction Id="iis700CGI" ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;-+[name='PHP-CGI',path='*.php',verb='GET,HEAD,POST',modules='CgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe'" Return="check" Directory="INSTALLDIR"/>
+        
+        <CustomAction Id="iis700ISAPI" ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;-+[name='PHP-ISAPI',path='*.php',verb='GET,HEAD,POST',modules='IsapiModule',scriptProcessor='[INSTALLDIR]php5isapi.dll'" Return="check" Directory="INSTALLDIR"/>
+        
+        <CustomAction Id="iis700RCGI" ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:isapiCgiRestriction &quot;-+[path='[INSTALLDIR]php-cgi.exe',allowed='true',groupId='PHP',description='PHP']" Return="check" Directory="INSTALLDIR"/>
+        
+        <CustomAction Id="iis700RISAPI" ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:isapiCgiRestriction &quot;-+[path='[INSTALLDIR]php5isapi.dll',allowed='true',groupId='PHP',description='PHP']" Return="check" Directory="INSTALLDIR"/>
+                
+		<CustomAction Id="iisextVBSCGI" ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /AddFile &quot;[INSTALLDIR]php-cgi.exe&quot; 1 PHP 1 &quot;PHP: Hypertext Processor&quot;" Return="check" Directory="INSTALLDIR"/>
 		
-		<CustomAction Id="iisconfig" ExeCommand="&quot;[INSTALLDIR]iisconfig.exe&quot; &quot;[INSTALLDIR]php-cgi.exe&quot; .php" Return="check" Directory="INSTALLDIR"/>
-			
+        <CustomAction Id="iisextVBSISAPI" ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /AddFile &quot;[INSTALLDIR]php5isapi.dll&quot; 1 PHP 1 &quot;PHP: Hypertext Processor&quot;" Return="check" Directory="INSTALLDIR"/>
+		
+		<CustomAction Id="iisconfigCGI" ExeCommand="&quot;[INSTALLDIR]iisconfig.exe&quot; &quot;[INSTALLDIR]php-cgi.exe&quot; .php" Return="check" Directory="INSTALLDIR"/>
+		
+        <CustomAction Id="iisconfigISAPI" ExeCommand="&quot;[INSTALLDIR]iisconfig.exe&quot; &quot;[INSTALLDIR]php5isapi.dll&quot; .php" Return="check" Directory="INSTALLDIR"/>
+		
 		<CustomAction Id="apacheconfig_module13" ExeCommand="&quot;[INSTALLDIR]php-win.exe&quot; apacheconfig.php &quot;MODULE1&quot; &quot;[APACHEDIR]&quot;" Return="check" Directory="INSTALLDIR"/>
 		
 		<CustomAction Id="apacheconfig_module20" ExeCommand="&quot;[INSTALLDIR]php-win.exe&quot; apacheconfig.php &quot;MODULE2&quot; &quot;[APACHEDIR]&quot;" Return="check" Directory="INSTALLDIR"/>
 		
-		<CustomAction Id="apacheconfig_module22" ExeCommand="&quot;[INSTALLDIR]php-win.exe&quot; apacheconfig.php &quot;MODULE22&quot; &quot;[APACHEDIR]&quot;;" Return="check" Directory="INSTALLDIR"/>
+		<CustomAction Id="apacheconfig_module22" ExeCommand="&quot;[INSTALLDIR]php-win.exe&quot; apacheconfig.php &quot;MODULE22&quot; &quot;[APACHEDIR]&quot;" Return="check" Directory="INSTALLDIR"/>
 			
 		<CustomAction Id="apacheconfig_cgi" ExeCommand="&quot;[INSTALLDIR]php-win.exe&quot; apacheconfig.php &quot;CGI&quot; &quot;[APACHEDIR]&quot;" Return="check" Directory="INSTALLDIR"/>
 		
 		<InstallExecuteSequence>
-    	<Custom Action="iisextVBS" After="InstallFinalize">
-				<![CDATA[VersionNT >= 502 AND $phpcgiEXE = 3]]>
+    	    <Custom Action="iis700CGI" After="InstallFinalize">
+				<![CDATA[VersionNT = 600 AND &iis4CGI = 3]]>
 			</Custom>
-			<Custom Action="iisconfig" After="InstallFinalize">
-				<![CDATA[$iisconfigEXE = 3]]>
+            <Custom Action="iis700ISAPI" After="InstallFinalize">
+				<![CDATA[VersionNT = 600 AND &iis4ISAPI = 3]]>
+			</Custom>
+            <Custom Action="iis700RCGI" After="InstallFinalize">
+				<![CDATA[VersionNT = 600 AND &iis4CGI = 3]]>
+			</Custom>
+            <Custom Action="iis700RISAPI" After="InstallFinalize">
+				<![CDATA[VersionNT = 600 AND &iis4ISAPI = 3]]>
+			</Custom>
+            <Custom Action="iisconfigCGI" After="InstallFinalize">
+				<![CDATA[$iisconfigEXE = 3 AND &iis4CGI = 3]]>
+			</Custom>
+			<Custom Action="iisconfigISAPI" After="InstallFinalize">
+				<![CDATA[$iisconfigEXE = 3 AND &iis4ISAPI = 3]]>
+			</Custom>
+			<Custom Action="iisextVBSCGI" After="InstallFinalize">
+				<![CDATA[VersionNT = 502 AND &iis4CGI = 3]]>
+			</Custom>
+            <Custom Action="iisextVBSISAPI" After="InstallFinalize">
+				<![CDATA[VersionNT = 502 AND &iis4ISAPI = 3]]>
 			</Custom>
 			<Custom Action="apacheconfig_module13" After="InstallFinalize">
 				<![CDATA[&apache13 = 3]]>

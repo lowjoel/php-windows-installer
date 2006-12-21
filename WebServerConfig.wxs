@@ -4,6 +4,7 @@
 		<DirectoryRef Id='INSTALLDIR'>
 			<Component Id="iisconfigEXE" DiskId="1" Guid="68E4256F-4DBB-4A18-81EC-0B76FC8E5F62">
 				<File Id="fileiisconfigEXE" Name="IISCON_1.EXE" LongName="IISConfig.exe" Source="Files\IISConfig.exe" />
+                <Condition><![CDATA[VersionNT >= 500 AND VersionNT < 600]]></Condition>
 			</Component>
 			<Component Id="apacheconfigPHP" DiskId="1" Guid="DDCE7C5D-2118-4831-A4EC-C06A5E61EBE1">
 				<File Id="fileapacheconfigPHP" Name="APACHE_1.PHP" LongName="apacheconfig.php" Source="Files\apacheconfig.php" />
@@ -49,6 +50,7 @@
 					Action="write" 
 					Type="string" 
 					Name="[!INSTALLDIR]\php-cgi.exe" />
+                <Condition><![CDATA[VersionNT < 500]]></Condition>
 			</Component>
 			<Component Id="xitamiINI" DiskId="1" Guid="20842834-47E2-483C-AE09-B4E90C12E314">
 				<IniFile Id="xitamuINIFilter" Action="addLine" 

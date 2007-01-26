@@ -817,6 +817,7 @@
 	<String Id="Featureapache22Description">Apache 2.2.x module.</String>
 	<String Id="FeatureapacheCGITitle">Apache CGI</String>
 	<String Id="FeatureapacheCGIDescription">Apache CGI executable.</String>
+	<String Id="Featureiis3Title">IIS3</String>
 	<String Id="Featureiis4ISAPITitle">IIS ISAPI module</String>
 	<String Id="Featureiis4ISAPIDescription">ISAPI Module for IIS</String>
 	<String Id="Featureiis4CGITitle">IIS CGI</String>

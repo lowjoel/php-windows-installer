@@ -638,19 +638,18 @@
 					Value="iis4ISAPI" X="5" Y="60" Width="250" Height="15" />
 				<RadioButton Text="$(loc.Featureiis4CGITitle)"
 					Value="iis4CGI" X="5" Y="75" Width="250" Height="15" />
-				<RadioButton Text="$(loc.Featureiis3Title)"
-					Value="iis3" X="5" Y="90" Width="250" Height="15" />
 				<RadioButton Text="$(loc.FeaturensapiTitle)"
-					Value="nsapi" X="5" Y="105" Width="250" Height="15" />
+					Value="nsapi" X="5" Y="90" Width="250" Height="15" />
 				<RadioButton Text="$(loc.FeaturexitamiTitle)"
-					Value="xitami" X="5" Y="120" Width="250" Height="15" />
+					Value="xitami" X="5" Y="105" Width="250" Height="15" />
 				<RadioButton Text="$(loc.FeaturesambarTitle)"
-					Value="sambar" X="5" Y="135" Width="250" Height="15" />
+					Value="sambar" X="5" Y="120" Width="250" Height="15" />
 				<RadioButton Text="$(loc.FeaturecgiTitle)"
-					Value="cgi" X="5" Y="150" Width="250" Height="15" />
+					Value="cgi" X="5" Y="135" Width="250" Height="15" />
 				<RadioButton Text="$(loc.WebServerDlgNoWebServer)"
-					Value="noconfig" X="5" Y="165" Width="250" Height="15" />	
+					Value="noconfig" X="5" Y="150" Width="250" Height="15" />	
 			</RadioButtonGroup>
+
 			
       <Dialog Id="VerifyReadyDlg" Width="370" Height="270" Title="$(loc.VerifyReadyDlg_Title)" TrackDiskSpace="yes">
         <Control Id="Install" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Hidden="yes" Text="$(loc.VerifyReadyDlgInstall)">

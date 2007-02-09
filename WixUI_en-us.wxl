@@ -642,6 +642,8 @@
 	<String Id="Featureext_php_gmpDescription">GNU MP library functions</String>
 	<String Id="Featureext_php_gopherTitle">Net_Gopher</String>
 	<String Id="Featureext_php_gopherDescription">fopen wrapper for the gopher protocol</String>
+	<String Id="Featureext_php_htscannerTitle">htscanner</String>
+	<String Id="Featureext_php_htscannerDescription">htaccess support for PHP. Allow one to use htaccess-like file to configure PHP per directory, just like apache's htaccess.</String>
 	<String Id="Featureext_php_httpTitle">pecl_http</String>
 	<String Id="Featureext_php_httpDescription">Extended HTTP Support</String>
 	<String Id="Featureext_php_hyperwaveTitle">Hyperware</String>
@@ -652,6 +654,8 @@
 	<String Id="Featureext_php_id3Description">Functions to read and write ID3 tags in MP3 files.</String>
 	<String Id="Featureext_php_iisfuncTitle">IIS Administration</String>
 	<String Id="Featureext_php_iisfuncDescription">Provides functions to administrate Microsoft Internet Information Server (IIS).</String>
+	<String Id="Featureext_php_ixsfuncTitle">Microsoft Index Server Administration</String>
+	<String Id="Featureext_php_ixsfuncDescription">Microsoft Index Server Administration functions.</String>
 	<String Id="Featureext_php_imagickTitle">imagick</String>
 	<String Id="Featureext_php_imagickDescription">Provides a wrapper to the ImageMagick/GraphicsMagick library.</String>
 	<String Id="Featureext_php_ingresTitle">ingres</String>
@@ -718,6 +722,8 @@
 	<String Id="Featureext_php_pdoDescription">PHP Data Objects support. Enable the driver you want to use below</String>
 	<String Id="Featureext_php_pdo_firebirdTitle">Firebird/Interbase 6</String>
 	<String Id="Featureext_php_pdo_firebirdDescription">PDO Driver for Firebird/Interbase 6</String>
+	<String Id="Featureext_php_pdo_ibmTitle">IBM</String>
+	<String Id="Featureext_php_pdo_ibmDescription">PDO driver for IBM databases. Supports IBM DB2 Universal Database, IBM Cloudscape, and Apache Derby databases.</String>
 	<String Id="Featureext_php_pdo_informixTitle">Informix</String>
 	<String Id="Featureext_php_pdo_informixDescription">PDO Driver for IBM Informix databases</String>
 	<String Id="Featureext_php_pdo_mssqlTitle">Microsoft SQL Server</String>
@@ -776,7 +782,7 @@
 	<String Id="Featureext_php_stemDescription">A PHP extension that provides word stemming</String>
 	<String Id="Featureext_php_svnTitle">svn</String>
 	<String Id="Featureext_php_svnDescription">PHP Bindings for the Subversion Revision control system.</String>
-	<String Id="Featureext_php_swishTitle">svn</String>
+	<String Id="Featureext_php_swishTitle">swish</String>
 	<String Id="Featureext_php_swishDescription">PHP Bindings to the swish-e API.</String>
 	<String Id="Featureext_php_sybase_ctTitle">Sybase</String>
 	<String Id="Featureext_php_sybase_ctDescription">Sybase functions</String>
@@ -788,6 +794,8 @@
 	<String Id="Featureext_php_timezonedbDescription">Timezone Database to be used with PHP's date and time functions</String>
 	<String Id="Featureext_php_translitTitle">translit</String>
 	<String Id="Featureext_php_translitDescription">Transliterates non-latin character sets to latin</String>
+	<String Id="Featureext_php_uploadprogressTitle">uploadprogress</String>
+	<String Id="Featureext_php_uploadprogressDescription">An extension to track progress of a file upload</String>
 	<String Id="Featureext_php_win32psTitle">win32ps</String>
 	<String Id="Featureext_php_win32psDescription">Allows PHP retrieve statistics about process and memory utilization</String>
 	<String Id="Featureext_php_win32schedulerTitle">win32scheduler</String>

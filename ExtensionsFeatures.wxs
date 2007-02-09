@@ -9,6 +9,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_apd" Title="$(loc.Featureext_php_apdTitle)" Description="$(loc.Featureext_php_apdDescription)" Level="10">
 				<ComponentRef Id="php_apd"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_apc" Title="$(loc.Featureext_php_apcTitle)" Description="$(loc.Featureext_php_apcDescription)" Level="10">
+				<ComponentRef Id="php_apc"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_bcompiler" Title="$(loc.Featureext_php_bcompilerTitle)" Description="$(loc.Featureext_php_bcompilerDescription)" Level="10">
 				<ComponentRef Id="php_bcompiler"/>
 			</Feature>
@@ -96,6 +99,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_gopher" Title="$(loc.Featureext_php_gopherTitle)" Description="$(loc.Featureext_php_gopherDescription)" Level="10">
 				<ComponentRef Id="php_gopher"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_htscanner" Title="$(loc.Featureext_php_htscannerTitle)" Description="$(loc.Featureext_php_htscannerDescription)" Level="10">
+				<ComponentRef Id="php_htscanner"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_http" Title="$(loc.Featureext_php_httpTitle)" Description="$(loc.Featureext_php_httpDescription)" Level="10">
 				<ComponentRef Id="php_http"/>
 				<ComponentRef Id="php_curl"/>
@@ -129,6 +135,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_interbase" Title="$(loc.Featureext_php_interbaseTitle)" Description="$(loc.Featureext_php_interbaseDescription)" Level="10">
 				<ComponentRef Id="php_interbase"/>
 				<ComponentRef Id="gds32DLL"/>
+			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_ixsfunc" Title="$(loc.Featureext_php_ixsfuncTitle)" Description="$(loc.Featureext_php_ixsfuncDescription)" Level="10">
+				<ComponentRef Id="php_ixsfunc"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_java" Title="$(loc.Featureext_php_javaTitle)" Description="$(loc.Featureext_php_javaDescription)" Level="10">
 				<ComponentRef Id="php_java"/>
@@ -224,6 +233,9 @@
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_firebird" Title="$(loc.Featureext_php_pdo_firebirdTitle)" Description="$(loc.Featureext_php_pdo_firebirdDescription)" Level="10">
 					<ComponentRef Id="php_pdo_firebird"/>
 					<ComponentRef Id="gds32DLL"/>
+				</Feature>
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_ibm" Title="$(loc.Featureext_php_pdo_ibmTitle)" Description="$(loc.Featureext_php_pdo_ibmDescription)" Level="10">
+					<ComponentRef Id="php_pdo_ibm"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_mssql" Title="$(loc.Featureext_php_pdo_mssqlTitle)" Description="$(loc.Featureext_php_pdo_mssqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_mssql"/>
@@ -329,6 +341,9 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_translit" Title="$(loc.Featureext_php_translitTitle)" Description="$(loc.Featureext_php_translitDescription)" Level="10">
 				<ComponentRef Id="php_translit"/>
+			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_uploadprogress" Title="$(loc.Featureext_php_uploadprogressTitle)" Description="$(loc.Featureext_php_uploadprogressDescription)" Level="10">
+				<ComponentRef Id="php_uploadprogress"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_win32ps" Title="$(loc.Featureext_php_win32psTitle)" Description="$(loc.Featureext_php_win32psDescription)" Level="10">
 				<ComponentRef Id="php_win32ps"/>

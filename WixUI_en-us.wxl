@@ -760,6 +760,8 @@
 	<String Id="Featureext_php_rarDescription">rar extension</String>
 	<String Id="Featureext_php_runkitTitle">runkit</String>
 	<String Id="Featureext_php_runkitDescription">For all those things you.... probably shouldn't have been doing anyway....</String>
+	<String Id="Featureext_php_samTitle">SAM</String>
+	<String Id="Featureext_php_samDescription">Simple Asynchronous Messaging (SAM) allows PHP applications to send and receive messages to a number of different Messaging and Queuing middleware systems through a very simple interface.</String>
 	<String Id="Featureext_php_sdoTitle">sdo</String>
 	<String Id="Featureext_php_sdoDescription">Service Data Objects (SDOs) for PHP</String>
 	<String Id="Featureext_php_shmopTitle">Shared Memory</String>

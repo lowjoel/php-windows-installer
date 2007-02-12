@@ -18,7 +18,8 @@
       SummaryCodepage="1252" />
   
     <Upgrade Id="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9">
-      <UpgradeVersion MigrateFeatures="yes" 
+      <UpgradeVersion Property='OLDVERSION'
+        MigrateFeatures="yes" 
         IncludeMinimum='yes' 
         Minimum='5.2.0' />
     </Upgrade>
@@ -545,40 +546,40 @@
   
     <InstallExecuteSequence>
       <Custom Action="iis700CGI" After="InstallFinalize">
-        <![CDATA[VersionNT = 600 AND &iis4CGI = 3]]>
+        <![CDATA[VersionNT = 600 AND &iis4CGI = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="iis700ISAPI" After="InstallFinalize">
-        <![CDATA[VersionNT = 600 AND &iis4ISAPI = 3]]>
+        <![CDATA[VersionNT = 600 AND &iis4ISAPI = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="iis700RCGI" After="InstallFinalize">
-        <![CDATA[VersionNT = 600 AND &iis4CGI = 3]]>
+        <![CDATA[VersionNT = 600 AND &iis4CGI = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="iis700RISAPI" After="InstallFinalize">
-        <![CDATA[VersionNT = 600 AND &iis4ISAPI = 3]]>
+        <![CDATA[VersionNT = 600 AND &iis4ISAPI = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="iisconfigCGI" After="InstallFinalize">
-        <![CDATA[$iisconfigEXE = 3 AND &iis4CGI = 3]]>
+        <![CDATA[$iisconfigEXE = 3 AND &iis4CGI = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="iisconfigISAPI" After="InstallFinalize">
-        <![CDATA[$iisconfigEXE = 3 AND &iis4ISAPI = 3]]>
+        <![CDATA[$iisconfigEXE = 3 AND &iis4ISAPI = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="iisextVBSCGI" After="InstallFinalize">
-        <![CDATA[VersionNT = 502 AND &iis4CGI = 3]]>
+        <![CDATA[VersionNT = 502 AND &iis4CGI = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="iisextVBSISAPI" After="InstallFinalize">
-        <![CDATA[VersionNT = 502 AND &iis4ISAPI = 3]]>
+        <![CDATA[VersionNT = 502 AND &iis4ISAPI = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="apacheconfig_module13" After="InstallFinalize">
-        <![CDATA[&apache13 = 3]]>
+        <![CDATA[&apache13 = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="apacheconfig_module20" After="InstallFinalize">
-        <![CDATA[&apache20 = 3]]>
+        <![CDATA[&apache20 = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="apacheconfig_module22" After="InstallFinalize">
-        <![CDATA[&apache22 = 3]]>
+        <![CDATA[&apache22 = 3 AND NOT OLDVERSION]]>
       </Custom>
       <Custom Action="apacheconfig_cgi" After="InstallFinalize">
-        <![CDATA[&apacheCGI = 3]]>
+        <![CDATA[&apacheCGI = 3 AND NOT OLDVERSION]]>
       </Custom>
       <RemoveExistingProducts After="InstallValidate" />
     </InstallExecuteSequence>

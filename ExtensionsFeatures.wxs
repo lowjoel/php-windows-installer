@@ -157,6 +157,9 @@
 				<ComponentRef Id="php_mailparse"/>
 				<ComponentRef Id="php_mbstring"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_maxdb" Title="$(loc.Featureext_php_maxdbTitle)" Description="$(loc.Featureext_php_maxdbDescription)" Level="10">
+				<ComponentRef Id="php_maxdb"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_mcrypt_filter" Title="$(loc.Featureext_php_mcrypt_filterTitle)" Description="$(loc.Featureext_php_mcrypt_filterDescription)" Level="10">
 				<ComponentRef Id="php_mcrypt_filter"/>
 			</Feature>
@@ -288,6 +291,9 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_runkit" Title="$(loc.Featureext_php_runkitTitle)" Description="$(loc.Featureext_php_runkitDescription)" Level="10">
 				<ComponentRef Id="php_runkit"/>
+			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_sam" Title="$(loc.Featureext_php_samTitle)" Description="$(loc.Featureext_php_samDescription)" Level="10">
+				<ComponentRef Id="php_sam"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_sdo" Title="$(loc.Featureext_php_sdoTitle)" Description="$(loc.Featureext_php_sdoDescription)" Level="10">
 				<ComponentRef Id="php_sdo"/>

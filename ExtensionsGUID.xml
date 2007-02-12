@@ -117,4 +117,4 @@
 	<Extension Name="phpsrvltJAR" Guid="5475C98F-9D4D-4BA0-868F-59F80752BA6D"/>
 	<Extension Name="php_javaJAR" Guid="972FF757-2E3D-478F-8514-636CD3CD82C7"/>
 	<Extension Name="php_memcache" Guid="51005DF7-B7C4-4BD5-BCB2-A5B998E10279"/>
-<Extension Name="php_htscanner" Guid="714BD3CB-9B22-415B-93F9-38B730473116"/><Extension Name="php_ixsfunc" Guid="CB05A431-3BAB-483F-9930-D6F97D0C4596"/><Extension Name="php_pdo_ibm" Guid="7D388DCF-B42C-47DB-B8DF-8B73A1C9F0CE"/><Extension Name="php_uploadprogress" Guid="88E38FA4-04A5-4F2F-AE06-58249D7E34BE"/></Extensions>
+<Extension Name="php_htscanner" Guid="714BD3CB-9B22-415B-93F9-38B730473116"/><Extension Name="php_ixsfunc" Guid="CB05A431-3BAB-483F-9930-D6F97D0C4596"/><Extension Name="php_pdo_ibm" Guid="7D388DCF-B42C-47DB-B8DF-8B73A1C9F0CE"/><Extension Name="php_uploadprogress" Guid="88E38FA4-04A5-4F2F-AE06-58249D7E34BE"/><Extension Name="php_sam" Guid="462591F8-C632-4E92-8D70-FE7AD4778A07"/></Extensions>

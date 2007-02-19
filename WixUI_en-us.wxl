@@ -568,7 +568,7 @@
   <String Id="UITextVolumeCostVolume">Volume</String>
 	
 	<String Id="FeatureCompleteTitle">PHP</String>
-	<String Id="FeatureCompleteDescription">Installs PHP with all server modules and all extensions enabled. It is reccommended to only select the extenstion and modules you need below.</String>
+	<String Id="FeatureCompleteDescription">Installs PHP with all server modules and all extensions enabled. It is recommended to only select the extensions and modules you need below.</String>
 	<String Id="FeatureMainProgramTitle">Program</String>
 	<String Id="FeatureMainProgramDescription">Main PHP Program</String>
 	<String Id="FeatureMainExecutableTitle">CLI Executable</String>

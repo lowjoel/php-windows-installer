@@ -159,8 +159,12 @@ foreach ( $it as $filename ) {
 		$guid = $res2->item(0)->getAttribute('Guid');
 	}
 	else {
-		$guid = genGUID();
-		$Extension = $extensionsguidXML->Extensions->appendChild($extensionsguidXML->createElement('Extension'));
+		$xp3 = new DomXPath($extensionsguidXML);
+        $res3 = $xp3->query("//Extensions");
+        $Extensions = $res3->item(0);
+        $guid = genGUID();
+        $Extension = $extensionsguidXML->createElement('Extension');
+		$Extension = $Extensions->appendChild($Extension);
 		$Extension->setAttribute('Name',$cid);
 		$Extension->setAttribute('Guid',$guid);
 		$extensionsguidXML->save('extensionsGUID.xml');

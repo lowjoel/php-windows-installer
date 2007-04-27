@@ -12,7 +12,7 @@ echo Building UI....
 Wix\lit.exe -out PHPInstallerCommon.wixlib PHPInstallerCommon.wixobj 
 
 echo Compiling Installer....
-Wix\candle.exe ExtensionsComponents.wxs ExtensionsFeatures.wxs WebServerConfig.wxs PHPInstaller%1.wxs 
+Wix\candle.exe ExtensionsComponents.wxs ExtensionsFeaturesBuild.wxs WebServerConfig.wxs PHPInstaller%1.wxs 
 
 echo Linking Installer....
-Wix\light.exe -out "php-%1-win32-installer.msi" ExtensionsComponents.wixobj ExtensionsFeatures.wixobj WebServerConfig.wixobj PHPInstaller%1.wixobj PHPInstallerCommon.wixlib -loc WixUI_en-us.wxl
+Wix\light.exe -out "php-%1-win32-installer.msi" ExtensionsComponents.wixobj ExtensionsFeaturesBuild.wixobj WebServerConfig.wixobj PHPInstaller%1.wixobj PHPInstallerCommon.wixlib -loc WixUI_en-us.wxl

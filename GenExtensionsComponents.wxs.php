@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+
 function genGUID() {
    //e.g. output: 372472a2-d557-4630-bc7d-bae54c934da1
    //word*2-, word-, (w)ord-, (w)ord-, word*3
@@ -21,7 +23,7 @@ function getshortname($filename) {
 }
 
 $xmlsource = <<<XML
-<?xml version='1.0' encoding='windows-1252'?>
+<?xml version='1.0' encoding='iso-8859-1'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
 	<Fragment Id='FragmentExtensions'>
 		<DirectoryRef Id='INSTALLDIR'>
@@ -136,10 +138,16 @@ $xmlsource = <<<XML
 XML;
 ?>
 <?php
-$extensionsWXS = DOMDocument::loadXML($xmlsource);
-$extensionsguidXML = DOMDocument::load('ExtensionsGUID.xml');
+$ExtensionsWXS = new DOMDocument;
+$ExtensionsWXS->preserveWhiteSpace = false;
+$ExtensionsWXS->loadXML($xmlsource);
+$ExtensionsWXS->formatOutput = true;
+$ExtensionsGUIDXML = new DOMDocument;
+$ExtensionsGUIDXML->preserveWhiteSpace = false;
+$ExtensionsGUIDXML->load('ExtensionsGUID.xml');
+$ExtensionsGUIDXML->formatOutput = true;
 
-$xp = new DomXPath($extensionsWXS);
+$xp = new DomXPath($ExtensionsWXS);
 $res = $xp->query("//*[@Id = 'extdirectory']");
 $Directory_extdirectory = $res->item(0);
 
@@ -148,30 +156,30 @@ foreach ( $it as $filename ) {
 	if ( $filename->isDot() || $filename == "CVS" ) continue;
 	list($basename,$ext) = explode('.',$filename);
 	$cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
-    $Component = $extensionsWXS->createElement('Component');
+    $Component = $ExtensionsWXS->createElement('Component');
 	$Component = $Directory_extdirectory->appendChild($Component);
 	$Component->setAttribute('Id',$cid);
 	$Component->setAttribute('DiskId',"1");
 	
-	$xp2 = new DomXPath($extensionsguidXML);
+	$xp2 = new DomXPath($ExtensionsGUIDXML);
 	$res2 = $xp2->query("//Extension[@Name = '$cid']");
-	if ( $res2->item(0) != null ) {
+    if ( $res2->item(0) != null ) {
 		$guid = $res2->item(0)->getAttribute('Guid');
 	}
 	else {
-		$xp3 = new DomXPath($extensionsguidXML);
+		$xp3 = new DomXPath($ExtensionsGUIDXML);
         $res3 = $xp3->query("//Extensions");
         $Extensions = $res3->item(0);
         $guid = genGUID();
-        $Extension = $extensionsguidXML->createElement('Extension');
+        $Extension = $ExtensionsGUIDXML->createElement('Extension');
 		$Extension = $Extensions->appendChild($Extension);
 		$Extension->setAttribute('Name',$cid);
 		$Extension->setAttribute('Guid',$guid);
-		$extensionsguidXML->save('extensionsGUID.xml');
+		$ExtensionsGUIDXML->save('extensionsGUID.xml');
 	}
 	$Component->setAttribute('Guid',$guid);
 	
-	$File = $extensionsWXS->createElement('File');
+	$File = $ExtensionsWXS->createElement('File');
 	$File = $Component->appendChild($File);
 	$File->setAttribute('Id',"file{$basename}" . strtoupper($ext));
 	if ( strlen($basename) > 8 ) {
@@ -184,7 +192,7 @@ foreach ( $it as $filename ) {
 	$File->setAttribute('Source',"Files\ext\\{$filename}");
 	
 	if ($ext == 'dll' && stristr($basename,'php_') !== FALSE ) {
-		$IniFile = $extensionsWXS->createElement('IniFile');
+		$IniFile = $ExtensionsWXS->createElement('IniFile');
 		$IniFile = $Component->appendChild($IniFile);
 		$IniFile->setAttribute('Id',"{$basename}INI");
 		$IniFile->setAttribute('Action',"createLine");
@@ -201,27 +209,30 @@ foreach ( $it as $filename ) {
 	if ( $filename->isDot() || $filename == "CVS" ) continue;
 	list($basename,$ext) = explode('.',$filename);
     $cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
-    $Component = $extensionsWXS->createElement('Component');
+    $Component = $ExtensionsWXS->createElement('Component');
 	$Component = $Directory_extdirectory->appendChild($Component);
 	$Component->setAttribute('Id',$cid);
 	$Component->setAttribute('DiskId',"1");
 	
-	$xp2 = new DomXPath($extensionsguidXML);
+	$xp2 = new DomXPath($ExtensionsGUIDXML);
 	$res2 = $xp2->query("//Extension[@Name = '$cid']");
 	if ( $res2->item(0) != null ) {
 		$guid = $res2->item(0)->getAttribute('Guid');
 	}
 	else {
-		$guid = genGUID();
-		// Add GUID to XML Reference File
-		$Extension = $extensionsguidXML->getElementsByTagName('Extensions')->item(0)->appendChild($extensionsguidXML->createElement('Extension'));
+		$xp4 = new DomXPath($ExtensionsGUIDXML);
+        $res4 = $xp4->query("//Extensions");
+        $Extensions = $res4->item(0);
+        $guid = genGUID();
+        $Extension = $ExtensionsGUIDXML->createElement('Extension');
+		$Extension = $Extensions->appendChild($Extension);
 		$Extension->setAttribute('Name',$cid);
 		$Extension->setAttribute('Guid',$guid);
-		$extensionsguidXML->save('extensionsGUID.xml');
+		$ExtensionsGUIDXML->save('extensionsGUID.xml');
 	}
 	$Component->setAttribute('Guid',$guid);
 	
-	$File = $extensionsWXS->createElement('File');
+	$File = $ExtensionsWXS->createElement('File');
 	$File = $Component->appendChild($File);
 	$File->setAttribute('Id',"file{$basename}" . strtoupper($ext));
 	if ( strlen($basename) > 8 ) {
@@ -234,7 +245,7 @@ foreach ( $it as $filename ) {
 	$File->setAttribute('Source',"Files\PECL\\{$filename}");
 	
 	if ($ext == 'dll' && stristr($basename,'php_') !== FALSE ) {
-		$IniFile = $extensionsWXS->createElement('IniFile');
+		$IniFile = $ExtensionsWXS->createElement('IniFile');
 		$IniFile = $Component->appendChild($IniFile);
 		$IniFile->setAttribute('Id',"{$basename}INI");
 		$IniFile->setAttribute('Action',"createLine");
@@ -245,6 +256,31 @@ foreach ( $it as $filename ) {
 		$IniFile->setAttribute('Value',$filename);
 	}
 }
-$extensionsWXS->save('ExtensionsComponents.wxs');
+$ExtensionsWXS->save('ExtensionsComponents.wxs');
+
+// Remove features from ExtensionsFeatures.wxs that don't have the base component existing
+$ExtensionsFeaturesWXS = new DOMDocument;
+$ExtensionsFeaturesWXS->preserveWhiteSpace = false;
+$ExtensionsFeaturesWXS->load('ExtensionsFeatures.wxs');
+$ExtensionsFeaturesWXS->formatOutput = true;
+$resExtensionsFeaturesWXS = $ExtensionsFeaturesWXS->getElementsByTagName("ComponentRef");
+foreach ( $resExtensionsFeaturesWXS as $componentRef ) {
+    $componentRefId = $componentRef->getAttribute('Id');
+    $xpExtensionsWXS = new DomXPath($ExtensionsWXS);
+    $resExtensionsWXS = $xpExtensionsWXS->query(".//Component[@Id = '$componentRefId']");
+    if ( $resExtensionsWXS->item(0) == null 
+            && $componentRefId != 'extdir'
+            && $componentRefId != 'magicMIME'
+            && $componentRefId != 'opensslCNF'
+            && $componentRefId != 'READMESSLTXT'
+            && $componentRefId != 'PDFSupport'
+            && !stristr($componentRefId,'DLL') ) {
+        $nodetoremove = $componentRef->parentNode;
+        echo "Removing Feature " . $nodetoremove->getAttribute('Id') . " because of missing $componentRefId.dll\n";
+        $componentRef->parentNode->parentNode->removeChild($nodetoremove);
+    }
+}
+$ExtensionsFeaturesWXS->save('ExtensionsFeaturesBuild.wxs');
+
 exit;
 ?>

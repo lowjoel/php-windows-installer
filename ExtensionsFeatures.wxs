@@ -99,6 +99,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_gopher" Title="$(loc.Featureext_php_gopherTitle)" Description="$(loc.Featureext_php_gopherDescription)" Level="10">
 				<ComponentRef Id="php_gopher"/>
 			</Feature>
+            <Feature AllowAdvertise="no" Id="ext_php_haru" Title="$(loc.Featureext_php_haruTitle)" Description="$(loc.Featureext_php_haruDescription)" Level="10">
+				<ComponentRef Id="php_haru"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_htscanner" Title="$(loc.Featureext_php_htscannerTitle)" Description="$(loc.Featureext_php_htscannerDescription)" Level="10">
 				<ComponentRef Id="php_htscanner"/>
 			</Feature>
@@ -240,6 +243,9 @@
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_ibm" Title="$(loc.Featureext_php_pdo_ibmTitle)" Description="$(loc.Featureext_php_pdo_ibmDescription)" Level="10">
 					<ComponentRef Id="php_pdo_ibm"/>
 				</Feature>
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_informix" Title="$(loc.Featureext_php_pdo_informixTitle)" Description="$(loc.Featureext_php_pdo_informixDescription)" Level="10">
+					<ComponentRef Id="php_pdo_informix"/>
+				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_mssql" Title="$(loc.Featureext_php_pdo_mssqlTitle)" Description="$(loc.Featureext_php_pdo_mssqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_mssql"/>
 					<ComponentRef Id="ntwdblibDLL"/>
@@ -262,6 +268,9 @@
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite" Title="$(loc.Featureext_php_pdo_sqliteTitle)" Description="$(loc.Featureext_php_pdo_sqliteDescription)" Level="10">
 					<ComponentRef Id="php_pdo_sqlite"/>
+				</Feature>
+                <Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite_external" Title="$(loc.Featureext_php_pdo_sqlite_externalTitle)" Description="$(loc.Featureext_php_pdo_sqlite_externalDescription)" Level="10">
+					<ComponentRef Id="php_pdo_sqlite_external"/>
 				</Feature>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_phar" Title="$(loc.Featureext_php_pharTitle)" Description="$(loc.Featureext_php_pharDescription)" Level="10">

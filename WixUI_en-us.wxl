@@ -642,6 +642,8 @@
 	<String Id="Featureext_php_gmpDescription">GNU MP library functions</String>
 	<String Id="Featureext_php_gopherTitle">Net_Gopher</String>
 	<String Id="Featureext_php_gopherDescription">fopen wrapper for the gopher protocol</String>
+	<String Id="Featureext_php_haruTitle">Haru PDF functions</String>
+	<String Id="Featureext_php_haruDescription">These functions allow you to create PDF documents using the Haru Free PDF Library.</String>
 	<String Id="Featureext_php_htscannerTitle">htscanner</String>
 	<String Id="Featureext_php_htscannerDescription">htaccess support for PHP. Allow one to use htaccess-like file to configure PHP per directory, just like apache's htaccess.</String>
 	<String Id="Featureext_php_httpTitle">pecl_http</String>
@@ -740,6 +742,8 @@
 	<String Id="Featureext_php_pdo_pgsqlDescription">PDO Driver for PostgreSQL</String>
 	<String Id="Featureext_php_pdo_sqliteTitle">SQLite</String>
 	<String Id="Featureext_php_pdo_sqliteDescription">PDO Driver for SQLite</String>
+    <String Id="Featureext_php_pdo_sqlite_externalTitle">SQLite (External Driver)</String>
+	<String Id="Featureext_php_pdo_sqlite_externalDescription">PDO Driver for SQLite using an external driver instead of the bundled version</String>
 	<String Id="Featureext_php_perlTitle">perl</String>
 	<String Id="Featureext_php_perlDescription">Embedded Perl.</String>
 	<String Id="Featureext_php_pharTitle">phar</String>

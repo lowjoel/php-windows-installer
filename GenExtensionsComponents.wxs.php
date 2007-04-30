@@ -266,19 +266,16 @@ $ExtensionsFeaturesWXS->formatOutput = true;
 $resExtensionsFeaturesWXS = $ExtensionsFeaturesWXS->getElementsByTagName("ComponentRef");
 foreach ( $resExtensionsFeaturesWXS as $componentRef ) {
     $componentRefId = $componentRef->getAttribute('Id');
-    $xpExtensionsWXS = new DomXPath($ExtensionsWXS);
-    $resExtensionsWXS = $xpExtensionsWXS->query(".//Component[@Id = '$componentRefId']");
-    if ( $resExtensionsWXS->item(0) == null 
-            && $componentRefId != 'extdir'
-            && $componentRefId != 'magicMIME'
-            && $componentRefId != 'opensslCNF'
-            && $componentRefId != 'READMESSLTXT'
-            && $componentRefId != 'PDFSupport'
-            && !stristr($componentRefId,'DLL') ) {
-        $nodetoremove = $componentRef->parentNode;
-        echo "Removing Feature " . $nodetoremove->getAttribute('Id') . " because of missing $componentRefId.dll\n";
-        $componentRef->parentNode->parentNode->removeChild($nodetoremove);
+    $resExtensionsWXS = $ExtensionsWXS->getElementsByTagName("Component");
+    foreach ( $resExtensionsWXS as $component ) {
+        $componentId = $component->getAttribute('Id');
+        if ( $componentId == $componentRefId ) {
+            continue 2;
+        }
     }
+    $nodetoremove = $componentRef->parentNode;
+    echo "Removing Feature " . $nodetoremove->getAttribute('Id') . " because of missing Component $componentRefId\n";
+    $componentRef->parentNode->parentNode->removeChild($nodetoremove);  
 }
 $ExtensionsFeaturesWXS->save('ExtensionsFeaturesBuild.wxs');
 

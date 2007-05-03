@@ -3,8 +3,11 @@
 	<Fragment Id="FragmentExtensionsFeatures">
 		<Feature AllowAdvertise="no" Id="Extensions" Title="$(loc.FeatureExtensionsTitle)" Description="$(loc.FeatureExtensionsDescription)" Level="10">
 			<ComponentRef Id="extdir"/>
-			<Feature AllowAdvertise="no" Id="pecl_php5activescript" Title="$(loc.Featurepecl_php5activescriptTitle)" Description="$(loc.Featurepecl_php5activescriptDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="pecl_php5activescript" Title="$(loc.Featurepecl_phpactivescriptTitle)" Description="$(loc.Featurepecl_phpactivescriptDescription)" Level="10">
 				<ComponentRef Id="php5activescript"/>
+			</Feature>
+			<Feature AllowAdvertise="no" Id="pecl_php6activescript" Title="$(loc.Featurepecl_phpactivescriptTitle)" Description="$(loc.Featurepecl_phpactivescriptDescription)" Level="10">
+				<ComponentRef Id="php6activescript"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_apd" Title="$(loc.Featureext_php_apdTitle)" Description="$(loc.Featureext_php_apdDescription)" Level="10">
 				<ComponentRef Id="php_apd"/>
@@ -146,6 +149,12 @@
 				<ComponentRef Id="php_java"/>
 				<ComponentRef Id="php_javaJAR"/>
 				<ComponentRef Id="php5servlet"/>
+				<ComponentRef Id="phpsrvltJAR"/>
+			</Feature>
+            <Feature AllowAdvertise="no" Id="ext_php_java" Title="$(loc.Featureext_php_javaTitle)" Description="$(loc.Featureext_php_javaDescription)" Level="10">
+				<ComponentRef Id="php_java"/>
+				<ComponentRef Id="php_javaJAR"/>
+				<ComponentRef Id="php6servlet"/>
 				<ComponentRef Id="phpsrvltJAR"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ldap" Title="$(loc.Featureext_php_ldapTitle)" Description="$(loc.Featureext_php_ldapDescription)" Level="10">

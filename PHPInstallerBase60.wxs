@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
-  <Product Name="PHP 5.2.0" Id="A062A356-1B4E-4367-8E5B-26363021051B" 
+  <Product Name="PHP 6.0.0" Id="A062A356-1B4E-4367-8E5B-26363021051B" 
     UpgradeCode="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9" 
     Language="1033" 
     Codepage="1252" 
@@ -244,13 +244,13 @@
               Value="&quot;[TempFolder]php\session&quot;"/>
             <Condition>NOT PHPINIEXISTS</Condition>
           </Component>
-          <Component Id="php5embedLIB" 
+          <Component Id="php6embedLIB" 
             DiskId="1" 
             Guid="8C0B065E-41DB-43DB-ABB2-716BE38988C7">
             <File Id="file22" 
-              Name="PHP5EM_1.LIB" 
-              LongName="php5embed.lib" 
-              Source="Files\php5embed.lib"/>
+              Name="PHP6EM_1.LIB" 
+              LongName="php6embed.lib" 
+              Source="Files\php6embed.lib"/>
           </Component>
           <Component Id="win2003eventlog" 
             DiskId="1"
@@ -260,7 +260,7 @@
               Key="System\CurrentControlSet\Services\EventLog\Application\PHP\EventMessageFile" 
               Action="write" 
               Type="string" 
-              Name="[!INSTALLDIR]\dev\php5ts.dll"/>
+              Name="[!INSTALLDIR]\dev\php6ts.dll"/>
             <Registry Id="w2k3TypesSupported" 
               Root="HKLM" 
               Key="System\CurrentControlSet\Services\EventLog\Application\PHP\TypesSupported" 
@@ -269,12 +269,12 @@
               Name="7"/>
             <Condition>VersionNT = 502</Condition>	
           </Component>
-          <Component Id="php5tsDLL" 
+          <Component Id="php6tsDLL" 
             DiskId="1" 
             Guid="14A95C34-564F-4BF9-BFC7-0DAA48A96BA2">
             <File Id="file25" 
-              Name="php5ts.dll" 
-              Source="Files\php5ts.dll"/>
+              Name="php6ts.dll" 
+              Source="Files\php6ts.dll"/>
           </Component>
           <Component Id="phpCHM" 
             DiskId="1" 
@@ -294,12 +294,12 @@
             Guid="24C87A13-FDBA-489B-AE2D-F9406EBA265A"/>
           <Directory Id="devdirectory" 
             Name="dev">
-            <Component Id="php5tsLIB" 
+            <Component Id="php6tsLIB" 
               DiskId="1" 
               Guid="52593C5C-6709-49B9-B1C0-6729C977DE65">
               <File Id="file30" 
-                Name="php5ts.lib" 
-                Source="Files\dev\php5ts.lib"/>
+                Name="php6ts.lib" 
+                Source="Files\dev\php6ts.lib"/>
             </Component>
           </Directory>
           <Directory Id="PEARdirectory" 
@@ -319,8 +319,8 @@
         Name="PMenu" 
         LongName="Programs">
         <Directory Id="ProgramMenuDir" 
-          Name="PHP5" 
-          LongName="PHP 5"/>
+          Name="PHP6" 
+          LongName="PHP 6"/>
       </Directory>
     </Directory>
     <Feature AllowAdvertise="no" 
@@ -347,9 +347,9 @@
         Description="$(loc.FeatureMainProgramDescription)" 
         TypicalDefault="install" 
         Level="1">
-        <ComponentRef Id="php5tsDLL"/>
-        <ComponentRef Id="php5tsLIB"/>
-        <ComponentRef Id="php5embedLIB"/>
+        <ComponentRef Id="php6tsDLL"/>
+        <ComponentRef Id="php6tsLIB"/>
+        <ComponentRef Id="php6embedLIB"/>
         <Feature AllowAdvertise="no" 
           Id="MainExecutable" 
           Title="$(loc.FeatureMainExecutableTitle)" 
@@ -386,8 +386,8 @@
           Title="$(loc.Featureapache13Title)" 
           Description="$(loc.Featureapache13Description)" 
           Level="10">
-          <ComponentRef Id="php5apacheDLL"/>
-          <ComponentRef Id="php5apache_hooksDLL"/>
+          <ComponentRef Id="php6apacheDLL"/>
+          <ComponentRef Id="php6apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
         </Feature>
         <Feature AllowAdvertise="no" 
@@ -395,9 +395,9 @@
           Title="$(loc.Featureapache20Title)" 
           Description="$(loc.Featureapache20Description)" 
           Level="10">
-          <ComponentRef Id="php5apache2DLL"/>
-          <ComponentRef Id="php5apache2_filterDLL"/>
-          <ComponentRef Id="php5apache_hooksDLL"/>
+          <ComponentRef Id="php6apache2DLL"/>
+          <ComponentRef Id="php6apache2_filterDLL"/>
+          <ComponentRef Id="php6apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
         </Feature>
         <Feature AllowAdvertise="no" 
@@ -405,9 +405,9 @@
           Title="$(loc.Featureapache22Title)" 
           Description="$(loc.Featureapache22Description)" 
           Level="10">
-          <ComponentRef Id="php5apache2_2DLL"/>
-          <ComponentRef Id="php5apache2_2_filterDLL"/>
-          <ComponentRef Id="php5apache_hooksDLL"/>
+          <ComponentRef Id="php6apache2_2DLL"/>
+          <ComponentRef Id="php6apache2_2_filterDLL"/>
+          <ComponentRef Id="php6apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
         </Feature>
         <Feature AllowAdvertise="no" 
@@ -424,7 +424,7 @@
           Title="$(loc.Featureiis4ISAPITitle)" 
           Description="$(loc.Featureiis4ISAPIDescription)" 
           Level="10">
-          <ComponentRef Id="php5isapiDLL"/>
+          <ComponentRef Id="php6isapiDLL"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="iis4CGI" 
@@ -440,7 +440,7 @@
           Title="$(loc.FeaturensapiTitle)"
           Description="$(loc.FeaturensapiDescription)" 
           Level="10">
-          <ComponentRef Id="php5nsapiDLL"/>
+          <ComponentRef Id="php6nsapiDLL"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="xitami" 
@@ -457,7 +457,7 @@
           Title="$(loc.FeaturesambarTitle)" 
           Description="$(loc.FeaturesambarDescription)" 
           Level="1">
-          <ComponentRef Id="php5isapiDLL"/>
+          <ComponentRef Id="php6isapiDLL"/>
           <ComponentRef Id="sambarINI"/>
         </Feature>
         <Feature AllowAdvertise="no" 
@@ -493,14 +493,14 @@
       </Feature>
     </Feature>
 
-    <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts52.vbs" /> 
+    <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts60.vbs" /> 
     
     <CustomAction Id="iis700CGI" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;-+[name='PHP-CGI',path='*.php',verb='GET,HEAD,POST',modules='CgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe'&quot;" 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700ISAPI" 
-      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;-+[name='PHP-ISAPI',path='*.php',verb='GET,HEAD,POST',modules='IsapiModule',scriptProcessor='[INSTALLDIR]php5isapi.dll'&quot;" 
+      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;-+[name='PHP-ISAPI',path='*.php',verb='GET,HEAD,POST',modules='IsapiModule',scriptProcessor='[INSTALLDIR]php6isapi.dll'&quot;" 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700RCGI" 
@@ -508,7 +508,7 @@
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700RISAPI" 
-      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:isapiCgiRestriction &quot;-+[path='[INSTALLDIR]php5isapi.dll',allowed='true',groupId='PHP',description='PHP']&quot;" 
+      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:isapiCgiRestriction &quot;-+[path='[INSTALLDIR]php6isapi.dll',allowed='true',groupId='PHP',description='PHP']&quot;" 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700CGIremove" 
@@ -516,7 +516,7 @@
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700ISAPIremove" 
-      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;--[name='PHP-ISAPI',path='*.php',verb='GET,HEAD,POST',modules='IsapiModule',scriptProcessor='[INSTALLDIR]php5isapi.dll'&quot;" 
+      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;--[name='PHP-ISAPI',path='*.php',verb='GET,HEAD,POST',modules='IsapiModule',scriptProcessor='[INSTALLDIR]php6isapi.dll'&quot;" 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iisextVBSCGI" 
@@ -524,7 +524,7 @@
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iisextVBSISAPI" 
-      ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /AddFile &quot;[INSTALLDIR]php5isapi.dll&quot; 1 PHP 1 &quot;PHP: Hypertext Processor&quot;" 
+      ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /AddFile &quot;[INSTALLDIR]php6isapi.dll&quot; 1 PHP 1 &quot;PHP: Hypertext Processor&quot;" 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iisextVBSCGIremove" 
@@ -532,7 +532,7 @@
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iisextVBSISAPIremove" 
-      ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /rmfile &quot;[INSTALLDIR]php5isapi.dll&quot;" 
+      ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /rmfile &quot;[INSTALLDIR]php6isapi.dll&quot;" 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="configIIS4" 

@@ -8,25 +8,26 @@ sub configApache
 
     strDirective = vbCrLf & vbCrLf & "#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
     strApacheDir = Session.Property("APACHEDIR")
+    strPHPPath = Replace(Session.TargetPath("INSTALLDIR"),"\","\\")
     
     If ( Session.FeatureRequestState("apacheCGI") = 3 ) Then
-		strDirective = strDirective & "ScriptAlias /php/ """ & Session.TargetPath("INSTALLDIR") & """" & vbCrLf
-		strDirective = strDirective & "Action application/x-httpd-php """ & Session.TargetPath("INSTALLDIR") & "\php-cgi.exe""" & vbCrLf
+		strDirective = strDirective & "ScriptAlias /php/ """ & strPHPPath & """" & vbCrLf
+		strDirective = strDirective & "Action application/x-httpd-php """ & strPHPPath & "\php-cgi.exe""" & vbCrLf
 	End If
     
     If ( Session.FeatureRequestState("apache22") = 3 ) Then
-		strDirective = strDirective & "PHPIniDir """ & Session.TargetPath("INSTALLDIR") & """" & vbCrLf
-		strDirective = strDirective & "LoadModule php5_module """ & Session.TargetPath("INSTALLDIR") & "\php5apache2_2.dll""" & vbCrLf
+		strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
+		strDirective = strDirective & "LoadModule php6_module """ & strPHPPath & "\php6apache2_2.dll""" & vbCrLf
 	End If
         
 	If ( Session.FeatureRequestState("apache20") = 3 ) Then
-		strDirective = strDirective & "PHPIniDir """ & Session.TargetPath("INSTALLDIR") & """" & vbCrLf
-		strDirective = strDirective & "LoadModule php5_module """ & Session.TargetPath("INSTALLDIR") & "\php5apache2.dll""" & vbCrLf
+		strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
+		strDirective = strDirective & "LoadModule php6_module """ & strPHPPath & "\php6apache2.dll""" & vbCrLf
 	End If
         
 	If ( Session.FeatureRequestState("apache13") = 3 ) Then
-		strDirective = strDirective & "PHPIniDir """ & Session.TargetPath("INSTALLDIR") & """" & vbCrLf
-		strDirective = strDirective & "LoadModule php5_module """ & Session.TargetPath("INSTALLDIR") & "\php5apache.dll""" & vbCrLf
+		strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
+		strDirective = strDirective & "LoadModule php6_module """ & strPHPPath & "\php6apache.dll""" & vbCrLf
 	End If
     
     strDirective = strDirective &  "#END PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
@@ -51,7 +52,7 @@ sub configApache
     strText = Replace(strText,"ScriptAlias /php/","#ScriptAlias /php/")
     strText = Replace(strText,"Action application/x-httpd-php","#Action application/x-httpd-php")
     strText = Replace(strText,"PHPIniDir","#PHPIniDir")
-    strText = Replace(strText,"LoadModule php5_module","#LoadModule php5_module")
+    strText = Replace(strText,"LoadModule php6_module","#LoadModule php6_module")
     strText  = strText & strDirective
     
     ' backup old file
@@ -157,7 +158,7 @@ sub configIIS4
         PHPExecutable = Session.TargetPath("INSTALLDIR") & "\php-cgi.exe"
     End If
     If ( Session.FeatureRequestState("iis4ISAPI") = 3 ) Then
-        PHPExecutable = Session.TargetPath("INSTALLDIR") & "\php5isapi.dll"
+        PHPExecutable = Session.TargetPath("INSTALLDIR") & "\php6isapi.dll"
     End If
  
     'it could all go dreadfully wrong - so set error handler for graceful exits
@@ -217,13 +218,6 @@ sub unconfigIIS4
     Dim J
     Dim K
     Dim MapNode, ScriptMaps, OutMaps(), Map, MapBits
- 
-    If ( Session.FeatureRequestState("iis4CGI") = 3 ) Then
-        PHPExecutable = Session.TargetPath("INSTALLDIR") & "\php-cgi.exe"
-    End If
-    If ( Session.FeatureRequestState("iis4ISAPI") = 3 ) Then
-        PHPExecutable = Session.TargetPath("INSTALLDIR") & "\php5isapi.dll"
-    End If
  
     'it could all go dreadfully wrong - so set error handler for graceful exits
     On Error Resume Next

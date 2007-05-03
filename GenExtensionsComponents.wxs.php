@@ -207,6 +207,7 @@ foreach ( $it as $filename ) {
 $it = new DirectoryIterator('Files\PECL');
 foreach ( $it as $filename ) {
 	if ( $filename->isDot() || $filename == "CVS" ) continue;
+    if ( is_file("Files\\ext\\$filename") ) continue;
 	list($basename,$ext) = explode('.',$filename);
     $cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
     $Component = $ExtensionsWXS->createElement('Component');

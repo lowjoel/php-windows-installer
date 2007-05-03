@@ -16,7 +16,10 @@ function genGUID() {
 $basefile = $argv[1];
 $version = $argv[2];
 
-$PHPInstallerBaseWXS = DOMDocument::load($basefile);
+$PHPInstallerBaseWXS = new DOMDocument;
+$PHPInstallerBaseWXS->preserveWhiteSpace = false;
+$PHPInstallerBaseWXS->load($basefile);
+$PHPInstallerBaseWXS->formatOutput = true;
 $PHPInstallerBaseWXS->getElementsByTagName('Product')->item(0)->setAttribute("Name","PHP $version");
 $PHPInstallerBaseWXS->getElementsByTagName('Product')->item(0)->setAttribute("Version","$version");
 $PHPInstallerBaseWXS->getElementsByTagName('Product')->item(0)->setAttribute("Id",genGUID());

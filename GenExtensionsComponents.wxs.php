@@ -264,19 +264,22 @@ $ExtensionsFeaturesWXS = new DOMDocument;
 $ExtensionsFeaturesWXS->preserveWhiteSpace = false;
 $ExtensionsFeaturesWXS->load('ExtensionsFeatures.wxs');
 $ExtensionsFeaturesWXS->formatOutput = true;
-$resExtensionsFeaturesWXS = $ExtensionsFeaturesWXS->getElementsByTagName("ComponentRef");
-foreach ( $resExtensionsFeaturesWXS as $componentRef ) {
-    $componentRefId = $componentRef->getAttribute('Id');
-    $resExtensionsWXS = $ExtensionsWXS->getElementsByTagName("Component");
-    foreach ( $resExtensionsWXS as $component ) {
-        $componentId = $component->getAttribute('Id');
+$componentRefs = $ExtensionsFeaturesWXS->getElementsByTagName("ComponentRef");
+$i = 0;
+while ( $i < $componentRefs->length ) {
+    $componentRefId = $componentRefs->item($i)->getAttribute('Id');
+    $components = $ExtensionsWXS->getElementsByTagName("Component");
+    for ( $j = 0; $j < $components->length; $j++ ) {
+        $componentId = $components->item($j)->getAttribute('Id');
         if ( $componentId == $componentRefId ) {
+            $i++;
             continue 2;
         }
     }
-    $nodetoremove = $componentRef->parentNode;
+    $nodetoremove = $componentRefs->item($i)->parentNode;
     echo "Removing Feature " . $nodetoremove->getAttribute('Id') . " because of missing Component $componentRefId\n";
-    $componentRef->parentNode->parentNode->removeChild($nodetoremove);  
+    $componentRefs->item($i)->parentNode->parentNode->removeChild($nodetoremove);
+    $i--;
 }
 $ExtensionsFeaturesWXS->save('ExtensionsFeaturesBuild.wxs');
 

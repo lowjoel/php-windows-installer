@@ -9,35 +9,41 @@ sub configApache
     strDirective = vbCrLf & vbCrLf & "#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
     strApacheDir = Session.Property("APACHEDIR")
     strPHPPath = Replace(Session.TargetPath("INSTALLDIR"),"\","\\")
+    If ( right(strApacheDir,1) <> "\" ) then 
+        strApacheDir = strApacheDir & "\"
+    End If
+    If ( right(strPHPPath,1) <> "\\" ) then 
+        strPHPPath = strPHPPath & "\\"
+    End If
     
     If ( Session.FeatureRequestState("apacheCGI") = 3 ) Then
 		strDirective = strDirective & "ScriptAlias /php/ """ & strPHPPath & """" & vbCrLf
-		strDirective = strDirective & "Action application/x-httpd-php """ & strPHPPath & "\php-cgi.exe""" & vbCrLf
+		strDirective = strDirective & "Action application/x-httpd-php """ & strPHPPath & "php-cgi.exe""" & vbCrLf
 	End If
     
     If ( Session.FeatureRequestState("apache22") = 3 ) Then
 		strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-		strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "\php5apache2_2.dll""" & vbCrLf
+		strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2_2.dll""" & vbCrLf
 	End If
         
 	If ( Session.FeatureRequestState("apache20") = 3 ) Then
 		strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-		strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "\php5apache2.dll""" & vbCrLf
+		strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2.dll""" & vbCrLf
 	End If
         
 	If ( Session.FeatureRequestState("apache13") = 3 ) Then
 		strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-		strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "\php5apache.dll""" & vbCrLf
+		strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache.dll""" & vbCrLf
 	End If
     
     strDirective = strDirective &  "#END PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
     
     Set objFSO = CreateObject("Scripting.FileSystemObject")
-    strFileName = strApacheDir & "\httpd.conf"
+    strFileName = strApacheDir & "httpd.conf"
     If objFSO.FileExists(strFileName) Then
         Set objFile = objFSO.OpenTextFile( strFileName, ForReading)
     Else
-        strFileName = strApacheDir & "\conf\httpd.conf"
+        strFileName = strApacheDir & "conf\httpd.conf"
         If objFSO.FileExists(strFileName) Then
             Set objFile = objFSO.OpenTextFile( strFileName, ForReading)
         Else
@@ -63,11 +69,11 @@ sub configApache
     objFile.WriteLine strText
     objFile.Close
     
-    strFileName = strApacheDir & "\mime.types"
+    strFileName = strApacheDir & "mime.types"
     If objFSO.FileExists(strFileName) Then
         Set objFile = objFSO.OpenTextFile( strFileName, ForReading)
     Else
-        strFileName = strApacheDir & "\conf\mime.types"
+        strFileName = strApacheDir & "conf\mime.types"
         If objFSO.FileExists(strFileName) Then
             Set objFile = objFSO.OpenTextFile( strFileName, ForReading)
         Else
@@ -103,13 +109,16 @@ sub unconfigApache
     Dim objFile
 
     strApacheDir = Session.Property("APACHEREGDIR")
-    
+    If ( right(strApacheDir,1) <> "\" ) then 
+        strApacheDir = strApacheDir & "\"
+    End If
+
     Set objFSO = CreateObject("Scripting.FileSystemObject")
-    strFileName = strApacheDir & "\httpd.conf"
+    strFileName = strApacheDir & "httpd.conf"
     If objFSO.FileExists(strFileName) Then
         Set objFile = objFSO.OpenTextFile( strFileName, ForReading)
     Else
-        strFileName = strApacheDir & "\conf\httpd.conf"
+        strFileName = strApacheDir & "conf\httpd.conf"
         If objFSO.FileExists(strFileName) Then
             Set objFile = objFSO.OpenTextFile( strFileName, ForReading)
         Else
@@ -154,11 +163,15 @@ sub configIIS4
     Dim K
     Dim MapNode, ScriptMaps, OutMaps(), Map, MapBits
  
+    strPHPPath = Session.TargetPath("INSTALLDIR")
+    If ( right(strPHPPath,1) <> "\" ) then 
+        strPHPPath = strPHPPath & "\"
+    End If
     If ( Session.FeatureRequestState("iis4CGI") = 3 ) Then
-        PHPExecutable = Session.TargetPath("INSTALLDIR") & "\php-cgi.exe"
+        PHPExecutable = strPHPPath & "php-cgi.exe"
     End If
     If ( Session.FeatureRequestState("iis4ISAPI") = 3 ) Then
-        PHPExecutable = Session.TargetPath("INSTALLDIR") & "\php5isapi.dll"
+        PHPExecutable = strPHPPath & "php5isapi.dll"
     End If
  
     'it could all go dreadfully wrong - so set error handler for graceful exits

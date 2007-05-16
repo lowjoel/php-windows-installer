@@ -12,7 +12,7 @@ sub configApache
     If ( right(strApacheDir,1) <> "\" ) then 
         strApacheDir = strApacheDir & "\"
     End If
-    If ( right(strPHPPath,1) <> "\\" ) then 
+    If ( right(strPHPPath,2) <> "\\" ) then 
         strPHPPath = strPHPPath & "\\"
     End If
     

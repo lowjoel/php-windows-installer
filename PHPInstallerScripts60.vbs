@@ -174,6 +174,9 @@ sub configIIS4
         PHPExecutable = strPHPPath & "php6isapi.dll"
     End If
  
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    PHPExecutable = objFSO.GetFile(PHPExecutable).ShortPath
+    
     'it could all go dreadfully wrong - so set error handler for graceful exits
     On Error Resume Next
  
@@ -207,7 +210,7 @@ sub configIIS4
         ReDim Preserve OutMaps(J + 1 - 1)
 
         'add our php extensions to OutMaps
-        OutMaps(J) = ".php" & ",""" & PHPExecutable & """,1"
+        OutMaps(J) = ".php" & "," & PHPExecutable & ",1"
    
         'write the Outmap to the current node
         MapNode.Put "ScriptMaps", (OutMaps)

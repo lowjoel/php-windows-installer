@@ -682,12 +682,14 @@
 	<String Id="Featureext_php_mailparseDescription">Email message manipulation</String>
 	<String Id="Featureext_php_maxdbTitle">maxdb</String>
 	<String Id="Featureext_php_maxdbDescription">An extension to access MaxDB databases</String>
-	<String Id="Featureext_php_mcrypt_filterTitle">mcrypt_filter</String>
-	<String Id="Featureext_php_mcrypt_filterDescription">Applies mcrypt symmetric encryption using stream filters</String>
 	<String Id="Featureext_php_mbstringTitle">Multi-Byte String</String>
 	<String Id="Featureext_php_mbstringDescription">Multi-Byte String functions</String>
 	<String Id="Featureext_php_mcryptTitle">Mcrypt</String>
 	<String Id="Featureext_php_mcryptDescription">Mcrypt Encryption functions</String>
+	<String Id="Featureext_php_mcrypt_filterTitle">mcrypt_filter</String>
+	<String Id="Featureext_php_mcrypt_filterDescription">Applies mcrypt symmetric encryption using stream filters</String>
+	<String Id="Featureext_php_mcveTitle">mcve</String>
+	<String Id="Featureext_php_mcveDescription">Interface the MCVE/Monetra API (libmonetra [formerly libmcve]), allowing you to work directly with MCVE/Monetra from your PHP scripts. Monetra is Main Street Softworks' solution to direct credit card processing for Unix.</String>
 	<String Id="Featureext_php_memcacheTitle">memcached</String>
 	<String Id="Featureext_php_memcacheDescription">Caching daemon designed especially for dynamic web applications to decrease database load by storing objects in memory.</String>
 	<String Id="Featureext_php_mhashTitle">Mhash</String>

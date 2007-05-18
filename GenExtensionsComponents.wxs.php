@@ -46,7 +46,7 @@ $xmlsource = <<<XML
 				<File Id="filelibmysqlDLL" Name="libmysql.dll" Source="Files\libmysql.dll" />
 			</Component>
 			<Component Id="ntwdblibDLL" DiskId="1" Guid="7FA2C1EB-5166-4D16-AD36-DEF92A491D8B">
-				<File Id="filentwdblibDLL" Name="ntwdblib.dll" Source="Files\\ntwdblib.dll" />
+				<File Id="filentwdblibDLL" Name="ntwdblib.dll" Source="Files\ntwdblib.dll" />
 			</Component>
 			<Component Id="msqlDLL" DiskId="1" Guid="C37BB17E-8C9D-4FB6-AD40-100BDDFDADD5">
 				<File Id="filemsqlDLL" Name="msql.dll" Source="Files\msql.dll" />
@@ -257,6 +257,22 @@ foreach ( $it as $filename ) {
 		$IniFile->setAttribute('Value',$filename);
 	}
 }
+
+// Remove Files defined that don't exist
+$files = $ExtensionsWXS->getElementsByTagName("File");
+$i = 0;
+while ( $i < $files->length ) {
+    if ( !is_file( realpath($files->item($i)->getAttribute('Source')) ) ) {
+        $nodetoremove = $files->item($i)->parentNode;
+        echo "Removing File " . $nodetoremove->getAttribute('Id') . " it doesn't exist\n";
+        $files->item($i)->parentNode->parentNode->removeChild($nodetoremove);
+        $i--;
+    }
+    else {
+        $i++;
+    }
+}
+
 $ExtensionsWXS->save('ExtensionsComponents.wxs');
 
 // Remove features from ExtensionsFeatures.wxs that don't have the base component existing
@@ -282,6 +298,7 @@ while ( $i < $componentRefs->length ) {
     $i--;
 }
 $ExtensionsFeaturesWXS->save('ExtensionsFeaturesBuild.wxs');
+
 
 exit;
 ?>

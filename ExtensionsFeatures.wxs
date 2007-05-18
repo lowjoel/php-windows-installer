@@ -185,6 +185,9 @@
 				<ComponentRef Id="php_mcrypt"/>
 				<ComponentRef Id="libmcryptDLL"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_mcve" Title="$(loc.Featureext_php_mcveTitle)" Description="$(loc.Featureext_php_mcveDescription)" Level="10">
+				<ComponentRef Id="php_mcve"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_memcache" Title="$(loc.Featureext_php_memcacheTitle)" Description="$(loc.Featureext_php_memcacheDescription)" Level="10">
 				<ComponentRef Id="php_memcache"/>
 			</Feature>

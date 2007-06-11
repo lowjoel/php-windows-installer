@@ -24,11 +24,13 @@
         Minimum='5.2.0' />
     </Upgrade>
 
-    <Condition Message="You need to be an administrator to install PHP using this installer.">
+    <Condition 
+	  Message="You need to be an administrator to install PHP using this installer.">
       Privileged
     </Condition>
     
-    <Condition Message="PHP requires Windows NT/2000/XP/2003 or later to install">
+    <Condition 
+	  Message="PHP requires Windows NT/2000/XP/2003 or later to install">
       <![CDATA[( VersionNT < 400 ) OR ( Version9x <> 0 )]]>
     </Condition>
 
@@ -227,7 +229,12 @@
             <File Id="file17" 
               Name="PHP_2.INI" 
               LongName="php.ini" 
-              Source="Files\php.ini-recommended"/>
+              Source="Files\php.ini" >
+              <Shortcut Id="startmenuPHPINI" 
+                Directory="ProgramMenuDir" 
+                Name="php.ini" 
+                LongName="php.ini"/>
+            </File>
             <IniFile Id="uploadtmpdirINI" 
               Action="addLine" 
               Key="upload_tmp_dir" 
@@ -263,7 +270,7 @@
               Name="[!INSTALLDIR]\dev\php5ts.dll"/>
             <Registry Id="w2k3TypesSupported" 
               Root="HKLM" 
-              Key="System\CurrentControlSet\Services\EventLog\Application\PHP\TypesSupported" 
+          Key="System\CurrentControlSet\Services\EventLog\Application\PHP\TypesSupported" 
               Action="write" 
               Type="integer" 
               Name="7"/>

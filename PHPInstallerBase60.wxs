@@ -227,7 +227,12 @@
             <File Id="file17" 
               Name="PHP_2.INI" 
               LongName="php.ini" 
-              Source="Files\php.ini-recommended"/>
+              Source="Files\php.ini" >
+              <Shortcut Id="startmenuPHPINI" 
+                Directory="ProgramMenuDir" 
+                Name="php.ini" 
+                LongName="php.ini"/>
+            </File>
             <IniFile Id="uploadtmpdirINI" 
               Action="addLine" 
               Key="upload_tmp_dir" 

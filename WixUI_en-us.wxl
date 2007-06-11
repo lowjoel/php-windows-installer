@@ -584,6 +584,8 @@
 	<String Id="Featurepecl_phpactivescriptDescription">Enables you to use PHP script in any ActiveScript compliant host, like Windows Script Host, ASP/ASP.NET, Windows Script Components or Microsoft Scriptlet control.</String>
 	<String Id="Featureext_php_adtTitle">ADT</String>
 	<String Id="Featureext_php_adtDescription">ADT</String>
+	<String Id="Featureext_php_amfTitle">ActionScript Message Format</String>
+	<String Id="Featureext_php_amfDescription">Allows to encode and decode PHP data in ActionScript Message Format (AMF) version 0 and 3</String>
 	<String Id="Featureext_php_apcTitle">APC</String>
 	<String Id="Featureext_php_apcDescription">The Alternative PHP Cache is a free, open, and robust framework for caching and optimizing PHP intermediate code.</String>
 	<String Id="Featureext_php_apdTitle">APD</String>
@@ -782,6 +784,8 @@
 	<String Id="Featureext_php_soapDescription">SOAP functions</String>
 	<String Id="Featureext_php_socketsTitle">Sockets</String>
 	<String Id="Featureext_php_socketsDescription">Socket functions</String>
+	<String Id="Featureext_php_spl_typesTitle">Standard PHP Library, Types Addon</String>
+	<String Id="Featureext_php_spl_typesDescription">SPL Types is a collection of special typehandling classes.</String>
 	<String Id="Featureext_php_sqliteTitle">SQLite</String>
 	<String Id="Featureext_php_sqliteDescription">SQLite Functions</String>
 	<String Id="Featureext_php_ssh2Title">ssh2</String>

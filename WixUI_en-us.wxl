@@ -739,9 +739,9 @@
 	<String Id="Featureext_php_pdo_mysqlTitle">MySQL</String>
 	<String Id="Featureext_php_pdo_mysqlDescription">PDO Driver for MySQL</String>
 	<String Id="Featureext_php_pdo_ociTitle">Oracle10g Client and above</String>
-	<String Id="Featureext_php_pdo_ociDescription">PDO Driver for Oracle10g Client and above</String>
+	<String Id="Featureext_php_pdo_ociDescription">PDO Driver for Oracle10g Client and above NOTE: CHOOSE EITHER THIS EXTENSION OR THE PDO DRIVER FOR ORACLE8I/ORACLE9I CLIENT, BUT NOT BOTH</String>
 	<String Id="Featureext_php_pdo_oci8Title">Oracle8i/Oracle9i Client</String>
-	<String Id="Featureext_php_pdo_oci8Description">PDO Driver for Oracle8i/Oracle9i Client</String>
+	<String Id="Featureext_php_pdo_oci8Description">PDO Driver for Oracle8i/Oracle9i Client NOTE: CHOOSE EITHER THIS EXTENSION OR THE PDO DRIVER FOR ORACLE10G CLIENT, BUT NOT BOTH</String>
 	<String Id="Featureext_php_pdo_odbcTitle">ODBC v3 (IBM DB2, unixODBC and win32 ODBC)</String>
 	<String Id="Featureext_php_pdo_odbcDescription">PDO Driver for ODBC v3 (IBM DB2, unixODBC and win32 ODBC)</String>
 	<String Id="Featureext_php_pdo_pgsqlTitle">PostgreSQL</String>

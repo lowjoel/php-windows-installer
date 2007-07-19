@@ -11,10 +11,10 @@
 			<Component Id="php5apache2_2DLL" DiskId="1" Guid="54216B1B-582F-49A0-86E9-AD7CF586ADA8">
 				<File Id="filephp5apache2_2DLL" Name="PHP5AP_3.DLL" LongName="php5apache2_2.dll" Source="Files\php5apache2_2.dll" />
 			</Component>
-			<Component Id="php5apache2_filterDLL" DiskId="1" Guid="97997967-0ED5-4695-A714-F1333A0FC1B9">
+			<Component Id="php5apache2_filterDLL" DiskId="1" Guid="9AA534A8-3624-11DC-8218-B28555D89593">
 				<File Id="filephp5apache2_filterDLL" Name="PHP5AP_2.DLL" LongName="php5apache2_filter.dll" Source="Files\php5apache2_filter.dll" />
 			</Component>
-			<Component Id="php5apache2_2_filterDLL" DiskId="1" Guid="54216B1B-582F-49A0-86E9-AD7CF586ADA8">
+			<Component Id="php5apache2_2_filterDLL" DiskId="1" Guid="828FA07E-3624-11DC-8CB8-308555D89593">
 				<File Id="filephp5apache2_2_filterDLL" Name="PHP5AP_3.DLL" LongName="php5apache2_2_filter.dll" Source="Files\php5apache2_2_filter.dll" />
 			</Component>
 			<Component Id="php5apache_hooksDLL" DiskId="1" Guid="C4DB476D-1A0A-4C46-826C-1D3FD4BA45D0">
@@ -45,13 +45,13 @@
 					Name="[!INSTALLDIR]\php-cgi.exe" />
                 <Condition><![CDATA[VersionNT < 500]]></Condition>
 			</Component>
-			<Component Id="xitamiINI" DiskId="1" Guid="20842834-47E2-483C-AE09-B4E90C12E314">
+			<Component Id="xitamiINI" DiskId="1" Guid="5C27D17C-3624-11DC-93BF-A48455D89593">
 				<IniFile Id="xitamuINIFilter" Action="addLine" 
 					Key=".php" Directory="XITAMIDIR" Name="defaults.cfg"
 					Section="Filter" Value="[!INSTALLDIR]\php-cgi.exe" />
 				<Condition>XITAMIDIR</Condition>
 			</Component>
-			<Component Id="sambarINI" DiskId="1" Guid="20842834-47E2-483C-AE09-B4E90C12E314">
+			<Component Id="sambarINI" DiskId="1" Guid="629031D0-3624-11DC-ACF8-B08455D89593">
 				<IniFile Id="sambarINIMappings" Action="addLine" 
 					Key="*.php" Directory="SAMBARDIR" Name="mappings.ini"
 					Section="ISAPI" Value="[!INSTALLDIR]\php5isapi.dll" />

@@ -99,7 +99,7 @@
           </Directory>
           <Directory Id="TempUpload" Name="upload">
             <Component Id="uploadtmpdirDIR" 
-              Guid="B8B341C1-8EB2-11DB-B606-0800200C9A66"
+              Guid="D9FEBC3C-3624-11DC-8A0E-148855D89593"
               SharedDllRefCount="no" 
               KeyPath="no" 
               NeverOverwrite="no" 
@@ -283,7 +283,7 @@
           </Component>
           <Component Id="phpCHM" 
             DiskId="1" 
-            Guid="D7E5F122-9764-4165-BDDA-922D60408C2F">
+            Guid="43C45330-3624-11DC-999C-478455D89593">
             <File Id="file182" 
               Name="PHP_MA_1.DLL" 
               LongName="php_manual_en.chm" 

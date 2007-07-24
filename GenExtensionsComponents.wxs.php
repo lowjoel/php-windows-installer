@@ -70,6 +70,16 @@ $xmlsource = <<<XML
 							Section="PHP" Value="&quot;[INSTALLDIR]ext&quot;" />
 				</Component>
 			</Directory>
+            <Directory Id="mibsdirectory" Name="mibs">
+				<Component Id="mibsdir" DiskId="1" Guid="21B96C70-3A1E-11DC-8314-0800200C9A66">
+					<Environment Id="MIBDIRS" 
+                      Name="MIBDIRS" 
+                      Action="create" 
+                      System="yes" 
+                      Part="all" 
+                      Value="[!INSTALLDIR]\mibs"/>
+				</Component>
+			</Directory>
 			<Directory Id="extrasdirectory" Name="extras">
 				<Component Id="magicMIME" DiskId="1" Guid="C29559A6-DE77-4951-A8F8-6266B790DE20">
 					<File Id="filemagicMIME" Name="MAGIC_1.MIM" LongName="magic.mime" Source="Files\extras\magic.mime" />

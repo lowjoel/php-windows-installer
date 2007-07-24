@@ -333,6 +333,7 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_snmp" Title="$(loc.Featureext_php_snmpTitle)" Description="$(loc.Featureext_php_snmpDescription)" Level="10">
 				<ComponentRef Id="php_snmp"/>
+				<ComponentRef Id="mibsdir" />
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_soap" Title="$(loc.Featureext_php_soapTitle)" Description="$(loc.Featureext_php_soapDescription)" Level="10">
 				<ComponentRef Id="php_soap"/>

@@ -83,6 +83,14 @@
         Name="ApacheDir"/>
     </Property>
 
+    <Property Id="WEBSERVERPICKER">
+      <RegistrySearch Id="webservertype" 
+        Root="HKLM" 
+        Key="Software\PHP" 
+        Type="raw" 
+        Name="WebServerType"/>
+    </Property>
+    
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="TempFolder" Name="TFolder">
         <Directory Id="TempPHP" Name="PHP">
@@ -188,13 +196,6 @@
               Action='write' 
               Type='string' 
               Value='[INSTALLDIR]' />
-            <Registry Id='PHPRegistryApacheDir' 
-              Root='HKLM' 
-              Key='Software\PHP' 
-              Name='ApacheDir'
-              Action='write' 
-              Type='string' 
-              Value='[APACHEDIR]' />
           </Component>
           <Component Id="phpEXE" 
             DiskId="1" 
@@ -264,16 +265,18 @@
             Guid="E4C43E12-F31C-4A8C-A084-4E604274D4C9">
             <Registry Id="w2k3EventMessageFile" 
               Root="HKLM" 
-              Key="System\CurrentControlSet\Services\EventLog\Application\PHP\EventMessageFile" 
+              Key="System\CurrentControlSet\Services\EventLog\Application\PHP" 
               Action="write" 
-              Type="string" 
-              Name="[!INSTALLDIR]\dev\php5ts.dll"/>
+              Type="string"
+              Name="EventMessageFile"
+              Value="[!INSTALLDIR]\dev\php5ts.dll"/>
             <Registry Id="w2k3TypesSupported" 
               Root="HKLM" 
-          Key="System\CurrentControlSet\Services\EventLog\Application\PHP\TypesSupported" 
+              Key="System\CurrentControlSet\Services\EventLog\Application\PHP" 
               Action="write" 
               Type="integer" 
-              Name="7"/>
+              Name="TypesSupported"
+              Value="7"/>
             <Condition>VersionNT = 502</Condition>	
           </Component>
           <Component Id="php5tsDLL" 
@@ -385,7 +388,8 @@
       <Feature AllowAdvertise="no" 
         Id="WebServers" 
         Title="$(loc.FeatureWebServersTitle)" 
-        Description="$(loc.FeatureWebServersDescription)" 
+        Description="$(loc.FeatureWebServersDescription)"
+        Display="hidden"
         Level="10">
         <ComponentRef Id="Empty"/>
         <Feature AllowAdvertise="no" 
@@ -396,6 +400,7 @@
           <ComponentRef Id="php5apacheDLL"/>
           <ComponentRef Id="php5apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
+          <ComponentRef Id="apache13registry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="apache20" 
@@ -406,6 +411,7 @@
           <ComponentRef Id="php5apache2_filterDLL"/>
           <ComponentRef Id="php5apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
+          <ComponentRef Id="apache20registry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="apache22" 
@@ -416,6 +422,7 @@
           <ComponentRef Id="php5apache2_2_filterDLL"/>
           <ComponentRef Id="php5apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
+          <ComponentRef Id="apache22registry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="apacheCGI" 
@@ -425,6 +432,7 @@
           <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="phpwinEXE"/>
+          <ComponentRef Id="apacheCGIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="iis4ISAPI" 
@@ -432,6 +440,7 @@
           Description="$(loc.Featureiis4ISAPIDescription)" 
           Level="10">
           <ComponentRef Id="php5isapiDLL"/>
+          <ComponentRef Id="iis4ISAPIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="iis4CGI" 
@@ -441,6 +450,7 @@
           <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="iis3CGI"/>
+          <ComponentRef Id="iis4CGIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="nsapi" 
@@ -448,6 +458,7 @@
           Description="$(loc.FeaturensapiDescription)" 
           Level="10">
           <ComponentRef Id="php5nsapiDLL"/>
+          <ComponentRef Id="nsapiregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="xitami" 
@@ -458,6 +469,7 @@
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="cgifixpathinfo"/>
           <ComponentRef Id="xitamiINI"/>
+          <ComponentRef Id="xitamiregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="sambar" 
@@ -466,6 +478,7 @@
           Level="1">
           <ComponentRef Id="php5isapiDLL"/>
           <ComponentRef Id="sambarINI"/>
+          <ComponentRef Id="sambarregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="cgi" 
@@ -473,6 +486,14 @@
           Description="$(loc.FeaturecgiDescription)" 
           Level="1">
           <ComponentRef Id="phpcgiEXE"/>
+          <ComponentRef Id="cgiregistry"/>
+        </Feature>
+        <Feature AllowAdvertise="no" 
+          Id="noconfig" 
+          Title="$(loc.FeaturecgiTitle)" 
+          Description="$(loc.FeaturecgiDescription)" 
+          Level="1">
+          <ComponentRef Id="noconfigregistry"/>
         </Feature>
       </Feature>
       

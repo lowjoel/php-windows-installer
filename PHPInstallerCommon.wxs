@@ -599,6 +599,7 @@
           <Publish Event="AddLocal" Value="xitami"><![CDATA[WEBSERVERPICKER = "xitami"]]></Publish>
           <Publish Event="AddLocal" Value="sambar"><![CDATA[WEBSERVERPICKER = "sambar"]]></Publish>
           <Publish Event="AddLocal" Value="cgi"><![CDATA[WEBSERVERPICKER = "cgi"]]></Publish>
+          <Publish Event="AddLocal" Value="noconfig"><![CDATA[WEBSERVERPICKER = "noconfig"]]></Publish>
           <Publish Event="Remove" Value="apache13"><![CDATA[WEBSERVERPICKER <> "apache13"]]></Publish>
           <Publish Event="Remove" Value="apache20"><![CDATA[WEBSERVERPICKER <> "apache20"]]></Publish>
           <Publish Event="Remove" Value="apache22"><![CDATA[WEBSERVERPICKER <> "apache22"]]></Publish>
@@ -609,11 +610,17 @@
           <Publish Event="Remove" Value="xitami"><![CDATA[WEBSERVERPICKER <> "xitami"]]></Publish>
           <Publish Event="Remove" Value="sambar"><![CDATA[WEBSERVERPICKER <> "sambar"]]></Publish>
           <Publish Event="Remove" Value="cgi"><![CDATA[WEBSERVERPICKER <> "cgi"]]></Publish>
+          <Publish Event="Remove" Value="noconfig"><![CDATA[WEBSERVERPICKER <> "noconfig"]]></Publish>
           <Publish Event="NewDialog" Value="[WixUI_WebServerDlg_NextApache]"><![CDATA[WEBSERVERPICKER = "apache13" OR WEBSERVERPICKER = "apache20" OR WEBSERVERPICKER = "apache22" OR WEBSERVERPICKER = "apacheCGI"]]></Publish>
           <Publish Event="NewDialog" Value="[WixUI_WebServerDlg_Next]"><![CDATA[WEBSERVERPICKER <> "apache13" AND WEBSERVERPICKER <> "apache20" AND WEBSERVERPICKER <> "apache22" AND WEBSERVERPICKER <> "apacheCGI"]]></Publish>
         </Control>
         <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="$(loc.WixUIBack)">
-          <Publish Event="NewDialog" Value="[WixUI_WebServerDlg_Back]">1</Publish>
+          <Publish Event="NewDialog" Value="[WixUI_WebServerDlg_BackChange]">
+            <![CDATA[WixUI_InstallMode = "Change"]]>
+          </Publish>
+          <Publish Event="NewDialog" Value="[WixUI_WebServerDlg_Back]">
+            <![CDATA[WixUI_InstallMode <> "Change"]]>
+          </Publish>
         </Control>
         <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="$(loc.WixUICancel)">
           <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
@@ -777,6 +784,7 @@
       <Property Id="WixUI_InstallDirDlg_Browse" Value="BrowseDlg" />
       
       <Property Id="WixUI_WebServerDlg_Back" Value="InstallDirDlg" />
+      <Property Id="WixUI_WebServerDlg_BackChange" Value="MaintenanceTypeDlg" />
       <Property Id="WixUI_WebServerDlg_Next" Value="CustomizeDlg" />
       <Property Id="WixUI_WebServerDlg_NextApache" Value="ApacheDlg" />
       
@@ -784,7 +792,7 @@
       <Property Id="WixUI_ApacheDlg_Next" Value="CustomizeDlg" />
       <Property Id="WixUI_ApacheDlg_Browse" Value="BrowseApacheDlg" />
       
-      <Property Id="WixUI_CustomizeDlg_BackChange" Value="MaintenanceTypeDlg" />
+      <Property Id="WixUI_CustomizeDlg_BackChange" Value="WebServerDlg" />
       <Property Id="WixUI_CustomizeDlg_BackCustom" Value="SetupTypeDlg" />
       <Property Id="WixUI_CustomizeDlg_BackFeatureTree" Value="WebServerDlg" />
       <Property Id="WixUI_CustomizeDlg_Next" Value="VerifyReadyDlg" />
@@ -799,7 +807,7 @@
 
       <Property Id="WixUI_MaintenanceWelcomeDlg_Next" Value="MaintenanceTypeDlg" />
 
-      <Property Id="WixUI_MaintenanceTypeDlg_Change" Value="CustomizeDlg" />
+      <Property Id="WixUI_MaintenanceTypeDlg_Change" Value="WebServerDlg" />
       <Property Id="WixUI_MaintenanceTypeDlg_Repair" Value="VerifyReadyDlg" />
       <Property Id="WixUI_MaintenanceTypeDlg_Remove" Value="VerifyReadyDlg" />
       <Property Id="WixUI_MaintenanceTypeDlg_Back" Value="MaintenanceWelcomeDlg" />

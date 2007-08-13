@@ -81,6 +81,14 @@
         Name="ApacheDir"/>
     </Property>
 
+    <Property Id="WEBSERVERPICKER">
+      <RegistrySearch Id="webservertype" 
+        Root="HKLM" 
+        Key="Software\PHP" 
+        Type="raw" 
+        Name="WebServerType"/>
+    </Property>
+    
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="TempFolder" Name="TFolder">
         <Directory Id="TempPHP" Name="PHP">
@@ -186,13 +194,6 @@
               Action='write' 
               Type='string' 
               Value='[INSTALLDIR]' />
-            <Registry Id='PHPRegistryApacheDir' 
-              Root='HKLM' 
-              Key='Software\PHP' 
-              Name='ApacheDir'
-              Action='write' 
-              Type='string' 
-              Value='[APACHEDIR]' />
           </Component>
           <Component Id="phpEXE" 
             DiskId="1" 
@@ -394,6 +395,7 @@
           <ComponentRef Id="php6apacheDLL"/>
           <ComponentRef Id="php6apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
+          <ComponentRef Id="apache13registry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="apache20" 
@@ -404,6 +406,7 @@
           <ComponentRef Id="php6apache2_filterDLL"/>
           <ComponentRef Id="php6apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
+          <ComponentRef Id="apache20registry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="apache22" 
@@ -414,6 +417,7 @@
           <ComponentRef Id="php6apache2_2_filterDLL"/>
           <ComponentRef Id="php6apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
+          <ComponentRef Id="apache22registry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="apacheCGI" 
@@ -423,13 +427,15 @@
           <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="phpwinEXE"/>
+          <ComponentRef Id="apacheCGIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="iis4ISAPI" 
           Title="$(loc.Featureiis4ISAPITitle)" 
           Description="$(loc.Featureiis4ISAPIDescription)" 
           Level="10">
-          <ComponentRef Id="php6isapiDLL"/>
+          <ComponentRef Id="php5isapiDLL"/>
+          <ComponentRef Id="iis4ISAPIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="iis4CGI" 
@@ -439,13 +445,15 @@
           <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="iis3CGI"/>
+          <ComponentRef Id="iis4CGIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="nsapi" 
           Title="$(loc.FeaturensapiTitle)"
           Description="$(loc.FeaturensapiDescription)" 
           Level="10">
-          <ComponentRef Id="php6nsapiDLL"/>
+          <ComponentRef Id="php5nsapiDLL"/>
+          <ComponentRef Id="nsapiregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="xitami" 
@@ -456,14 +464,16 @@
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="cgifixpathinfo"/>
           <ComponentRef Id="xitamiINI"/>
+          <ComponentRef Id="xitamiregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="sambar" 
           Title="$(loc.FeaturesambarTitle)" 
           Description="$(loc.FeaturesambarDescription)" 
           Level="1">
-          <ComponentRef Id="php6isapiDLL"/>
+          <ComponentRef Id="php5isapiDLL"/>
           <ComponentRef Id="sambarINI"/>
+          <ComponentRef Id="sambarregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="cgi" 
@@ -471,6 +481,14 @@
           Description="$(loc.FeaturecgiDescription)" 
           Level="1">
           <ComponentRef Id="phpcgiEXE"/>
+          <ComponentRef Id="cgiregistry"/>
+        </Feature>
+        <Feature AllowAdvertise="no" 
+          Id="noconfig" 
+          Title="$(loc.FeaturecgiTitle)" 
+          Description="$(loc.FeaturecgiDescription)" 
+          Level="1">
+          <ComponentRef Id="noconfigregistry"/>
         </Feature>
       </Feature>
       

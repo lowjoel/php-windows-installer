@@ -1,62 +1,211 @@
 <?xml version='1.0' encoding='windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
-	<Fragment Id='FragmentWebServerConfig'>
-		<DirectoryRef Id='INSTALLDIR'>
-			<Component Id="php5apacheDLL" DiskId="1" Guid="FEEF42A9-BCCA-44DD-88E5-501D39B87DA0">
-				<File Id="filephp5apacheDLL" Name="PHP5AP_1.DLL" LongName="php5apache.dll" Source="Files\php5apache.dll" />
-			</Component>
-			<Component Id="php5apache2DLL" DiskId="1" Guid="97997967-0ED5-4695-A714-F1333A0FC1B9">
-				<File Id="filephp5apache2DLL" Name="PHP5AP_2.DLL" LongName="php5apache2.dll" Source="Files\php5apache2.dll" />
-			</Component>
-			<Component Id="php5apache2_2DLL" DiskId="1" Guid="54216B1B-582F-49A0-86E9-AD7CF586ADA8">
-				<File Id="filephp5apache2_2DLL" Name="PHP5AP_3.DLL" LongName="php5apache2_2.dll" Source="Files\php5apache2_2.dll" />
-			</Component>
-			<Component Id="php5apache2_filterDLL" DiskId="1" Guid="9AA534A8-3624-11DC-8218-B28555D89593">
-				<File Id="filephp5apache2_filterDLL" Name="PHP5AP_2.DLL" LongName="php5apache2_filter.dll" Source="Files\php5apache2_filter.dll" />
-			</Component>
-			<Component Id="php5apache2_2_filterDLL" DiskId="1" Guid="828FA07E-3624-11DC-8CB8-308555D89593">
-				<File Id="filephp5apache2_2_filterDLL" Name="PHP5AP_3.DLL" LongName="php5apache2_2_filter.dll" Source="Files\php5apache2_2_filter.dll" />
-			</Component>
-			<Component Id="php5apache_hooksDLL" DiskId="1" Guid="C4DB476D-1A0A-4C46-826C-1D3FD4BA45D0">
-				<File Id="filephp5apache_hooksDLL" Name="PHP5AP_4.DLL" LongName="php5apache_hooks.dll" Source="Files\php5apache_hooks.dll" />
-			</Component>
-			<Component Id="php5isapiDLL" DiskId="1" Guid="5B5419B5-917A-462A-B325-CB61B82E5FF2">
-				<File Id="filephp5isapiDLL" Name="PHP5IS_1.DLL" LongName="php5isapi.dll" Source="Files\php5isapi.dll" />
-			</Component>
-			<Component Id="php5nsapiDLL" DiskId="1" Guid="13AD2C19-03D3-40A7-A1D8-5EE145344DFE">
-				<File Id="filephp5nsapiDLL" Name="PHP5NS_1.DLL" LongName="php5nsapi.dll" Source="Files\php5nsapi.dll" />
-			</Component>
-			<Component Id="cgiforceredirect" DiskId="1" Guid="0A2DD92F-AFCC-417B-B909-395F9D3B79F5">
-				<IniFile Id="cgiforceredirectINI" Action="addLine" 
-                    Key="cgi.force_redirect" Directory="INSTALLDIR" Name="php.ini"
-                    Section="PHP" Value="0" />
-			</Component>
-			<Component Id="cgifixpathinfo" DiskId="1" Guid="E2DBFF96-1551-4928-9D2E-A62E536B2B60">
-				<IniFile Id="cgifixpathinfoINI" Action="addLine" 
-					Key="cgi.fix_pathinfo" Directory="INSTALLDIR" Name="php.ini"
-					Section="PHP" Value="1" />
-			</Component>
-			<Component Id="iis3CGI" DiskId="1" Guid="20842834-47E2-483C-AE09-B4E90C12E314">
-				<Registry Id="iis3RegScriptMap" 
-					Root="HKLM"
-					Key="SYSTEM\CurrentControlSet\Services\w3svc\parameters\Script Map\.php" 
-					Action="write" 
-					Type="string" 
-					Name="[!INSTALLDIR]\php-cgi.exe" />
-                <Condition><![CDATA[VersionNT < 500]]></Condition>
-			</Component>
-			<Component Id="xitamiINI" DiskId="1" Guid="5C27D17C-3624-11DC-93BF-A48455D89593">
-				<IniFile Id="xitamuINIFilter" Action="addLine" 
-					Key=".php" Directory="XITAMIDIR" Name="defaults.cfg"
-					Section="Filter" Value="[!INSTALLDIR]\php-cgi.exe" />
-				<Condition>XITAMIDIR</Condition>
-			</Component>
-			<Component Id="sambarINI" DiskId="1" Guid="629031D0-3624-11DC-ACF8-B08455D89593">
-				<IniFile Id="sambarINIMappings" Action="addLine" 
-					Key="*.php" Directory="SAMBARDIR" Name="mappings.ini"
-					Section="ISAPI" Value="[!INSTALLDIR]\php5isapi.dll" />
-				<Condition>SAMBARDIR</Condition>
-			</Component>
-		</DirectoryRef>
-	</Fragment>
+  <Fragment Id='FragmentWebServerConfig'>
+    <DirectoryRef Id='INSTALLDIR'>
+      <Component Id="php5apacheDLL" DiskId="1" Guid="FEEF42A9-BCCA-44DD-88E5-501D39B87DA0">
+        <File Id="filephp5apacheDLL" Name="PHP5AP_1.DLL" LongName="php5apache.dll" Source="Files\php5apache.dll" />
+      </Component>
+      <Component Id="php5apache2DLL" DiskId="1" Guid="97997967-0ED5-4695-A714-F1333A0FC1B9">
+        <File Id="filephp5apache2DLL" Name="PHP5AP_2.DLL" LongName="php5apache2.dll" Source="Files\php5apache2.dll" />
+      </Component>
+      <Component Id="php5apache2_2DLL" DiskId="1" Guid="54216B1B-582F-49A0-86E9-AD7CF586ADA8">
+        <File Id="filephp5apache2_2DLL" Name="PHP5AP_3.DLL" LongName="php5apache2_2.dll" Source="Files\php5apache2_2.dll" />
+      </Component>
+      <Component Id="php5apache2_filterDLL" DiskId="1" Guid="9AA534A8-3624-11DC-8218-B28555D89593">
+        <File Id="filephp5apache2_filterDLL" Name="PHP5AP_2.DLL" LongName="php5apache2_filter.dll" Source="Files\php5apache2_filter.dll" />
+      </Component>
+      <Component Id="php5apache2_2_filterDLL" DiskId="1" Guid="828FA07E-3624-11DC-8CB8-308555D89593">
+        <File Id="filephp5apache2_2_filterDLL" Name="PHP5AP_3.DLL" LongName="php5apache2_2_filter.dll" Source="Files\php5apache2_2_filter.dll" />
+      </Component>
+      <Component Id="php5apache_hooksDLL" DiskId="1" Guid="C4DB476D-1A0A-4C46-826C-1D3FD4BA45D0">
+        <File Id="filephp5apache_hooksDLL" Name="PHP5AP_4.DLL" LongName="php5apache_hooks.dll" Source="Files\php5apache_hooks.dll" />
+      </Component>
+      <Component Id="php5isapiDLL" DiskId="1" Guid="5B5419B5-917A-462A-B325-CB61B82E5FF2">
+        <File Id="filephp5isapiDLL" Name="PHP5IS_1.DLL" LongName="php5isapi.dll" Source="Files\php5isapi.dll" />
+      </Component>
+      <Component Id="php5nsapiDLL" DiskId="1" Guid="13AD2C19-03D3-40A7-A1D8-5EE145344DFE">
+        <File Id="filephp5nsapiDLL" Name="PHP5NS_1.DLL" LongName="php5nsapi.dll" Source="Files\php5nsapi.dll" />
+      </Component>
+      <Component Id="cgiforceredirect" DiskId="1" Guid="0A2DD92F-AFCC-417B-B909-395F9D3B79F5">
+        <IniFile Id="cgiforceredirectINI" Action="addLine" 
+          Key="cgi.force_redirect" Directory="INSTALLDIR" Name="php.ini"
+          Section="PHP" Value="0" />
+      </Component>
+      <Component Id="cgifixpathinfo" DiskId="1" Guid="E2DBFF96-1551-4928-9D2E-A62E536B2B60">
+        <IniFile Id="cgifixpathinfoINI" Action="addLine" 
+          Key="cgi.fix_pathinfo" Directory="INSTALLDIR" Name="php.ini"
+          Section="PHP" Value="1" />
+      </Component>
+      <Component Id="iis3CGI" DiskId="1" Guid="20842834-47E2-483C-AE09-B4E90C12E314">
+        <Registry Id="iis3RegScriptMap" 
+          Root="HKLM"
+          Key="SYSTEM\CurrentControlSet\Services\w3svc\parameters\Script Map\.php" 
+          Action="write" 
+          Type="string" 
+          Name="[!INSTALLDIR]\php-cgi.exe" />
+        <Condition><![CDATA[VersionNT < 500]]></Condition>
+      </Component>
+      <Component Id="xitamiINI" DiskId="1" Guid="5C27D17C-3624-11DC-93BF-A48455D89593">
+        <IniFile Id="xitamuINIFilter" Action="addLine" 
+          Key=".php" Directory="XITAMIDIR" Name="defaults.cfg"
+          Section="Filter" Value="[!INSTALLDIR]\php-cgi.exe" />
+        <Condition>XITAMIDIR</Condition>
+      </Component>
+      <Component Id="sambarINI" DiskId="1" Guid="629031D0-3624-11DC-ACF8-B08455D89593">
+        <IniFile Id="sambarINIMappings" Action="addLine" 
+          Key="*.php" Directory="SAMBARDIR" Name="mappings.ini"
+          Section="ISAPI" Value="[!INSTALLDIR]\php5isapi.dll" />
+        <Condition>SAMBARDIR</Condition>
+      </Component>
+      <Component Id="apache13registry" 
+        DiskId="1" 
+        Guid="5A29CBC6-49A4-11DC-8314-0800200C9A66">
+        <Registry Id='apache13registryApacheDir' 
+          Root='HKLM' 
+          Key='Software\PHP' 
+          Name='ApacheDir'
+          Action='write' 
+          Type='string' 
+          Value='[APACHEDIR]' />
+        <Registry Id="apache13registryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="apache13"/>  
+      </Component>
+      <Component Id="apache20registry" 
+        DiskId="1" 
+        Guid="6B49A08E-49A4-11DC-8314-0800200C9A66">
+        <Registry Id='apache20registryApacheDir' 
+          Root='HKLM' 
+          Key='Software\PHP' 
+          Name='ApacheDir'
+          Action='write' 
+          Type='string' 
+          Value='[APACHEDIR]' />
+        <Registry Id="apache20registryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="apache20"/>  
+      </Component>
+      <Component Id="apache22registry" 
+        DiskId="1" 
+        Guid="6B49A08F-49A4-11DC-8314-0800200C9A66">
+        <Registry Id='apache22registryApacheDir' 
+          Root='HKLM' 
+          Key='Software\PHP' 
+          Name='ApacheDir'
+          Action='write' 
+          Type='string' 
+          Value='[APACHEDIR]' />
+        <Registry Id="apache22registryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="apache22"/>  
+      </Component>
+      <Component Id="apacheCGIregistry" 
+        DiskId="1" 
+        Guid="6B49A090-49A4-11DC-8314-0800200C9A66">
+        <Registry Id='apacheCGIregistryApacheDir' 
+          Root='HKLM' 
+          Key='Software\PHP' 
+          Name='ApacheDir'
+          Action='write' 
+          Type='string' 
+          Value='[APACHEDIR]' />
+        <Registry Id="apacheCGIregistryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="apacheCGI"/>  
+      </Component>
+      <Component Id="iis4ISAPIregistry" 
+        DiskId="1" 
+        Guid="6B49A091-49A4-11DC-8314-0800200C9A66">
+        <Registry Id="iis4ISAPIregistryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="iis4ISAPI"/>  
+      </Component>
+      <Component Id="iis4CGIregistry" 
+        DiskId="1" 
+        Guid="6B49A092-49A4-11DC-8314-0800200C9A66">
+        <Registry Id="iis4CGIregistryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="iis4CGI"/>  
+      </Component>
+      <Component Id="nsapiregistry" 
+        DiskId="1" 
+        Guid="6B49A093-49A4-11DC-8314-0800200C9A66">
+        <Registry Id="nsapiregistryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="nsapi"/>  
+      </Component>
+      <Component Id="xitamiregistry" 
+        DiskId="1" 
+        Guid="6B49A094-49A4-11DC-8314-0800200C9A66">
+        <Registry Id="xitamiregistryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="xitami"/>  
+      </Component>
+      <Component Id="sambarregistry" 
+        DiskId="1" 
+        Guid="6B49A095-49A4-11DC-8314-0800200C9A66">
+        <Registry Id="sambarregistryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="sambar"/>  
+      </Component>
+      <Component Id="cgiregistry" 
+        DiskId="1" 
+        Guid="6B49A096-49A4-11DC-8314-0800200C9A66">
+        <Registry Id="cgiregistryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="cgi"/>  
+      </Component>
+      <Component Id="noconfigregistry" 
+        DiskId="1" 
+        Guid="6B49A097-49A4-11DC-8314-0800200C9A66">
+        <Registry Id="noconfigregistryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="noconfig"/>  
+      </Component>
+    </DirectoryRef>
+  </Fragment>
 </Wix>

@@ -824,6 +824,8 @@
 	<String Id="Featureext_php_xslDescription">Test</String>
 	<String Id="Featureext_php_yazTitle">yaz</String>
 	<String Id="Featureext_php_yazDescription">a Z39.50 client for PHP</String>
+	<String Id="Featureext_php_yamiTitle">yami</String>
+	<String Id="Featureext_php_yamiDescription">Allows PHP programs to communicate with servers written using YAMI</String>
 	<String Id="Featureext_php_zipTitle">zip</String>
 	<String Id="Featureext_php_zipDescription">A zip management extension</String>
 	<String Id="Featureext_php_zlib_filterTitle">zlib_filter</String>

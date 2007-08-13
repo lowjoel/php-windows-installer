@@ -404,6 +404,9 @@
 				<ComponentRef Id="php_yaz"/>
 				<ComponentRef Id="yazDLL"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_yami" Title="$(loc.Featureext_php_yamiTitle)" Description="$(loc.Featureext_php_yamiDescription)" Level="10">
+				<ComponentRef Id="php_yami"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_zip" Title="$(loc.Featureext_php_zipTitle)" Description="$(loc.Featureext_php_zipDescription)" Level="10">
 				<ComponentRef Id="php_zip"/>
 			</Feature>

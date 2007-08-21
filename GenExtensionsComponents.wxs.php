@@ -164,6 +164,13 @@ $Directory_extdirectory = $res->item(0);
 $it = new DirectoryIterator('Files\ext');
 foreach ( $it as $filename ) {
 	if ( $filename->isDot() || $filename == "CVS" ) continue;
+    /* hack to remove some problematic extensions 
+       until a better solution comes along */
+    if ( $filename == "php_threads.dll"
+        || $filename == "php_iisfunc.dll"
+        || $filename == "php_sam.dll"
+        || $filename == "php_win32scheduler.dll"
+        || $filename == "php_win32service.dll" ) continue;
 	list($basename,$ext) = explode('.',$filename);
 	$cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
     $Component = $ExtensionsWXS->createElement('Component');

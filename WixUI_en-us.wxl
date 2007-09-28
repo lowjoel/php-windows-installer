@@ -845,6 +845,8 @@
 	<String Id="Featureiis4ISAPIDescription">ISAPI Module for IIS</String>
 	<String Id="Featureiis4CGITitle">IIS CGI</String>
 	<String Id="Featureiis4CGIDescription">IIS CGI executable</String>
+	<String Id="Featureiis4FastCGITitle">IIS FastCGI</String>
+	<String Id="Featureiis4FastCGIDescription">IIS CGI executable configured to use with FastCGI</String>
 	<String Id="FeaturensapiTitle">NSAPI</String>
 	<String Id="FeaturensapiDescription">Sun/iPlanet/Netscape server module. NOTE: You will need to configure the Web Server manually.</String>
 	<String Id="FeaturexitamiTitle">Xitami</String>

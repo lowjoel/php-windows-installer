@@ -652,9 +652,6 @@
       <Custom Action="iisextVBSISAPIremove" After="InstallFinalize">
         <![CDATA[VersionNT = 502 AND &iis4ISAPI = 2]]>
       </Custom>
-      <Custom Action="iisextVBSCGI" After="InstallFinalize">
-        <![CDATA[VersionNT = 502 AND &iis4CGI = 3]]>
-      </Custom>
       <Custom Action="fcgiconfigJSFastCGI" After="InstallFinalize">
         <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4CGI = 3]]>
       </Custom>

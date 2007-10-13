@@ -138,6 +138,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_ingres" Title="$(loc.Featureext_php_ingresTitle)" Description="$(loc.Featureext_php_ingresDescription)" Level="10">
 				<ComponentRef Id="php_ingres"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_ingres2" Title="$(loc.Featureext_php_ingres2Title)" Description="$(loc.Featureext_php_ingres2Description)" Level="10">
+				<ComponentRef Id="php_ingres2"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ifx" Title="$(loc.Featureext_php_ifxTitle)" Description="$(loc.Featureext_php_ifxDescription)" Level="10">
 				<ComponentRef Id="php_ifx"/>
 			</Feature>

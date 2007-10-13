@@ -666,6 +666,8 @@
 	<String Id="Featureext_php_imagickDescription">Provides a wrapper to the ImageMagick/GraphicsMagick library.</String>
 	<String Id="Featureext_php_ingresTitle">ingres</String>
 	<String Id="Featureext_php_ingresDescription">Extension for the Ingres Relational Database System.</String>
+	<String Id="Featureext_php_ingres2Title">ingres2</String>
+	<String Id="Featureext_php_ingres2Description">Extension for the Ingres Relational Database System.</String>
 	<String Id="Featureext_php_ifxTitle">Informix</String>
 	<String Id="Featureext_php_ifxDescription">Informix functions</String>
 	<String Id="Featureext_php_imapTitle">IMAP</String>

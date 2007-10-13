@@ -4,6 +4,8 @@ set phpver=%1
 set phpver=%phpver:~0,3%
 set phpver=%phpver:.=%
 
+if %phpver%==53 set phpver=52
+
 echo Building ExtensionsComponents.wxs
 Files\php.exe GenExtensionsComponents.wxs.php
 

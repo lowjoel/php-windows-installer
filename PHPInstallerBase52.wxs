@@ -209,12 +209,6 @@
               System="yes" 
               Part="first" 
               Value="[INSTALLDIR]"/>
-            <Environment Id="PHPRC" 
-              Name="PHPRC" 
-              Action="create" 
-              System="yes" 
-              Part="all" 
-              Value="[INSTALLDIR]"/>
           </Component>
           <Component Id="phpGIF" 
             DiskId="1" 

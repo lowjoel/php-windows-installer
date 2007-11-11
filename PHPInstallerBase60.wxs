@@ -630,10 +630,10 @@
         <![CDATA[VersionNT = 502 AND &iis4ISAPI = 2]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGI" After="InstallFinalize">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4CGI = 3]]>
+        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGIremove" After="InstallFinalize">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2))ß AND &iis4CGI = 2]]>
+        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="unconfigIIS4" After="InstallValidate">
         <![CDATA[VersionNT < 600 AND (&iis4ISAPI = 2 OR &iis4CGI = 2)]]>

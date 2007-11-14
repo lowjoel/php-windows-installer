@@ -624,6 +624,8 @@
 	<String Id="Featureext_php_docblockDescription">phpDocumentor-style DocBlock (T_DOC_COMMENT token) tokenizer</String>
 	<String Id="Featureext_php_domxmlTitle">domxml</String>
 	<String Id="Featureext_php_domxmlDescription">DOM XML Functions. NOTICE: This has been superseded by the DOM extension that ships with PHP 5.</String>
+	<String Id="Featureext_php_doublemetaphoneTitle">doublemetaphone</String>
+	<String Id="Featureext_php_doublemetaphoneDescription">Provide Double Metaphone functionality. The Double Metaphone algorithm by Lawrence Philips allows a word to be broken down into its phonemes.</String>
 	<String Id="Featureext_php_eventTitle">event</String>
 	<String Id="Featureext_php_eventDescription">Event Scheduling Engine</String>
 	<String Id="Featureext_php_exifTitle">EXIF</String>
@@ -752,7 +754,9 @@
 	<String Id="Featureext_php_pdo_sqliteDescription">PDO Driver for SQLite</String>
     <String Id="Featureext_php_pdo_sqlite_externalTitle">SQLite (External Driver)</String>
 	<String Id="Featureext_php_pdo_sqlite_externalDescription">PDO Driver for SQLite using an external driver instead of the bundled version</String>
-	<String Id="Featureext_php_perlTitle">perl</String>
+	<String Id="Featureext_php_pdo_userTitle">User</String>
+	<String Id="Featureext_php_pdo_userDescription">Userspace driver for PDO</String>
+    <String Id="Featureext_php_perlTitle">perl</String>
 	<String Id="Featureext_php_perlDescription">Embedded Perl.</String>
 	<String Id="Featureext_php_pharTitle">phar</String>
 	<String Id="Featureext_php_pharDescription">allows running of complete applications out of .phar files (like Java .jar files)</String>

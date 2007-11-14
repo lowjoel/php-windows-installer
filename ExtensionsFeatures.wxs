@@ -74,6 +74,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_domxml" Title="$(loc.Featureext_php_domxmlTitle)" Description="$(loc.Featureext_php_domxmlDescription)" Level="10">
 				<ComponentRef Id="php_domxml"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_doublemetaphone" Title="$(loc.Featureext_php_doublemetaphoneTitle)" Description="$(loc.Featureext_php_doublemetaphoneDescription)" Level="10">
+				<ComponentRef Id="php_doublemetaphone"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_event" Title="$(loc.Featureext_php_eventTitle)" Description="$(loc.Featureext_php_eventDescription)" Level="10">
 				<ComponentRef Id="php_event"/>
 			</Feature>
@@ -292,6 +295,9 @@
 				</Feature>
                 <Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite_external" Title="$(loc.Featureext_php_pdo_sqlite_externalTitle)" Description="$(loc.Featureext_php_pdo_sqlite_externalDescription)" Level="10">
 					<ComponentRef Id="php_pdo_sqlite_external"/>
+				</Feature>
+                <Feature AllowAdvertise="no" Id="ext_php_pdo_user" Title="$(loc.Featureext_php_pdo_userTitle)" Description="$(loc.Featureext_php_pdo_userDescription)" Level="10">
+					<ComponentRef Id="php_pdo_user"/>
 				</Feature>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_phar" Title="$(loc.Featureext_php_pharTitle)" Description="$(loc.Featureext_php_pharDescription)" Level="10">

@@ -165,14 +165,11 @@ sub configIIS4
         strPHPPath = strPHPPath & "\"
     End If
     If ( Session.FeatureRequestState("iis4CGI") = 3 ) Then
-        PHPExecutable = strPHPPath & "php-cgi.exe"
+        PHPExecutable = """" & strPHPPath & "php-cgi.exe" & """"
     End If
     If ( Session.FeatureRequestState("iis4ISAPI") = 3 ) Then
-        PHPExecutable = strPHPPath & "php5isapi.dll"
+        PHPExecutable = """" & strPHPPath & "php5isapi.dll" & """"
     End If
- 
-    Set objFSO = CreateObject("Scripting.FileSystemObject")
-    PHPExecutable = objFSO.GetFile(PHPExecutable).ShortPath
     
     'it could all go dreadfully wrong - so set error handler for graceful exits
     On Error Resume Next

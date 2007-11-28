@@ -165,10 +165,10 @@ sub configIIS4
         strPHPPath = strPHPPath & "\"
     End If
     If ( Session.FeatureRequestState("iis4CGI") = 3 ) Then
-        PHPExecutable = strPHPPath & "php-cgi.exe"
+        PHPExecutable = """" & strPHPPath & "php-cgi.exe" & """"
     End If
     If ( Session.FeatureRequestState("iis4ISAPI") = 3 ) Then
-        PHPExecutable = strPHPPath & "php6isapi.dll"
+        PHPExecutable = """" & strPHPPath & "php6isapi.dll" & """"
     End If
  
     Set objFSO = CreateObject("Scripting.FileSystemObject")

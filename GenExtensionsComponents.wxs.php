@@ -24,7 +24,7 @@ foreach ( $it as $filename ) {
         || $filename == "php_sam.dll"
         || $filename == "php_win32scheduler.dll"
         || $filename == "php_win32service.dll" ) continue;
-	list($basename,$ext) = explode('.',$filename);
+    list($basename,$ext) = explode('.',$filename);
 	$cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
     $Component = $ExtensionsWXS->createElement('Component');
 	$Component = $Directory_extdirectory->appendChild($Component);
@@ -83,6 +83,7 @@ foreach ( $it as $filename ) {
     $Component = $ExtensionsWXS->createElement('Component');
 	$Component = $Directory_extdirectory->appendChild($Component);
 	$Component->setAttribute('Id',$cid);
+    $Component->setIdAttribute('Id',true);
 	$Component->setAttribute('DiskId',"1");
 	
 	$xp2 = new DomXPath($ExtensionsGUIDXML);
@@ -131,6 +132,7 @@ foreach ( $it as $filename ) {
 // Remove Files defined that don't exist
 $files = $ExtensionsWXS->getElementsByTagName("File");
 $i = 0;
+$hasSeenMbString = false;
 while ( $i < $files->length ) {
     if ( !is_file( realpath($files->item($i)->getAttribute('Source')) ) ) {
         $nodetoremove = $files->item($i)->parentNode;
@@ -139,7 +141,17 @@ while ( $i < $files->length ) {
         $i--;
     }
     else {
-        $i++;
+        /* ugly hack to fix Bug #43970 - make sure mbstring ext loads before exif ext */
+        if ( $files->item($i)->getAttribute('Id') == 'filephp_mbstringDLL' ) 
+            $hasSeenMbString = true;
+        if ( $files->item($i)->getAttribute('Id') == 'filephp_exifDLL' && !$hasSeenMbString ) {
+            $ExifExtensionNode = $files->item($i)->parentNode;
+            $files->item($i)->parentNode->parentNode->removeChild($ExifExtensionNode);
+            $Directory_extdirectory->appendChild($ExifExtensionNode);
+            $i--;
+        }
+        else
+            $i++;
     }
 }
 

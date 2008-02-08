@@ -69,11 +69,10 @@
       </RegistrySearch>
     </Property>
 
-    <Property Id="APACHEDIR">
-      <DirectorySearch Id="apacheconf" 
-        Path="[INSTALLDIR]" 
-        Depth="0" />
-    </Property>
+    <CustomAction Id='AssignAPACHEDIR' Property='APACHEDIR' Value='[%ProgramFiles]' />
+    <InstallUISequence>
+        <Custom Action="AssignAPACHEDIR" After="CostInitialize">NOT APACHEDIR</Custom>
+    </InstallUISequence>
 
     <Property Id="APACHEREGDIR">
       <RegistrySearch Id="apacheRegistry" 

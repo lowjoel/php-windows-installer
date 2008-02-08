@@ -15,7 +15,8 @@
       InstallerVersion="100" 
       Languages="1033" 
       Compressed="yes" 
-      SummaryCodepage="1252" />
+      SummaryCodepage="1252"
+      InstallPrivileges="elevated" />
   
     <Upgrade Id="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9">
       <UpgradeVersion Property='OLDVERSION'
@@ -40,6 +41,8 @@
       DiskPrompt="CD-ROM #1"/>
       
     <Property Id="DiskPrompt" Value="PHP Installer"/>
+    
+    <Property Id="ALLUSERS">1</Property>
 
     <Property Id="PHPINIEXISTS">
       <DirectorySearch Id="CheckFileDir" 

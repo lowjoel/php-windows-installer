@@ -72,11 +72,6 @@
       </RegistrySearch>
     </Property>
 
-    <CustomAction Id='AssignAPACHEDIR' Property='APACHEDIR' Value='[%ProgramFiles]' />
-    <InstallUISequence>
-        <Custom Action="AssignAPACHEDIR" After="CostInitialize">NOT APACHEDIR</Custom>
-    </InstallUISequence>
-
     <Property Id="APACHEREGDIR">
       <RegistrySearch Id="apacheRegistry" 
         Root="HKLM" 
@@ -84,6 +79,13 @@
         Type="raw" 
         Name="ApacheDir"/>
     </Property>
+
+    <CustomAction Id='AssignAPACHEDIR' Property='APACHEDIR' Value='[%ProgramFiles]' />
+    <CustomAction Id='AssignAPACHEDIR2' Property='APACHEDIR' Value='[APACHEREGDIR]' />
+    <InstallUISequence>
+        <Custom Action="AssignAPACHEDIR" After="CostInitialize">NOT APACHEDIR</Custom>
+        <Custom Action="AssignAPACHEDIR2" After="CostInitialize">APACHEREGDIR</Custom>
+    </InstallUISequence>
 
     <Property Id="WEBSERVERPICKER">
       <RegistrySearch Id="webservertype" 

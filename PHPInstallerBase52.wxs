@@ -96,36 +96,6 @@
     </Property>
     
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="TempFolder" Name="TFolder">
-        <Directory Id="TempPHP" Name="PHP">
-          <Directory Id="TempSession" Name="session">
-            <Component Id="sessionsavepathDIR" 
-              Guid="B8B341C0-8EB2-11DB-B606-0800200C9A66"
-              SharedDllRefCount="no" 
-              KeyPath="no" 
-              NeverOverwrite="no" 
-              Permanent="no" 
-              Transitive="no"
-              Win64="no" 
-              Location="either">
-              <CreateFolder/>
-            </Component>
-          </Directory>
-          <Directory Id="TempUpload" Name="upload">
-            <Component Id="uploadtmpdirDIR" 
-              Guid="D9FEBC3C-3624-11DC-8A0E-148855D89593"
-              SharedDllRefCount="no" 
-              KeyPath="no" 
-              NeverOverwrite="no" 
-              Permanent="no" 
-              Transitive="no"
-              Win64="no" 
-              Location="either">
-              <CreateFolder/>
-            </Component>
-          </Directory>
-        </Directory>
-      </Directory>
       <Directory Id="ProgramFilesFolder" Name="PFiles">
         <Directory Id="INSTALLDIR" Name="PHP">
           <Component Id="gopearBAT" 
@@ -240,14 +210,14 @@
               Directory="INSTALLDIR" 
               Name="php.ini" 
               Section="PHP" 
-              Value="&quot;[TempFolder]php\upload&quot;"/>
+              Value="&quot;[%windir]\Temp&quot;"/>
             <IniFile Id="sessionsavepathINI" 
               Action="addLine" 
               Key="session.save_path" 
               Directory="INSTALLDIR" 
               Name="php.ini" 
               Section="PHP" 
-              Value="&quot;[TempFolder]php\session&quot;"/>
+              Value="&quot;[%windir]\Temp&quot;"/>
             <Condition>NOT PHPINIEXISTS</Condition>
           </Component>
           <Component Id="php5embedLIB" 
@@ -344,8 +314,6 @@
       <ComponentRef Id="installTXT"/>
       <ComponentRef Id="phpGIF"/>
       <ComponentRef Id="phprecommendedINI"/>
-      <ComponentRef Id="sessionsavepathDIR"/>
-      <ComponentRef Id="uploadtmpdirDIR"/>
       <ComponentRef Id="win2003eventlog"/>
       <ComponentRef Id="PHPRegistry"/>
     
@@ -491,6 +459,14 @@
           <ComponentRef Id="sambarregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
+          Id="netserve" 
+          Title="$(loc.FeaturenetserveTitle)" 
+          Description="$(loc.FeaturenetserveDescription)" 
+          Level="1">
+          <ComponentRef Id="phpcgiEXE"/>
+          <ComponentRef Id="cgiregistry"/>
+        </Feature>
+        <Feature AllowAdvertise="no" 
           Id="cgi" 
           Title="$(loc.FeaturecgiTitle)" 
           Description="$(loc.FeaturecgiDescription)" 
@@ -533,6 +509,14 @@
 
     <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts52.vbs" /> 
     
+    <CustomAction Id="netserveCGIInterpretersadd" 
+      ExeCommand="&quot;[%ProgramFiles]NetServe Web Server\config.exe /add CGIInterpreters php^|[INSTALLDIR]php-cgi.exe']" 
+      Return="ignore" 
+      Directory="INSTALLDIR"/>
+    <CustomAction Id="netserveCustomCGIVariablesadd" 
+      ExeCommand="&quot;[%ProgramFiles]NetServe Web Server\config.exe /add CustomCGIVariables REDIRECT_STATUS^|200']" 
+      Return="ignore" 
+      Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGIadd" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/fastCGI /+[fullPath='[INSTALLDIR]php-cgi.exe']" 
       Return="ignore" 
@@ -611,6 +595,12 @@
       VBScriptCall="unconfigApache" />
   
     <InstallExecuteSequence>
+      <Custom Action="netserveCGIInterpretersadd" After="InstallFinalize">
+        <![CDATA[&netserve = 3]]>
+      </Custom>
+      <Custom Action="netserveCustomCGIVariablesadd" After="InstallFinalize">
+        <![CDATA[&netserve = 3]]>
+      </Custom>
       <Custom Action="iis700FastCGIadd" After="InstallFinalize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
       </Custom>

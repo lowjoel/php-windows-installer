@@ -165,10 +165,19 @@ sub configIIS4
         strPHPPath = strPHPPath & "\"
     End If
     If ( Session.FeatureRequestState("iis4CGI") = 3 ) Then
-        PHPExecutable = """" & strPHPPath & "php-cgi.exe" & """"
+        PHPExecutable = strPHPPath & "php-cgi.exe"
     End If
     If ( Session.FeatureRequestState("iis4ISAPI") = 3 ) Then
-        PHPExecutable = """" & strPHPPath & "php5isapi.dll" & """"
+        PHPExecutable = strPHPPath & "php5isapi.dll"
+    End If
+    
+    If ( GetWindowsVersion < 5.2 ) Then
+        'use short path syntax here
+        Set objFSO = CreateObject("Scripting.FileSystemObject")
+        PHPExecutable = objFSO.GetFile(PHPExecutable).ShortPath
+    Else
+        'use quotes and long name syntax
+        PHPExecutable = """" & PHPExecutable & """"
     End If
     
     'it could all go dreadfully wrong - so set error handler for graceful exits
@@ -270,3 +279,12 @@ end sub
 Sub FatalError(Message)
     MsgBox Message & " You will need to manually configure the web server.", vbExclamation, "Error"
 End Sub
+
+Function GetWindowsVersion
+    Set objWMIService = GetObject("winmgmts:\\.\root\cimv2")
+    Set colItems = objWMIService.ExecQuery("Select * from Win32_OperatingSystem",,48)
+    For Each objItem in colItems
+        ver=objItem.Version
+    Next
+    GetWindowsVersion = Left(ver,3)
+End Function

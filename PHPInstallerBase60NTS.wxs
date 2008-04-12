@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
+  <Product Name="PHP 5.2.0" Id="A062A356-1B4E-4367-8E5B-26363021051B" 
+    UpgradeCode="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9" 
+    Language="1033" 
+    Codepage="1252" 
+    Version="5.2.0" 
+    Manufacturer="The PHP Group">
+
+    <Package Id="????????-????-????-????-????????????" 
+      Keywords="Installer" 
+      Description="PHP Installer" 
+      Comments="PHP" 
+      Manufacturer="The PHP Group" 
+      InstallerVersion="100" 
+      Languages="1033" 
+      Compressed="yes" 
+      SummaryCodepage="1252"
+      InstallPrivileges="elevated" />
+  
+    <Upgrade Id="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9">
+      <UpgradeVersion Property='OLDVERSION'
+        MigrateFeatures="yes" 
+        IncludeMinimum='yes' 
+        Minimum='5.2.0' />
+    </Upgrade>
+
+    <Condition 
+	  Message="You need to be an administrator to install PHP using this installer.">
+      Privileged
+    </Condition>
+    
+    <Condition 
+	  Message="PHP requires Windows NT/2000/XP/2003 or later to install">
+      <![CDATA[( VersionNT < 400 ) OR ( Version9x <> 0 )]]>
+    </Condition>
+
+    <Media Id="1" 
+      Cabinet="PHP.cab" 
+      EmbedCab="yes" 
+      DiskPrompt="CD-ROM #1"/>
+      
+    <Property Id="DiskPrompt" Value="PHP Installer"/>
+    
+    <Property Id="ALLUSERS">1</Property>
+
+    <Property Id="PHPINIEXISTS">
+      <DirectorySearch Id="CheckFileDir" 
+        Path="[INSTALLDIR]" 
+        Depth="0">
+        <FileSearch Id="CheckFile" Name="php.ini"/>
+      </DirectorySearch>
+    </Property>
+    
+    <Property Id="APACHEREGDIR">
+      <RegistrySearch Id="apacheRegistry" 
+        Root="HKLM" 
+        Key="Software\PHP" 
+        Type="raw" 
+        Name="ApacheDir"/>
+    </Property>
+
+    <CustomAction Id='AssignAPACHEDIR' Property='APACHEDIR' Value='[%ProgramFiles]' />
+    <CustomAction Id='AssignAPACHEDIR2' Property='APACHEDIR' Value='[APACHEREGDIR]' />
+    <InstallUISequence>
+        <Custom Action="AssignAPACHEDIR" After="CostInitialize">NOT APACHEDIR</Custom>
+        <Custom Action="AssignAPACHEDIR2" After="CostInitialize">APACHEREGDIR</Custom>
+    </InstallUISequence>
+    
+    <Property Id="WEBSERVERPICKER">
+      <RegistrySearch Id="webservertype" 
+        Root="HKLM" 
+        Key="Software\PHP" 
+        Type="raw" 
+        Name="WebServerType"/>
+    </Property>
+    
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="INSTALLDIR" Name="PHP">
+          <Component Id="gopearBAT" 
+            DiskId="1" 
+            Guid="C8385835-A5DD-4A90-9A44-5F49DE05B0B7">
+            <File Id="file2" 
+              Name="go-pear.bat" 
+              Source="Files\go-pear.bat"/>
+          </Component>
+          <Component Id="installTXT" 
+            DiskId="1" 
+            Guid="D1055308-60DA-4C10-A29B-E582D0A3D675">
+            <File Id="file3" 
+              Name="install.txt" 
+              Source="Files\install.txt"/>
+          </Component>
+          <Component Id="licenseTXT" 
+            DiskId="1" 
+            Guid="9D6E2B5F-F334-4874-B57F-1D4B5A28D17C">
+            <File Id="file8" 
+              Name="license.txt" 
+              Source="Files\license.txt">
+              <Shortcut Id="startmenuManual" 
+                Directory="ProgramMenuDir" 
+                Name="License" 
+                LongName="License"/>
+            </File>
+          </Component>
+          <Component Id="newsTXT" 
+            DiskId="1"
+            Guid="459AFF29-F8F5-4F0F-BC43-0DD4AA3D71F0">
+            <File Id="file10" 
+              Name="news.txt" 
+              Source="Files\news.txt"/>
+          </Component>
+          <Component Id="phpcgiEXE" 
+            DiskId="1" 
+            Guid="7ECF5817-CAB7-41EE-9E91-DDD2B1F5951B">
+            <File Id="file12" 
+            Name="php-cgi.exe" 
+            Source="Files\php-cgi.exe"/>
+          </Component>
+          <Component Id="phpwinEXE" 
+            DiskId="1" 
+            Guid="BA2ADC66-E28C-4D5F-B4DA-E5F0874B2A10">
+            <File Id="file13" 
+              Name="php-win.exe" 
+              Source="Files\php-win.exe"/>
+          </Component>
+          <Component Id="RegisterPHPFilesREG" 
+            DiskId="1" 
+            Guid="77825049-82F0-4394-A246-A7D2F07BC5BC">
+            <ProgId Id="PHPFile" 
+              Description="PHP Script">
+              <Extension Id="php" 
+                ContentType="application/php">
+                <Verb Id="open" 
+                  Sequence="10" 
+                  Command="Run" 
+                  Target="[!file13]" 
+                  Argument="&quot;%1&quot;"/>
+              </Extension>
+            </ProgId>
+          </Component>
+          <Component Id="PHPRegistry" 
+            DiskId="1" 
+            Guid="1BFEB5D8-B6C0-49E4-918C-A9D52479EC84">
+            <Registry Id='PHPRegistryInstallDir' 
+              Root='HKLM' 
+              Key='Software\PHP' 
+              Name='InstallDir'
+              Action='write' 
+              Type='string' 
+              Value='[INSTALLDIR]' />
+          </Component>
+          <Component Id="phpEXE" 
+            DiskId="1" 
+            Guid="65C8E630-59D4-41FC-99C5-54E99C74968F">
+            <File Id="file14" 
+              Name="php.exe" 
+              Source="Files\php.exe"/>
+            <Environment Id="phpEXEAddToPath" 
+              Name="PATH" 
+              Action="create" 
+              System="yes" 
+              Part="first" 
+              Value="[INSTALLDIR]"/>
+            <Environment Id="PHPRC"
+              Name="PHPRC"
+              Action="create"
+              System="yes"
+              Part="all"
+              Value="[INSTALLDIR]"/>
+          </Component>
+          <Component Id="phpGIF" 
+            DiskId="1" 
+            Guid="962C10B2-FD98-4D90-8607-68DE0932A814">
+            <File Id="file15" 
+              Name="php.gif" 
+              Source="Files\php.gif"/>
+          </Component>
+          <Component Id="phprecommendedINI" 
+            DiskId="1" 
+            Guid="B32D6227-3160-4D57-9724-0B35DC128519" 
+            Permanent="yes">
+            <File Id="file17" 
+              Name="PHP_2.INI" 
+              LongName="php.ini" 
+              Source="Files\php.ini" >
+              <Shortcut Id="startmenuPHPINI" 
+                Directory="ProgramMenuDir" 
+                Name="php.ini" 
+                LongName="php.ini"/>
+            </File>
+            <IniFile Id="uploadtmpdirINI" 
+              Action="addLine" 
+              Key="upload_tmp_dir" 
+              Directory="INSTALLDIR" 
+              Name="php.ini" 
+              Section="PHP" 
+              Value="&quot;[%windir]\Temp&quot;"/>
+            <IniFile Id="sessionsavepathINI" 
+              Action="addLine" 
+              Key="session.save_path" 
+              Directory="INSTALLDIR" 
+              Name="php.ini" 
+              Section="PHP" 
+              Value="&quot;[%windir]\Temp&quot;"/>
+            <Condition>NOT PHPINIEXISTS</Condition>
+          </Component>
+          <Component Id="php6embedLIB" 
+            DiskId="1" 
+            Guid="8C0B065E-41DB-43DB-ABB2-716BE38988C7">
+            <File Id="file22" 
+              Name="PHP6EM_1.LIB" 
+              LongName="php6embed.lib" 
+              Source="Files\php6embed.lib"/>
+          </Component>
+          <Component Id="win2003eventlog" 
+            DiskId="1"
+            Guid="E4C43E12-F31C-4A8C-A084-4E604274D4C9">
+            <Registry Id="w2k3EventMessageFile" 
+              Root="HKLM" 
+              Key="System\CurrentControlSet\Services\EventLog\Application\PHP" 
+              Action="write" 
+              Type="string"
+              Name="EventMessageFile"
+              Value="[!INSTALLDIR]\dev\php6ts.dll"/>
+            <Registry Id="w2k3TypesSupported" 
+              Root="HKLM" 
+              Key="System\CurrentControlSet\Services\EventLog\Application\PHP" 
+              Action="write" 
+              Type="integer" 
+              Name="TypesSupported"
+              Value="7"/>
+            <Condition>VersionNT = 502</Condition>	
+          </Component>
+          <Component Id="php6DLL" 
+            DiskId="1" 
+            Guid="14A95C34-564F-4BF9-BFC7-0DAA48A96BA2">
+            <File Id="file25" 
+              Name="php6.dll" 
+              Source="Files\php6.dll"/>
+          </Component>
+          <Component Id="phpCHM" 
+            DiskId="1" 
+            Guid="43C45330-3624-11DC-999C-478455D89593">
+            <File Id="file182" 
+              Name="PHP_MA_1.DLL" 
+              LongName="php_manual_en.chm" 
+              Source="Files\php_manual_en.chm">
+              <Shortcut Id="startmenuphpCMH" 
+                Directory="ProgramMenuDir" 
+                Name="Manual" 
+                LongName="PHP Manual"/>
+            </File>
+          </Component>
+          <Component Id="Empty" 
+            DiskId="1" 
+            Guid="24C87A13-FDBA-489B-AE2D-F9406EBA265A"/>
+          <Directory Id="devdirectory" 
+            Name="dev">
+            <Component Id="php6LIB" 
+              DiskId="1" 
+              Guid="52593C5C-6709-49B9-B1C0-6729C977DE65">
+              <File Id="file30" 
+                Name="php6.lib" 
+                Source="Files\dev\php6.lib"/>
+            </Component>
+          </Directory>
+          <Directory Id="PEARdirectory" 
+            Name="PEAR">
+            <Component Id="gopearPHAR" 
+              DiskId="1" 
+              Guid="F3B9AE05-9E15-4E06-8192-91C513C8209A">
+              <File Id="file181" 
+                Name="GO-PEA_1.PHA" 
+                LongName="go-pear.phar" 
+                Source="Files\PEAR\go-pear.phar"/>
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder" 
+        Name="PMenu" 
+        LongName="Programs">
+        <Directory Id="ProgramMenuDir" 
+          Name="PHP6" 
+          LongName="PHP 6"/>
+      </Directory>
+    </Directory>
+    <Feature AllowAdvertise="no" 
+      Id="Complete" 
+      Title="$(loc.FeatureCompleteTitle)" 
+      Description="$(loc.FeatureCompleteDescription)" 
+      TypicalDefault="install" 
+      Display="expand" 
+      ConfigurableDirectory="INSTALLDIR" 
+      Level="1">
+      <ComponentRef Id="licenseTXT"/>
+      <ComponentRef Id="newsTXT"/>
+      <ComponentRef Id="installTXT"/>
+      <ComponentRef Id="phpGIF"/>
+      <ComponentRef Id="phprecommendedINI"/>
+      <ComponentRef Id="win2003eventlog"/>
+      <ComponentRef Id="PHPRegistry"/>
+    
+      <Feature AllowAdvertise="no" 
+        Id="MainProgram" 
+        Title="$(loc.FeatureMainProgramTitle)" 
+        Description="$(loc.FeatureMainProgramDescription)" 
+        TypicalDefault="install" 
+        Level="1">
+        <ComponentRef Id="php6DLL"/>
+        <ComponentRef Id="php6LIB"/>
+        <ComponentRef Id="php6embedLIB"/>
+        <Feature AllowAdvertise="no" 
+          Id="MainExecutable" 
+          Title="$(loc.FeatureMainExecutableTitle)" 
+          Description="$(loc.FeatureMainExecutableDescription)" 
+          Level="1">
+          <ComponentRef Id="phpEXE"/>
+        </Feature>
+        <Feature AllowAdvertise="no" 
+          Id="ScriptExecutable" 
+          Title="$(loc.FeatureScriptExecutableTitle)" 
+          Description="$(loc.FeatureScriptExecutableDescription)" 
+          Level="10">
+          <ComponentRef Id="phpwinEXE"/>
+          <Feature AllowAdvertise="no" 
+            Id="RegisterPHPFiles" 
+            Title="$(loc.FeatureRegisterPHPFilesTitle)" 
+            Description="$(loc.FeatureRegisterPHPFilesDescription)" 
+            Level="10">
+            <ComponentRef Id="RegisterPHPFilesREG"/>
+          </Feature>
+        </Feature>
+      </Feature>
+    
+      <FeatureRef Id="Extensions"/>
+      
+      <Feature AllowAdvertise="no" 
+        Id="WebServers" 
+        Title="$(loc.FeatureWebServersTitle)" 
+        Description="$(loc.FeatureWebServersDescription)"
+        Display="hidden"
+        Level="10">
+        <ComponentRef Id="Empty"/>
+        <Feature AllowAdvertise="no" 
+          Id="iis4ISAPI" 
+          Title="$(loc.Featureiis4ISAPITitle)" 
+          Description="$(loc.Featureiis4ISAPIDescription)" 
+          Level="10">
+        </Feature>
+        <Feature AllowAdvertise="no" 
+          Id="iis4CGI" 
+          Title="$(loc.Featureiis4CGITitle)" 
+          Description="$(loc.Featureiis4CGIDescription)" 
+          Level="1">
+        </Feature>
+        <Feature AllowAdvertise="no" 
+          Id="iis4FastCGI" 
+          Title="$(loc.Featureiis4FastCGITitle)" 
+          Description="$(loc.Featureiis4FastCGIDescription)" 
+          Level="1">
+          <ComponentRef Id="phpcgiEXE"/>
+          <ComponentRef Id="cgiforceredirect"/>
+          <ComponentRef Id="iis4FastCGIregistry"/>
+        </Feature>
+        <Feature AllowAdvertise="no" 
+          Id="noconfig" 
+          Title="$(loc.FeaturecgiTitle)" 
+          Description="$(loc.FeaturecgiDescription)" 
+          Level="1">
+          <ComponentRef Id="noconfigregistry"/>
+        </Feature>
+      </Feature>
+      
+      <Feature AllowAdvertise="no" 
+        Id="extras" 
+        Title="$(loc.FeatureextrasTitle)" 
+        Description="$(loc.FeatureextrasDescription)" 
+        Level="10">
+        <ComponentRef Id="Empty"/>
+        <Feature AllowAdvertise="no" 
+          Id="PEAR" 
+          Title="$(loc.FeaturePEARTitle)" 
+          Description="$(loc.FeaturePEARDescription)" 
+          Level="1">
+          <ComponentRef Id="gopearPHAR"/>
+          <ComponentRef Id="gopearBAT"/>
+        </Feature>
+        <Feature AllowAdvertise="no" 
+          Id="Manual" 
+          Title="$(loc.FeatureManualTitle)" 
+          Description="$(loc.FeatureManualDescription)" 
+          Level="1">
+          <ComponentRef Id="phpCHM"/>
+        </Feature>
+      </Feature>
+    </Feature>
+
+    <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts52.vbs" /> 
+    
+    <CustomAction Id="iis700FastCGIadd" 
+      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/fastCGI /+[fullPath='[INSTALLDIR]php-cgi.exe']" 
+      Return="ignore" 
+      Directory="INSTALLDIR"/>
+    <CustomAction Id="iis700FastCGI" 
+      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /+[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
+      Return="ignore" 
+      Directory="INSTALLDIR"/>
+    <CustomAction Id="iis700FastCGIremove" 
+      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /-[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
+      Return="ignore" 
+      Directory="INSTALLDIR"/>
+    <CustomAction Id="fcgiconfigJSFastCGI" 
+      ExeCommand="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;"
+      Return="ignore" 
+      Directory="INSTALLDIR"/>
+    <CustomAction Id="fcgiconfigJSFastCGIremove" 
+      ExeCommand="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -remove -section:&quot;PHP&quot;ß"
+      Return="ignore" 
+      Directory="INSTALLDIR"/>
+    <CustomAction Id="configIIS4" 
+      BinaryKey="PHPInstallerScripts" 
+      Return="check" 
+      VBScriptCall="configIIS4" />
+    <CustomAction Id="unconfigIIS4" 
+      BinaryKey="PHPInstallerScripts" 
+      Return="check" 
+      VBScriptCall="unconfigIIS4" />
+  
+    <InstallExecuteSequence>
+      <Custom Action="iis700FastCGIadd" After="InstallFinalize">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="iis700FastCGI" After="InstallFinalize">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="iis700FastCGIremove" After="InstallFinalize">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 2]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGI" After="InstallFinalize">
+        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGIremove" After="InstallFinalize">
+        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 2]]>
+      </Custom>
+      <Custom Action="unconfigIIS4" After="InstallValidate">
+        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 2]]>
+      </Custom>
+      <Custom Action="configIIS4" After="InstallFinalize">
+        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <RemoveExistingProducts After="InstallValidate" />
+    </InstallExecuteSequence>
+    
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR"/>
+    
+    <UIRef Id="WixUI_FeatureTreePHP"/>
+  </Product>
+</Wix>

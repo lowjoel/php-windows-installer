@@ -138,7 +138,7 @@ while ( $i < $files->length ) {
         $nodetoremove = $files->item($i)->parentNode;
         echo "Removing File " . $nodetoremove->getAttribute('Id') . " because " . realpath($files->item($i)->getAttribute('Source')) . " doesn't exist\n";
         $files->item($i)->parentNode->parentNode->removeChild($nodetoremove);
-        $i--;
+        if ($i>0) $i--;
     }
     else {
         /* ugly hack to fix Bug #43970 - make sure mbstring ext loads before exif ext */
@@ -148,7 +148,7 @@ while ( $i < $files->length ) {
             $ExifExtensionNode = $files->item($i)->parentNode;
             $files->item($i)->parentNode->parentNode->removeChild($ExifExtensionNode);
             $Directory_extdirectory->appendChild($ExifExtensionNode);
-            $i--;
+            if ($i>0) $i--;
         }
         else
             $i++;
@@ -177,7 +177,7 @@ while ( $i < $componentRefs->length ) {
     $nodetoremove = $componentRefs->item($i)->parentNode;
     echo "Removing Feature " . $nodetoremove->getAttribute('Id') . " because of missing Component $componentRefId\n";
     $componentRefs->item($i)->parentNode->parentNode->removeChild($nodetoremove);
-    $i--;
+    if ($i>0) $i--;
 }
 $ExtensionsFeaturesWXS->save('ExtensionsFeaturesBuild.wxs');
 

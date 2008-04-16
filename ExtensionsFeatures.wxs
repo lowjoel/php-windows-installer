@@ -406,7 +406,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_xmlrpc" Title="$(loc.Featureext_php_xmlrpcTitle)" Description="$(loc.Featureext_php_xmlrpcDescription)" Level="10">
 				<ComponentRef Id="php_xmlrpc"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_xsl" Title="$(loc.Featureext_php_xslTitle)" Description="$(loc.Featureext_php_xslDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_xebug" Title="$(loc.Featureext_php_xdebugTitle)" Description="$(loc.Featureext_php_xdebugDescription)" Level="10">
+				<ComponentRef Id="s"/>
+			</Feature><Feature AllowAdvertise="no" Id="ext_php_xsl" Title="$(loc.Featureext_php_xslTitle)" Description="$(loc.Featureext_php_xslDescription)" Level="10">
 				<ComponentRef Id="php_xsl"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_yaz" Title="$(loc.Featureext_php_yazTitle)" Description="$(loc.Featureext_php_yazDescription)" Level="10">

@@ -824,6 +824,8 @@
   <String Id="Featureext_php_win32serviceDescription">Allows PHP to communicate with the Service Control Manager to start, stop, register and unregister services, and even allows your PHP scripts to run as a service.</String>
   <String Id="Featureext_php_win32stdTitle">win32std</String>
   <String Id="Featureext_php_win32stdDescription">win32std</String>
+  <String Id="Featureext_php_xdebugTitle">XDebug</String>
+  <String Id="Featureext_php_xdebugDescription">XDebug</String>
   <String Id="Featureext_php_xmlrpcTitle">XML-RPC</String>
   <String Id="Featureext_php_xmlrpcDescription"> XML-RPC functions</String>
   <String Id="Featureext_php_xslTitle">XSL</String>

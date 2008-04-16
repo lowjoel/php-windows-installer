@@ -121,7 +121,10 @@ foreach ( $it as $filename ) {
 		$IniFile = $Component->appendChild($IniFile);
 		$IniFile->setAttribute('Id',"{$basename}INI");
 		$IniFile->setAttribute('Action',"createLine");
-		$IniFile->setAttribute('Key',"extension");
+        if ( strtoupper($basename) == 'PHP_XDEBUG.DLL')
+            $IniFile->setAttribute('Key',"zend_extension_ts");
+        else
+		    $IniFile->setAttribute('Key',"extension");
 		$IniFile->setAttribute('Directory',"INSTALLDIR");
 		$IniFile->setAttribute('Name',"php.ini");
 		$IniFile->setAttribute('Section',strtoupper($basename));

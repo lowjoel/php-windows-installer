@@ -132,4 +132,7 @@
   <Extension Name="php_pdo_user" Guid="9651A261-5563-48F0-AA9C-E0B2EBF55260"/>
   <Extension Name="php_spl_types" Guid="F3E64531-1866-42DE-B2ED-909E9A74972A"/>
   <Extension Name="php_yami" Guid="277280B9-32E0-4304-9236-D742A06BF52C"/>
+  <Extension Name="php_params" Guid="DE7A1EE9-DCFA-4630-A346-13EE4C95DE1C"/>
+  <Extension Name="php_pdflib" Guid="6FA07E32-239E-4C27-8148-207320D5500F"/>
+  <Extension Name="php_phk" Guid="18FEB773-02FA-4B96-B682-04F08BCD1B7A"/>
 </Extensions>

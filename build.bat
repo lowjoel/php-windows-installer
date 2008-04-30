@@ -6,10 +6,10 @@ set phpver=%phpver:.=%
 if %phpver%==53 set phpver=52
 
 set msiname="php-%1-win32-installer.msi"
-if "%2"==nts set msiname="php-%1-nts-win32-installer.msi"
+if %2==nts set msiname="php-%1-nts-win32-installer.msi"
 
-set suffix=
-if "%2"==nts set suffix="NTS"
+set suffix=""
+if %2==nts set suffix="NTS"
 
 echo Building ExtensionsComponents.wxs
 Files\php.exe GenExtensionsComponents.wxs.php

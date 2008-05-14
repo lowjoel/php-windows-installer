@@ -6,7 +6,7 @@ set phpver=%phpver:.=%
 if %phpver%==53 set phpver=52
 
 set msiname="php-%1-win32-installer.msi"
-set suffix=""
+set suffix=
 
 if (%2)==() goto build
 if %2==nts set msiname="php-%1-nts-win32-installer.msi"
@@ -32,4 +32,4 @@ echo Compiling Installer....
 Wix\candle.exe ExtensionsComponents.wxs ExtensionsFeaturesBuild.wxs WebServerConfig%1.wxs PHPInstaller%1.wxs 
 
 echo Linking Installer....
-Wix\light.exe -out "%msiname%" ExtensionsComponents.wixobj ExtensionsFeaturesBuild.wixobj WebServerConfig%1.wixobj PHPInstaller%1.wixobj PHPInstallerCommon.wixlib -loc WixUI_en-us.wxls
+Wix\light.exe -out "%msiname%" ExtensionsComponents.wixobj ExtensionsFeaturesBuild.wixobj WebServerConfig%1.wixobj PHPInstaller%1.wixobj PHPInstallerCommon.wixlib -loc WixUI_en-us.wxl

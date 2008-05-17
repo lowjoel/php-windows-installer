@@ -730,6 +730,12 @@
   <String Id="Featureext_php_parsekitDescription">PHP Opcode Analyser</String>
   <String Id="Featureext_php_pdfTitle">PDFlib</String>
   <String Id="Featureext_php_pdfDescription">Creating PDF on the fly with the PDFlib library</String>
+  <String Id="Featureext_php_pdflibTitle">PDFlib</String>
+  <String Id="Featureext_php_pdflibDescription">Creating PDF on the fly with the PDFlib library</String>
+  <String Id="Featureext_php_phkTitle">PHK Accelerator</String>
+  <String Id="Featureext_php_phkDescription">PHK is a PHP-oriented package/archive system. Basically, it can be considered as a PHP-oriented equivalent of the Java jar format. As jar, PHK allows to distribute and run a library or an application as a single file. The PHK accelerator transparently makes PHK runtime faster.</String>
+  <String Id="Featureext_php_paramsTitle">Parameter Parsing Utility</String>
+  <String Id="Featureext_php_paramsDescription">Parameter Parsing Utility</String>
   <String Id="Featureext_php_pdoTitle">PDO</String>
   <String Id="Featureext_php_pdoDescription">PHP Data Objects support. Enable the driver you want to use below</String>
   <String Id="Featureext_php_pdo_firebirdTitle">Firebird/Interbase 6</String>

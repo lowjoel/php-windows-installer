@@ -258,6 +258,15 @@
 			<Feature AllowAdvertise="no" Id="ext_php_pdf" Title="$(loc.Featureext_php_pdfTitle)" Description="$(loc.Featureext_php_pdfDescription)" Level="10">
 				<ComponentRef Id="php_pdf"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_pdflib" Title="$(loc.Featureext_php_pdflibTitle)" Description="$(loc.Featureext_php_pdflibDescription)" Level="10">
+				<ComponentRef Id="php_pdflib"/>
+			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_params" Title="$(loc.Featureext_php_paramsTitle)" Description="$(loc.Featureext_php_paramsDescription)" Level="10">
+				<ComponentRef Id="php_params"/>
+			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_phk" Title="$(loc.Featureext_php_phkTitle)" Description="$(loc.Featureext_php_phkDescription)" Level="10">
+				<ComponentRef Id="php_phk"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_pdo" Title="$(loc.Featureext_php_pdoTitle)" Description="$(loc.Featureext_php_pdoDescription)" Level="10">
 				<ComponentRef Id="php_pdo"/>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_firebird" Title="$(loc.Featureext_php_pdo_firebirdTitle)" Description="$(loc.Featureext_php_pdo_firebirdDescription)" Level="10">

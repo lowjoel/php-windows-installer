@@ -286,6 +286,10 @@
           Name="PHP5" 
           LongName="PHP 5"/>
       </Directory>
+      
+      <Directory Id="usrdirectory" Name="usr">
+          <Directory Id="mibsdirectory" Name="mibs" />
+      </Directory>
     </Directory>
     <Feature AllowAdvertise="no" 
       Id="Complete" 

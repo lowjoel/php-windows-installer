@@ -45,17 +45,7 @@
 							Section="PHP" Value="&quot;[INSTALLDIR]ext&quot;" />
 				</Component>
 			</Directory>
-            <Directory Id="mibsdirectory" Name="mibs">
-				<Component Id="mibsdir" DiskId="1" Guid="21B96C70-3A1E-11DC-8314-0800200C9A66">
-					<Environment Id="MIBDIRS" 
-                      Name="MIBDIRS" 
-                      Action="create" 
-                      System="yes" 
-                      Part="all" 
-                      Value="[!INSTALLDIR]\mibs"/>
-				</Component>
-			</Directory>
-			<Directory Id="extrasdirectory" Name="extras">
+            <Directory Id="extrasdirectory" Name="extras">
 				<Component Id="magicMIME" DiskId="1" Guid="C29559A6-DE77-4951-A8F8-6266B790DE20">
 					<File Id="filemagicMIME" Name="MAGIC_1.MIM" LongName="magic.mime" Source="Files\extras\magic.mime" />
 				</Component>
@@ -118,5 +108,66 @@
 				</Directory>
 			</Directory>
 		</DirectoryRef>
+        <DirectoryRef Id="mibsdirectory">
+            <Component Id="mibsdir" DiskId="1" Guid="21B96C70-3A1E-11DC-8314-0800200C9A66">
+                <File Id="mibsfile1" Name="AGENTX_1.TXT" LongName="AGENTX-MIB.txt" Source="Files\extras\mibs\AGENTX-MIB.txt" />
+                <File Id="mibsfile2" Name="DISMAN_1.TXT" LongName="DISMAN-SCHEDULE-MIB.txt" Source="Files\extras\mibs\DISMAN-SCHEDULE-MIB.txt" />
+                <File Id="mibsfile3" Name="DISMAN_2.TXT" LongName="DISMAN-SCRIPT-MIB.txt" Source="Files\extras\mibs\DISMAN-SCRIPT-MIB.txt" />
+                <File Id="mibsfile4" Name="ETHERL_1.TXT" LongName="EtherLike-MIB.txt" Source="Files\extras\mibs\EtherLike-MIB.txt" />
+                <File Id="mibsfile5" Name="HCNUM-TC.txt" Source="Files\extras\mibs\HCNUM-TC.txt" />
+                <File Id="mibsfile6" Name="HOST-R_1.TXT" LongName="HOST-RESOURCES-MIB.txt" Source="Files\extras\mibs\HOST-RESOURCES-MIB.txt" />
+                <File Id="mibsfile7" Name="HOST-R_2.TXT" LongName="HOST-RESOURCES-TYPES.txt" Source="Files\extras\mibs\HOST-RESOURCES-TYPES.txt" />
+                <File Id="mibsfile8" Name="IANA-A_1.TXT" LongName="IANA-ADDRESS-FAMILY-NUMBERS-MIB.txt" Source="Files\extras\mibs\IANA-ADDRESS-FAMILY-NUMBERS-MIB.txt" />
+                <File Id="mibsfile9" Name="IANA-L_1.TXT" LongName="IANA-LANGUAGE-MIB.txt" Source="Files\extras\mibs\IANA-LANGUAGE-MIB.txt" />
+                <File Id="mibsfile10" Name="IANAIF_1.TXT" LongName="IANAifType-MIB.txt" Source="Files\extras\mibs\IANAifType-MIB.txt" />
+                <File Id="mibsfile11" Name="IF-INV_1.TXT" LongName="IF-INVERTED-STACK-MIB.txt" Source="Files\extras\mibs\IF-INVERTED-STACK-MIB.txt" />
+                <File Id="mibsfile12" Name="IF-MIB.txt" Source="Files\extras\mibs\IF-MIB.txt" />
+                <File Id="mibsfile13" Name="INET-A_1.TXT" LongName="INET-ADDRESS-MIB.txt" Source="Files\extras\mibs\INET-ADDRESS-MIB.txt" />
+                <File Id="mibsfile14" Name="IP-FOR_1.TXT" LongName="IP-FORWARD-MIB.txt" Source="Files\extras\mibs\IP-FORWARD-MIB.txt" />
+                <File Id="mibsfile15" Name="IP-MIB.txt" Source="Files\extras\mibs\IP-MIB.txt" />
+                <File Id="mibsfile16" Name="IPV6-I_1.TXT" LongName="IPV6-ICMP-MIB.txt" Source="Files\extras\mibs\IPV6-ICMP-MIB.txt" />
+                <File Id="mibsfile17" Name="IPV6-MIB.txt" Source="Files\extras\mibs\IPV6-MIB.txt" />
+                <File Id="mibsfile18" Name="IPV6-TC.txt" Source="Files\extras\mibs\IPV6-TC.txt" />
+                <File Id="mibsfile19" Name="IPV6-T_1.TXT" LongName="IPV6-TCP-MIB.txt" Source="Files\extras\mibs\IPV6-TCP-MIB.txt" />
+                <File Id="mibsfile20" Name="IPV6-U_1.TXT" LongName="IPV6-UDP-MIB.txt" Source="Files\extras\mibs\IPV6-UDP-MIB.txt" />
+                <File Id="mibsfile21" Name="MTA-MIB.txt" Source="Files\extras\mibs\MTA-MIB.txt" />
+                <File Id="mibsfile22" Name="NETWOR_1.TXT" LongName="NETWORK-SERVICES-MIB.txt" Source="Files\extras\mibs\NETWORK-SERVICES-MIB.txt" />
+                <File Id="mibsfile23" Name="output.txt" Source="Files\extras\mibs\output.txt" />
+                <File Id="mibsfile24" Name="RFC-1215.txt" Source="Files\extras\mibs\RFC-1215.txt" />
+                <File Id="mibsfile25" Name="RFC115_1.TXT" LongName="RFC1155-SMI.txt" Source="Files\extras\mibs\RFC1155-SMI.txt" />
+                <File Id="mibsfile26" Name="RFC121_1.TXT" LongName="RFC1213-MIB.txt" Source="Files\extras\mibs\RFC1213-MIB.txt" />
+                <File Id="mibsfile27" Name="RMON-MIB.txt" Source="Files\extras\mibs\RMON-MIB.txt" />
+                <File Id="mibsfile28" Name="SMUX-MIB.txt" Source="Files\extras\mibs\SMUX-MIB.txt" />
+                <File Id="mibsfile29" Name="SNMP-C_1.TXT" LongName="SNMP-COMMUNITY-MIB.txt" Source="Files\extras\mibs\SNMP-COMMUNITY-MIB.txt" />
+                <File Id="mibsfile30" Name="SNMP-F_1.TXT" LongName="SNMP-FRAMEWORK-MIB.txt" Source="Files\extras\mibs\SNMP-FRAMEWORK-MIB.txt" />
+                <File Id="mibsfile31" Name="SNMP-M_1.TXT" LongName="SNMP-MPD-MIB.txt" Source="Files\extras\mibs\SNMP-MPD-MIB.txt" />
+                <File Id="mibsfile32" Name="SNMP-N_1.TXT" LongName="SNMP-NOTIFICATION-MIB.txt" Source="Files\extras\mibs\SNMP-NOTIFICATION-MIB.txt" />
+                <File Id="mibsfile33" Name="SNMP-P_1.TXT" LongName="SNMP-PROXY-MIB.txt" Source="Files\extras\mibs\SNMP-PROXY-MIB.txt" />
+                <File Id="mibsfile34" Name="SNMP-T_1.TXT" LongName="SNMP-TARGET-MIB.txt" Source="Files\extras\mibs\SNMP-TARGET-MIB.txt" />
+                <File Id="mibsfile35" Name="SNMP-U_1.TXT" LongName="SNMP-USER-BASED-SM-MIB.txt" Source="Files\extras\mibs\SNMP-USER-BASED-SM-MIB.txt" />
+                <File Id="mibsfile36" Name="SNMP-V_1.TXT" LongName="SNMP-VIEW-BASED-ACM-MIB.txt" Source="Files\extras\mibs\SNMP-VIEW-BASED-ACM-MIB.txt" />
+                <File Id="mibsfile37" Name="SNMPV2_1.TXT" LongName="SNMPv2-CONF.txt" Source="Files\extras\mibs\SNMPv2-CONF.txt" />
+                <File Id="mibsfile38" Name="SNMPV2_2.TXT" LongName="SNMPv2-MIB.txt" Source="Files\extras\mibs\SNMPv2-MIB.txt" />
+                <File Id="mibsfile39" Name="SNMPV2_3.TXT" LongName="SNMPv2-SMI.txt" Source="Files\extras\mibs\SNMPv2-SMI.txt" />
+                <File Id="mibsfile40" Name="SNMPV2_4.TXT" LongName="SNMPv2-TC.txt" Source="Files\extras\mibs\SNMPv2-TC.txt" />
+                <File Id="mibsfile41" Name="SNC4A1_1.TXT" LongName="SNMPv2-TM.txt" Source="Files\extras\mibs\SNMPv2-TM.txt" />
+                <File Id="mibsfile42" Name="TCP-MIB.txt" Source="Files\extras\mibs\TCP-MIB.txt" />
+                <File Id="mibsfile43" Name="TUNNEL_1.TXT" LongName="TUNNEL-MIB.txt" Source="Files\extras\mibs\TUNNEL-MIB.txt" />
+                <File Id="mibsfile44" Name="UCD-DE_1.INC" LongName="UCD-DEMO-MIB.inc" Source="Files\extras\mibs\UCD-DEMO-MIB.inc" />
+                <File Id="mibsfile45" Name="UCD-DE_1.TXT" LongName="UCD-DEMO-MIB.txt" Source="Files\extras\mibs\UCD-DEMO-MIB.txt" />
+                <File Id="mibsfile46" Name="UCD-DI_1.INC" LongName="UCD-DISKIO-MIB.inc" Source="Files\extras\mibs\UCD-DISKIO-MIB.inc" />
+                <File Id="mibsfile47" Name="UCD-DI_1.TXT" LongName="UCD-DISKIO-MIB.txt" Source="Files\extras\mibs\UCD-DISKIO-MIB.txt" />
+                <File Id="mibsfile48" Name="UCD-DL_1.INC" LongName="UCD-DLMOD-MIB.inc" Source="Files\extras\mibs\UCD-DLMOD-MIB.inc" />
+                <File Id="mibsfile49" Name="UCD-DL_1.TXT" LongName="UCD-DLMOD-MIB.txt" Source="Files\extras\mibs\UCD-DLMOD-MIB.txt" />
+                <File Id="mibsfile50" Name="UCD-IP_1.INC" LongName="UCD-IPFILTER-MIB.inc" Source="Files\extras\mibs\UCD-IPFILTER-MIB.inc" />
+                <File Id="mibsfile51" Name="UCD-IP_1.TXT" LongName="UCD-IPFILTER-MIB.txt" Source="Files\extras\mibs\UCD-IPFILTER-MIB.txt" />
+                <File Id="mibsfile52" Name="UCD-IP_2.INC" LongName="UCD-IPFWACC-MIB.inc" Source="Files\extras\mibs\UCD-IPFWACC-MIB.inc" />
+                <File Id="mibsfile53" Name="UCD-IP_2.TXT" LongName="UCD-IPFWACC-MIB.txt" Source="Files\extras\mibs\UCD-IPFWACC-MIB.txt" />
+                <File Id="mibsfile54" Name="UCD-SN_1.TXT" LongName="UCD-SNMP-MIB-OLD.txt" Source="Files\extras\mibs\UCD-SNMP-MIB-OLD.txt" />
+                <File Id="mibsfile55" Name="UCD-SN_1.INC" LongName="UCD-SNMP-MIB.inc" Source="Files\extras\mibs\UCD-SNMP-MIB.inc" />
+                <File Id="mibsfile56" Name="UCD-SN_2.TXT" LongName="UCD-SNMP-MIB.txt" Source="Files\extras\mibs\UCD-SNMP-MIB.txt" />
+                <File Id="mibsfile57" Name="UDP-MIB.txt" Source="Files\extras\mibs\UDP-MIB.txt" />
+            </Component>
+         </DirectoryRef>
 	</Fragment>
 </Wix>

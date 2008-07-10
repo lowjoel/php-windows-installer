@@ -286,6 +286,10 @@
           Name="PHP6" 
           LongName="PHP 6"/>
       </Directory>
+      
+      <Directory Id="usrdirectory" Name="usr">
+          <Directory Id="mibsdirectory" Name="mibs" />
+      </Directory>
     </Directory>
     <Feature AllowAdvertise="no" 
       Id="Complete" 

@@ -137,7 +137,8 @@ $files = $ExtensionsWXS->getElementsByTagName("File");
 $i = 0;
 $hasSeenMbString = false;
 while ( $i < $files->length ) {
-    if ( !is_file( realpath($files->item($i)->getAttribute('Source')) ) ) {
+    if ( !is_file( realpath($files->item($i)->getAttribute('Source')) ) 
+            && $files->item($i)->parentNode->getAttribute('Id') != 'mibsdir' ) {
         $nodetoremove = $files->item($i)->parentNode;
         echo "Removing File " . $nodetoremove->getAttribute('Id') . " because " . realpath($files->item($i)->getAttribute('Source')) . " doesn't exist\n";
         $files->item($i)->parentNode->parentNode->removeChild($nodetoremove);
@@ -180,7 +181,7 @@ while ( $i < $componentRefs->length ) {
     $nodetoremove = $componentRefs->item($i)->parentNode;
     echo "Removing Feature " . $nodetoremove->getAttribute('Id') . " because of missing Component $componentRefId\n";
     $componentRefs->item($i)->parentNode->parentNode->removeChild($nodetoremove);
-    if ($i>0) $i--;
+    $i = 0;
 }
 $ExtensionsFeaturesWXS->save('ExtensionsFeaturesBuild.wxs');
 

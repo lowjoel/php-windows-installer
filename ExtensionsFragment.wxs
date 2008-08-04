@@ -132,7 +132,6 @@
                 <File Id="mibsfile20" Name="IPV6-U_1.TXT" LongName="IPV6-UDP-MIB.txt" Source="Files\extras\mibs\IPV6-UDP-MIB.txt" />
                 <File Id="mibsfile21" Name="MTA-MIB.txt" Source="Files\extras\mibs\MTA-MIB.txt" />
                 <File Id="mibsfile22" Name="NETWOR_1.TXT" LongName="NETWORK-SERVICES-MIB.txt" Source="Files\extras\mibs\NETWORK-SERVICES-MIB.txt" />
-                <File Id="mibsfile23" Name="output.txt" Source="Files\extras\mibs\output.txt" />
                 <File Id="mibsfile24" Name="RFC-1215.txt" Source="Files\extras\mibs\RFC-1215.txt" />
                 <File Id="mibsfile25" Name="RFC115_1.TXT" LongName="RFC1155-SMI.txt" Source="Files\extras\mibs\RFC1155-SMI.txt" />
                 <File Id="mibsfile26" Name="RFC121_1.TXT" LongName="RFC1213-MIB.txt" Source="Files\extras\mibs\RFC1213-MIB.txt" />

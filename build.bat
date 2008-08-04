@@ -3,6 +3,10 @@
 set phpver=%1
 set phpver=%phpver:~0,3%
 set phpver=%phpver:.=%
+
+echo Building ExtensionsFeatures.wxs
+copy ExtensionsFeatures%phpver%.wxs ExtensionsFeatures.wxs
+
 if %phpver%==53 set phpver=52
 
 set msiname="php-%1-win32-installer.msi"

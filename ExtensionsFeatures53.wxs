@@ -89,6 +89,9 @@
 				<ComponentRef Id="fdftkDLL"/>
 				<ComponentRef Id="PDFSupport"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_ffi" Title="$(loc.Featureext_php_ffiTitle)" Description="$(loc.Featureext_php_ffiDescription)" Level="10">
+				<ComponentRef Id="php_ffi"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_fileinfo" Title="$(loc.Featureext_php_fileinfoTitle)" Description="$(loc.Featureext_php_fileinfoDescription)" Level="10">
 				<ComponentRef Id="php_fileinfo"/>
 			</Feature>
@@ -360,6 +363,9 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_sqlite" Title="$(loc.Featureext_php_sqliteTitle)" Description="$(loc.Featureext_php_sqliteDescription)" Level="10">
 				<ComponentRef Id="php_sqlite"/>
+			</Feature>
+            <Feature AllowAdvertise="no" Id="ext_php_sqlite3" Title="$(loc.Featureext_php_sqlite3Title)" Description="$(loc.Featureext_php_sqlite3Description)" Level="10">
+				<ComponentRef Id="php_sqlite3"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ssh2" Title="$(loc.Featureext_php_ssh2Title)" Description="$(loc.Featureext_php_ssh2Description)" Level="10">
 				<ComponentRef Id="php_ssh2"/>

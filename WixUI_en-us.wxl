@@ -632,6 +632,8 @@
   <String Id="Featureext_php_exifDescription">EXIF functions</String>
   <String Id="Featureext_php_fdfTitle">FDF</String>
   <String Id="Featureext_php_fdfDescription">FDF: Forms Data Format functions</String>
+  <String Id="Featureext_php_ffiTitle">FFI</String>
+  <String Id="Featureext_php_ffiDescription">FFI is a multi-platform extension for PHP 5 that allows you to bind to functions from arbitrary shared libraries and call them.</String>
   <String Id="Featureext_php_fileinfoTitle">Fileinfo</String>
   <String Id="Featureext_php_fileinfoDescription">libmagic bindings</String>
   <String Id="Featureext_php_fileproTitle">filePro</String>
@@ -800,6 +802,8 @@
   <String Id="Featureext_php_spl_typesDescription">SPL Types is a collection of special typehandling classes.</String>
   <String Id="Featureext_php_sqliteTitle">SQLite</String>
   <String Id="Featureext_php_sqliteDescription">SQLite Functions</String>
+  <String Id="Featureext_php_sqlite3Title">SQLite 3</String>
+  <String Id="Featureext_php_sqlite3Description">SQLite 3 Functions</String>
   <String Id="Featureext_php_ssh2Title">ssh2</String>
   <String Id="Featureext_php_ssh2Description">Bindings for the libssh2 library</String>
   <String Id="Featureext_php_statsTitle">stats</String>

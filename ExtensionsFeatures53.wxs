@@ -246,6 +246,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_operator" Title="$(loc.Featureext_php_operatorTitle)" Description="$(loc.Featureext_php_operatorDescription)" Level="10">
 				<ComponentRef Id="php_operator"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_oci" Title="$(loc.Featureext_php_ociTitle)" Description="$(loc.Featureext_php_ociDescription)" Level="10">
+				<ComponentRef Id="php_oci"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_oci8_11g" Title="$(loc.Featureext_php_oci8_11gTitle)" Description="$(loc.Featureext_php_oci8_11gDescription)" Level="10">
 				<ComponentRef Id="php_oci8_11g"/>
 			</Feature>
@@ -282,8 +285,8 @@
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_mysql" Title="$(loc.Featureext_php_pdo_mysqlTitle)" Description="$(loc.Featureext_php_pdo_mysqlDescription)" TypicalDefault="install" Level="1">
 					<ComponentRef Id="php_pdo_mysql"/>
 				</Feature>
-				<Feature AllowAdvertise="no" Id="ext_php_pdo_oci8" Title="$(loc.Featureext_php_pdo_oci8Title)" Description="$(loc.Featureext_php_pdo_oci8Description)" Level="10">
-					<ComponentRef Id="php_pdo_oci8"/>
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_oci" Title="$(loc.Featureext_php_pdo_ociTitle)" Description="$(loc.Featureext_php_pdo_ociDescription)" Level="10">
+					<ComponentRef Id="php_pdo_oci"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_odbc" Title="$(loc.Featureext_php_pdo_odbcTitle)" Description="$(loc.Featureext_php_pdo_odbcDescription)" TypicalDefault="install" Level="1">
 					<ComponentRef Id="php_pdo_odbc"/>

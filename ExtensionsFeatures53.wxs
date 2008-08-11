@@ -247,12 +247,6 @@
 			<Feature AllowAdvertise="no" Id="ext_php_operator" Title="$(loc.Featureext_php_operatorTitle)" Description="$(loc.Featureext_php_operatorDescription)" Level="10">
 				<ComponentRef Id="php_operator"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_oracle" Title="$(loc.Featureext_php_oracleTitle)" Description="$(loc.Featureext_php_oracleDescription)" Level="10">
-				<ComponentRef Id="php_oracle"/>
-			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_oci8" Title="$(loc.Featureext_php_oci8Title)" Description="$(loc.Featureext_php_oci8Description)" Level="10">
-				<ComponentRef Id="php_oci8"/>
-			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_oci8_11g" Title="$(loc.Featureext_php_oci8_11gTitle)" Description="$(loc.Featureext_php_oci8_11gDescription)" Level="10">
 				<ComponentRef Id="php_oci8_11g"/>
 			</Feature>
@@ -289,9 +283,6 @@
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_mysql" Title="$(loc.Featureext_php_pdo_mysqlTitle)" Description="$(loc.Featureext_php_pdo_mysqlDescription)" TypicalDefault="install" Level="1">
 					<ComponentRef Id="php_pdo_mysql"/>
 				</Feature>
-				<Feature AllowAdvertise="no" Id="ext_php_pdo_oci" Title="$(loc.Featureext_php_pdo_ociTitle)" Description="$(loc.Featureext_php_pdo_ociDescription)" Level="10">
-					<ComponentRef Id="php_pdo_oci"/>
-				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_oci8" Title="$(loc.Featureext_php_pdo_oci8Title)" Description="$(loc.Featureext_php_pdo_oci8Description)" Level="10">
 					<ComponentRef Id="php_pdo_oci8"/>
 				</Feature>
@@ -300,6 +291,7 @@
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_pgsql" Title="$(loc.Featureext_php_pdo_pgsqlTitle)" Description="$(loc.Featureext_php_pdo_pgsqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_pgsql"/>
+                    <ComponentRef Id="libpqDLL"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite" Title="$(loc.Featureext_php_pdo_sqliteTitle)" Description="$(loc.Featureext_php_pdo_sqliteDescription)" TypicalDefault="install" Level="1">
 					<ComponentRef Id="php_pdo_sqlite"/>
@@ -323,6 +315,7 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_pgsql" Title="$(loc.Featureext_php_pgsqlTitle)" Description="$(loc.Featureext_php_pgsqlDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_pgsql"/>
+                <ComponentRef Id="libpqDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_printer" Title="$(loc.Featureext_php_printerTitle)" Description="$(loc.Featureext_php_printerDescription)" Level="10">
 				<ComponentRef Id="php_printer"/>

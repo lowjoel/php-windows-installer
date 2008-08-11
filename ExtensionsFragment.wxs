@@ -26,6 +26,9 @@
 			<Component Id="msqlDLL" DiskId="1" Guid="C37BB17E-8C9D-4FB6-AD40-100BDDFDADD5">
 				<File Id="filemsqlDLL" Name="msql.dll" Source="Files\msql.dll" />
 			</Component>
+			<Component Id="libpqDLL" DiskId="1" Guid="6C109270-64B0-11DD-AD8B-0800200C9A66">
+				<File Id="filelibpqDLL" Name="libpq.dll" Source="Files\libpq.dll" />
+			</Component>
 			<Component Id="ssleay32DLL" DiskId="1" Guid="D7E5F122-9764-4165-BDDA-922D60408C2F">
 				<File Id="filessleay32DLL" Name="ssleay32.dll" Source="Files\ssleay32.dll" />
 			</Component>

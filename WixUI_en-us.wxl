@@ -678,6 +678,8 @@
   <String Id="Featureext_php_imapDescription">IMAP POP3 and NNTP functions</String>
   <String Id="Featureext_php_interbaseTitle">Interbase</String>
   <String Id="Featureext_php_interbaseDescription">InterBase functions</String>
+  <String Id="Featureext_php_intlTitle">Internationalization (intl)</String>
+  <String Id="Featureext_php_intlDescription">Internationalization extension (further is referred as Intl) is a wrapper for ICU library, enabling PHP programmers to perform UCA-conformant collation and date/time/number/currency formatting in their scripts.</String>
   <String Id="Featureext_php_javaTitle">Java</String>
   <String Id="Featureext_php_javaDescription">PHP / Java Integration</String>
   <String Id="Featureext_php_jsonTitle">json</String>

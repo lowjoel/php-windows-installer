@@ -157,6 +157,16 @@
 				<ComponentRef Id="php_interbase"/>
 				<ComponentRef Id="gds32DLL"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_intl" Title="$(loc.Featureext_php_intlTitle)" Description="$(loc.Featureext_php_intlDescription)" Level="10">
+				<ComponentRef Id="php_intl"/>
+				<ComponentRef Id="icudt36DLL"/>
+				<ComponentRef Id="icuin36DLL"/>
+				<ComponentRef Id="icuio36DLL"/>
+				<ComponentRef Id="icule36DLL"/>
+				<ComponentRef Id="iculx36DLL"/>
+				<ComponentRef Id="icutu36DLL"/>
+				<ComponentRef Id="icuuc36DLL"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ixsfunc" Title="$(loc.Featureext_php_ixsfuncTitle)" Description="$(loc.Featureext_php_ixsfuncDescription)" Level="10">
 				<ComponentRef Id="php_ixsfunc"/>
 			</Feature>
@@ -204,11 +214,9 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_mhash" Title="$(loc.Featureext_php_mhashTitle)" Description="$(loc.Featureext_php_mhashDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_mhash"/>
-				<ComponentRef Id="libmhashDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_mime_magic" Title="$(loc.Featureext_php_mime_magicTitle)" Description="$(loc.Featureext_php_mime_magicDescription)" Level="10">
 				<ComponentRef Id="php_mime_magic"/>
-				<ComponentRef Id="magicMIME"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ming" Title="$(loc.Featureext_php_mingTitle)" Description="$(loc.Featureext_php_mingDescription)" Level="10">
 				<ComponentRef Id="php_ming"/>
@@ -240,8 +248,6 @@
 				<ComponentRef Id="php_openssl"/>
 				<ComponentRef Id="ssleay32DLL"/>
 				<ComponentRef Id="libeay32DLL"/>
-				<ComponentRef Id="opensslCNF"/>
-				<ComponentRef Id="READMESSLTXT"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_operator" Title="$(loc.Featureext_php_operatorTitle)" Description="$(loc.Featureext_php_operatorDescription)" Level="10">
 				<ComponentRef Id="php_operator"/>
@@ -348,7 +354,6 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_snmp" Title="$(loc.Featureext_php_snmpTitle)" Description="$(loc.Featureext_php_snmpDescription)" Level="10">
 				<ComponentRef Id="php_snmp"/>
-				<ComponentRef Id="mibsdir" />
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_soap" Title="$(loc.Featureext_php_soapTitle)" Description="$(loc.Featureext_php_soapDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_soap"/>

@@ -137,4 +137,6 @@
   <Extension Name="php_phk" Guid="18FEB773-02FA-4B96-B682-04F08BCD1B7A"/>
   <Extension Name="php_sqlite3" Guid="47043346-952F-454A-B19A-615A32BD9EAD"/>
   <Extension Name="php_ffi" Guid="B18F94FC-4688-4C7E-87A1-8EEC8F52417D"/>
+  <Extension Name="php_intl" Guid="9048A2B4-188A-438D-8AB8-6BFE7D0910FE"/>
+  <Extension Name="php_oci8_11g" Guid="0A362A05-C876-420C-8F82-9F8AB8912A78"/>
 </Extensions>

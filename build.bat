@@ -7,8 +7,6 @@ set phpver=%phpver:.=%
 echo Building ExtensionsFeatures.wxs
 copy ExtensionsFeatures%phpver%.wxs ExtensionsFeatures.wxs
 
-if %phpver%==53 set phpver=52
-
 set msiname="php-%1-win32-installer.msi"
 set suffix=
 
@@ -18,7 +16,7 @@ if %2==nts set suffix="NTS"
 
 :build
 echo Building ExtensionsComponents.wxs
-Files\php.exe GenExtensionsComponents.wxs.php
+Files\php.exe GenExtensionsComponents.wxs.php "%phpver%"
 
 echo Building PHPInstaller%1.wxs
 Files\php.exe GenPHPInstaller.wxs.php "PHPInstallerBase%phpver%%suffix%.wxs" "%1"

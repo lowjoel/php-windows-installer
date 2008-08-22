@@ -1,9 +1,11 @@
 <?php
 require_once "GenFunctions.php";
 
+$phpver = $argv[1];
+
 $ExtensionsWXS = new DOMDocument;
 $ExtensionsWXS->preserveWhiteSpace = false;
-$ExtensionsWXS->load('ExtensionsFragment.wxs');
+$ExtensionsWXS->load("ExtensionsFragment{$phpver}.wxs");
 $ExtensionsWXS->formatOutput = true;
 $ExtensionsGUIDXML = new DOMDocument;
 $ExtensionsGUIDXML->preserveWhiteSpace = false;
@@ -74,61 +76,63 @@ foreach ( $it as $filename ) {
 	}
 }
 
-$it = new DirectoryIterator('Files\PECL');
-foreach ( $it as $filename ) {
-	if ( $filename->isDot() || $filename == "CVS" ) continue;
-    if ( is_file("Files\\ext\\$filename") ) continue;
-	list($basename,$ext) = explode('.',$filename);
-    $cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
-    $Component = $ExtensionsWXS->createElement('Component');
-	$Component = $Directory_extdirectory->appendChild($Component);
-	$Component->setAttribute('Id',$cid);
-    $Component->setIdAttribute('Id',true);
-	$Component->setAttribute('DiskId',"1");
-	
-	$xp2 = new DomXPath($ExtensionsGUIDXML);
-	$res2 = $xp2->query("//Extension[@Name = '$cid']");
-	if ( $res2->item(0) != null ) {
-		$guid = $res2->item(0)->getAttribute('Guid');
-	}
-	else {
-		$xp4 = new DomXPath($ExtensionsGUIDXML);
-        $res4 = $xp4->query("//Extensions");
-        $Extensions = $res4->item(0);
-        $guid = genGUID();
-        $Extension = $ExtensionsGUIDXML->createElement('Extension');
-		$Extension = $Extensions->appendChild($Extension);
-		$Extension->setAttribute('Name',$cid);
-		$Extension->setAttribute('Guid',$guid);
-		$ExtensionsGUIDXML->save('extensionsGUID.xml');
-	}
-	$Component->setAttribute('Guid',$guid);
-	
-	$File = $ExtensionsWXS->createElement('File');
-	$File = $Component->appendChild($File);
-	$File->setAttribute('Id',"file{$basename}" . strtoupper($ext));
-	if ( strlen($basename) > 8 ) {
-		$File->setAttribute('Name',getshortname("Files\\PECL\\$filename"));
-		$File->setAttribute('LongName',$filename);
-	}
-	else {	
-		$File->setAttribute('Name',$filename);
-	}
-	$File->setAttribute('Source',"Files\PECL\\{$filename}");
-	
-	if ($ext == 'dll' && stristr($basename,'php_') !== FALSE ) {
-		$IniFile = $ExtensionsWXS->createElement('IniFile');
-		$IniFile = $Component->appendChild($IniFile);
-		$IniFile->setAttribute('Id',"{$basename}INI");
-		$IniFile->setAttribute('Action',"createLine");
-        if ( strtoupper($basename) == 'PHP_XDEBUG.DLL')
-            $IniFile->setAttribute('Key',"zend_extension_ts");
-        else
-		    $IniFile->setAttribute('Key',"extension");
-		$IniFile->setAttribute('Directory',"INSTALLDIR");
-		$IniFile->setAttribute('Name',"php.ini");
-		$IniFile->setAttribute('Section',strtoupper($basename));
-		$IniFile->setAttribute('Value',$filename);
+if ( is_dir('Files\PECL') ) {
+	$it = new DirectoryIterator('Files\PECL');
+	foreach ( $it as $filename ) {
+		if ( $filename->isDot() || $filename == "CVS" ) continue;
+		if ( is_file("Files\\ext\\$filename") ) continue;
+		list($basename,$ext) = explode('.',$filename);
+		$cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
+		$Component = $ExtensionsWXS->createElement('Component');
+		$Component = $Directory_extdirectory->appendChild($Component);
+		$Component->setAttribute('Id',$cid);
+		$Component->setIdAttribute('Id',true);
+		$Component->setAttribute('DiskId',"1");
+		
+		$xp2 = new DomXPath($ExtensionsGUIDXML);
+		$res2 = $xp2->query("//Extension[@Name = '$cid']");
+		if ( $res2->item(0) != null ) {
+			$guid = $res2->item(0)->getAttribute('Guid');
+		}
+		else {
+			$xp4 = new DomXPath($ExtensionsGUIDXML);
+			$res4 = $xp4->query("//Extensions");
+			$Extensions = $res4->item(0);
+			$guid = genGUID();
+			$Extension = $ExtensionsGUIDXML->createElement('Extension');
+			$Extension = $Extensions->appendChild($Extension);
+			$Extension->setAttribute('Name',$cid);
+			$Extension->setAttribute('Guid',$guid);
+			$ExtensionsGUIDXML->save('extensionsGUID.xml');
+		}
+		$Component->setAttribute('Guid',$guid);
+		
+		$File = $ExtensionsWXS->createElement('File');
+		$File = $Component->appendChild($File);
+		$File->setAttribute('Id',"file{$basename}" . strtoupper($ext));
+		if ( strlen($basename) > 8 ) {
+			$File->setAttribute('Name',getshortname("Files\\PECL\\$filename"));
+			$File->setAttribute('LongName',$filename);
+		}
+		else {	
+			$File->setAttribute('Name',$filename);
+		}
+		$File->setAttribute('Source',"Files\PECL\\{$filename}");
+		
+		if ($ext == 'dll' && stristr($basename,'php_') !== FALSE ) {
+			$IniFile = $ExtensionsWXS->createElement('IniFile');
+			$IniFile = $Component->appendChild($IniFile);
+			$IniFile->setAttribute('Id',"{$basename}INI");
+			$IniFile->setAttribute('Action',"createLine");
+			if ( strtoupper($basename) == 'PHP_XDEBUG.DLL')
+				$IniFile->setAttribute('Key',"zend_extension_ts");
+			else
+				$IniFile->setAttribute('Key',"extension");
+			$IniFile->setAttribute('Directory',"INSTALLDIR");
+			$IniFile->setAttribute('Name',"php.ini");
+			$IniFile->setAttribute('Section',strtoupper($basename));
+			$IniFile->setAttribute('Value',$filename);
+		}
 	}
 }
 

@@ -605,7 +605,7 @@
         <Control Id="Buttons" Type="RadioButtonGroup"
             X="20" Y="50" Width="330" Height="180" Property="WEBSERVERPICKER" />
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="$(loc.WixUINext)">
-          <Publish Evenst="AddLocal" Value="apache13"><![CDATA[WEBSERVERPICKER = "apache13"]]></Publish>
+          <Publish Event="AddLocal" Value="apache13"><![CDATA[WEBSERVERPICKER = "apache13"]]></Publish>
           <Publish Event="AddLocal" Value="apache20"><![CDATA[WEBSERVERPICKER = "apache20"]]></Publish>
           <Publish Event="AddLocal" Value="apache22"><![CDATA[WEBSERVERPICKER = "apache22"]]></Publish>
           <Publish Event="AddLocal" Value="apacheCGI"><![CDATA[WEBSERVERPICKER = "apacheCGI"]]></Publish>

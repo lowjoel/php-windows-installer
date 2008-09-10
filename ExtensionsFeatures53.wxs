@@ -255,6 +255,9 @@
 			<Feature AllowAdvertise="no" Id="ext_php_oci" Title="$(loc.Featureext_php_ociTitle)" Description="$(loc.Featureext_php_ociDescription)" Level="10">
 				<ComponentRef Id="php_oci"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_oci8" Title="$(loc.Featureext_php_oci8Title)" Description="$(loc.Featureext_php_oci8Description)" Level="10">
+				<ComponentRef Id="php_oci8"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_oci8_11g" Title="$(loc.Featureext_php_oci8_11gTitle)" Description="$(loc.Featureext_php_oci8_11gDescription)" Level="10">
 				<ComponentRef Id="php_oci8_11g"/>
 			</Feature>

@@ -23,9 +23,6 @@
       <Component Id="php6isapiDLL" DiskId="1" Guid="5B5419B5-917A-462A-B325-CB61B82E5FF2">
         <File Id="filephp6isapiDLL" Name="PHP6IS_1.DLL" LongName="php6isapi.dll" Source="Files\php6isapi.dll" />
       </Component>
-      <Component Id="php6nsapiDLL" DiskId="1" Guid="13AD2C19-03D3-40A7-A1D8-5EE145344DFE">
-        <File Id="filephp6nsapiDLL" Name="PHP6NS_1.DLL" LongName="php6nsapi.dll" Source="Files\php6nsapi.dll" />
-      </Component>
       <Component Id="cgiforceredirect" DiskId="1" Guid="0A2DD92F-AFCC-417B-B909-395F9D3B79F5">
         <IniFile Id="cgiforceredirectINI" Action="addLine" 
           Key="cgi.force_redirect" Directory="INSTALLDIR" Name="php.ini"

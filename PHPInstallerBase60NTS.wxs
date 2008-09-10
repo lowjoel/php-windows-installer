@@ -27,7 +27,7 @@
 
     <Condition 
 	  Message="You need to be an administrator to install PHP using this installer.">
-      Privileged
+      <![CDATA[Privileged OR (AdminUser AND VersionNT >= 600]]>
     </Condition>
     
     <Condition 
@@ -52,6 +52,33 @@
       </DirectorySearch>
     </Property>
     
+    <Property Id="FASTCGI60MODULEINSTALLED">
+	  <RegistrySearch 
+        Id="fastcgi60Registry" 
+        Root="HKLM" 
+        Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" 
+        Type="raw"
+        Name="{E136BB09-1BB2-49A0-9FF3-5C25564D3819}"/>
+	</Property>
+	<Property Id="FASTCGI70MODULEINSTALLED">
+	  <RegistrySearch 
+        Id="fastcgi70Registry" 
+        Root="HKLM" 
+        Key="SOFTWARE\Microsoft\InetStp\Components" 
+        Type="raw"
+        Name="FastCgi"/>
+	</Property>
+	<CustomAction Id='CheckFASTCGIINSTALLED' Property='FASTCGIINSTALLED' Value='1' />
+	<CustomAction Id='CheckFASTCGINOTINSTALLED' Property='FASTCGIINSTALLED' Value='0' />
+	<InstallUISequence>
+        <Custom Action="CheckFASTCGIINSTALLED" After="CostInitialize">
+			<![CDATA[FASTCGI60MODULEINSTALLED OR FASTCGI70MODULEINSTALLED]]>
+		</Custom>
+        <Custom Action="CheckFASTCGINOTINSTALLED" After="CostInitialize">
+			<![CDATA[NOT FASTCGI60MODULEINSTALLED AND NOT FASTCGI70MODULEINSTALLED]]>
+		</Custom>
+    </InstallUISequence>
+	
     <Property Id="APACHEREGDIR">
       <RegistrySearch Id="apacheRegistry" 
         Root="HKLM" 
@@ -78,13 +105,6 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles">
         <Directory Id="INSTALLDIR" Name="PHP">
-          <Component Id="gopearBAT" 
-            DiskId="1" 
-            Guid="C8385835-A5DD-4A90-9A44-5F49DE05B0B7">
-            <File Id="file2" 
-              Name="go-pear.bat" 
-              Source="Files\go-pear.bat"/>
-          </Component>
           <Component Id="installTXT" 
             DiskId="1" 
             Guid="D1055308-60DA-4C10-A29B-E582D0A3D675">
@@ -266,17 +286,6 @@
                 Source="Files\dev\php6.lib"/>
             </Component>
           </Directory>
-          <Directory Id="PEARdirectory" 
-            Name="PEAR">
-            <Component Id="gopearPHAR" 
-              DiskId="1" 
-              Guid="F3B9AE05-9E15-4E06-8192-91C513C8209A">
-              <File Id="file181" 
-                Name="GO-PEA_1.PHA" 
-                LongName="go-pear.phar" 
-                Source="Files\PEAR\go-pear.phar"/>
-            </Component>
-          </Directory>
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder" 
@@ -285,10 +294,6 @@
         <Directory Id="ProgramMenuDir" 
           Name="PHP6" 
           LongName="PHP 6"/>
-      </Directory>
-      
-      <Directory Id="usrdirectory" Name="usr">
-          <Directory Id="mibsdirectory" Name="mibs" />
       </Directory>
     </Directory>
     <Feature AllowAdvertise="no" 
@@ -384,14 +389,6 @@
         Description="$(loc.FeatureextrasDescription)" 
         Level="10">
         <ComponentRef Id="Empty"/>
-        <Feature AllowAdvertise="no" 
-          Id="PEAR" 
-          Title="$(loc.FeaturePEARTitle)" 
-          Description="$(loc.FeaturePEARDescription)" 
-          Level="1">
-          <ComponentRef Id="gopearPHAR"/>
-          <ComponentRef Id="gopearBAT"/>
-        </Feature>
         <Feature AllowAdvertise="no" 
           Id="Manual" 
           Title="$(loc.FeatureManualTitle)" 

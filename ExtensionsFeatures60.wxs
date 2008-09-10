@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1252"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
 	<Fragment Id="FragmentExtensionsFeatures">
-		<Feature AllowAdvertise="no" Id="Extensions" Title="$(loc.FeatureExtensionsTitle)" Description="$(loc.FeatureExtensionsDescription)" Level="10">
+		<Feature AllowAdvertise="no" Id="Extensions" Title="$(loc.FeatureExtensionsTitle)" Description="$(loc.FeatureExtensionsDescription)" TypicalDefault="install" Level="1">
 			<ComponentRef Id="extdir"/>
 			<Feature AllowAdvertise="no" Id="pecl_php5activescript" Title="$(loc.Featurepecl_phpactivescriptTitle)" Description="$(loc.Featurepecl_phpactivescriptDescription)" Level="10">
 				<ComponentRef Id="php5activescript"/>
@@ -30,7 +30,7 @@
 			<Feature AllowAdvertise="no" Id="ext_php_blenc" Title="$(loc.Featureext_php_blencTitle)" Description="$(loc.Featureext_php_blencDescription)" Level="10">
 				<ComponentRef Id="php_blenc"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_bz2" Title="$(loc.Featureext_php_bz2Title)" Description="$(loc.Featureext_php_bz2Description)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_bz2" Title="$(loc.Featureext_php_bz2Title)" Description="$(loc.Featureext_php_bz2Description)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_bz2"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_bz2_filter" Title="$(loc.Featureext_php_bz2_filterTitle)" Description="$(loc.Featureext_php_bz2_filterDescription)" Level="10">
@@ -48,7 +48,7 @@
 			<Feature AllowAdvertise="no" Id="ext_php_cvsclient" Title="$(loc.Featureext_php_cvsclientTitle)" Description="$(loc.Featureext_php_cvsclientDescription)" Level="10">
 				<ComponentRef Id="php_cvsclient"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_curl" Title="$(loc.Featureext_php_curlTitle)" Description="$(loc.Featureext_php_curlDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_curl" Title="$(loc.Featureext_php_curlTitle)" Description="$(loc.Featureext_php_curlDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_curl"/>
 				<ComponentRef Id="libeay32DLL"/>
 				<ComponentRef Id="ssleay32DLL"/>
@@ -80,7 +80,7 @@
 			<Feature AllowAdvertise="no" Id="ext_php_event" Title="$(loc.Featureext_php_eventTitle)" Description="$(loc.Featureext_php_eventDescription)" Level="10">
 				<ComponentRef Id="php_event"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_exif" Title="$(loc.Featureext_php_exifTitle)" Description="$(loc.Featureext_php_exifDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_exif" Title="$(loc.Featureext_php_exifTitle)" Description="$(loc.Featureext_php_exifDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_mbstring"/>
 				<ComponentRef Id="php_exif"/>
 			</Feature>
@@ -88,6 +88,9 @@
 				<ComponentRef Id="php_fdf"/>
 				<ComponentRef Id="fdftkDLL"/>
 				<ComponentRef Id="PDFSupport"/>
+			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_ffi" Title="$(loc.Featureext_php_ffiTitle)" Description="$(loc.Featureext_php_ffiDescription)" Level="10">
+				<ComponentRef Id="php_ffi"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_fileinfo" Title="$(loc.Featureext_php_fileinfoTitle)" Description="$(loc.Featureext_php_fileinfoDescription)" Level="10">
 				<ComponentRef Id="php_fileinfo"/>
@@ -99,13 +102,13 @@
 				<ComponentRef Id="php_fribidi"/>
 				<ComponentRef Id="fribidiDLL"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_gd2" Title="$(loc.Featureext_php_gd2Title)" Description="$(loc.Featureext_php_gd2Description)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_gd2" Title="$(loc.Featureext_php_gd2Title)" Description="$(loc.Featureext_php_gd2Description)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_gd2"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_gettext" Title="$(loc.Featureext_php_gettextTitle)" Description="$(loc.Featureext_php_gettextDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_gettext" Title="$(loc.Featureext_php_gettextTitle)" Description="$(loc.Featureext_php_gettextDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_gettext"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_gmp" Title="$(loc.Featureext_php_gmpTitle)" Description="$(loc.Featureext_php_gmpDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_gmp" Title="$(loc.Featureext_php_gmpTitle)" Description="$(loc.Featureext_php_gmpDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_gmp"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_gopher" Title="$(loc.Featureext_php_gopherTitle)" Description="$(loc.Featureext_php_gopherDescription)" Level="10">
@@ -147,12 +150,22 @@
 			<Feature AllowAdvertise="no" Id="ext_php_ifx" Title="$(loc.Featureext_php_ifxTitle)" Description="$(loc.Featureext_php_ifxDescription)" Level="10">
 				<ComponentRef Id="php_ifx"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_imap" Title="$(loc.Featureext_php_imapTitle)" Description="$(loc.Featureext_php_imapDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_imap" Title="$(loc.Featureext_php_imapTitle)" Description="$(loc.Featureext_php_imapDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_imap"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_interbase" Title="$(loc.Featureext_php_interbaseTitle)" Description="$(loc.Featureext_php_interbaseDescription)" Level="10">
 				<ComponentRef Id="php_interbase"/>
 				<ComponentRef Id="gds32DLL"/>
+			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_intl" Title="$(loc.Featureext_php_intlTitle)" Description="$(loc.Featureext_php_intlDescription)" Level="10">
+				<ComponentRef Id="php_intl"/>
+				<ComponentRef Id="icudt36DLL"/>
+				<ComponentRef Id="icuin36DLL"/>
+				<ComponentRef Id="icuio36DLL"/>
+				<ComponentRef Id="icule36DLL"/>
+				<ComponentRef Id="iculx36DLL"/>
+				<ComponentRef Id="icutu36DLL"/>
+				<ComponentRef Id="icuuc36DLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ixsfunc" Title="$(loc.Featureext_php_ixsfuncTitle)" Description="$(loc.Featureext_php_ixsfuncDescription)" Level="10">
 				<ComponentRef Id="php_ixsfunc"/>
@@ -190,9 +203,8 @@
 			<Feature AllowAdvertise="no" Id="ext_php_mbstring" Title="$(loc.Featureext_php_mbstringTitle)" Description="$(loc.Featureext_php_mbstringDescription)" Level="10">
 				<ComponentRef Id="php_mbstring"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_mcrypt" Title="$(loc.Featureext_php_mcryptTitle)" Description="$(loc.Featureext_php_mcryptDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_mcrypt" Title="$(loc.Featureext_php_mcryptTitle)" Description="$(loc.Featureext_php_mcryptDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_mcrypt"/>
-				<ComponentRef Id="libmcryptDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_mcve" Title="$(loc.Featureext_php_mcveTitle)" Description="$(loc.Featureext_php_mcveDescription)" Level="10">
 				<ComponentRef Id="php_mcve"/>
@@ -200,13 +212,11 @@
 			<Feature AllowAdvertise="no" Id="ext_php_memcache" Title="$(loc.Featureext_php_memcacheTitle)" Description="$(loc.Featureext_php_memcacheDescription)" Level="10">
 				<ComponentRef Id="php_memcache"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_mhash" Title="$(loc.Featureext_php_mhashTitle)" Description="$(loc.Featureext_php_mhashDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_mhash" Title="$(loc.Featureext_php_mhashTitle)" Description="$(loc.Featureext_php_mhashDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_mhash"/>
-				<ComponentRef Id="libmhashDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_mime_magic" Title="$(loc.Featureext_php_mime_magicTitle)" Description="$(loc.Featureext_php_mime_magicDescription)" Level="10">
 				<ComponentRef Id="php_mime_magic"/>
-				<ComponentRef Id="magicMIME"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ming" Title="$(loc.Featureext_php_mingTitle)" Description="$(loc.Featureext_php_mingDescription)" Level="10">
 				<ComponentRef Id="php_ming"/>
@@ -215,17 +225,15 @@
 				<ComponentRef Id="php_msql"/>
 				<ComponentRef Id="msqlDLL"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_mssql" Title="$(loc.Featureext_php_mssqlTitle)" Description="$(loc.Featureext_php_mssqlDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_mssql" Title="$(loc.Featureext_php_mssqlTitle)" Description="$(loc.Featureext_php_mssqlDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_mssql"/>
 				<ComponentRef Id="ntwdblibDLL"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_mysql" Title="$(loc.Featureext_php_mysqlTitle)" Description="$(loc.Featureext_php_mysqlDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_mysql" Title="$(loc.Featureext_php_mysqlTitle)" Description="$(loc.Featureext_php_mysqlDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_mysql"/>
-				<ComponentRef Id="libmysqlDLL"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_mysqli" Title="$(loc.Featureext_php_mysqliTitle)" Description="$(loc.Featureext_php_mysqliDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_mysqli" Title="$(loc.Featureext_php_mysqliTitle)" Description="$(loc.Featureext_php_mysqliDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_mysqli"/>
-				<ComponentRef Id="libmysqlDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_netools" Title="$(loc.Featureext_php_netoolsTitle)" Description="$(loc.Featureext_php_netoolsDescription)" Level="10">
 				<ComponentRef Id="php_netools"/>
@@ -236,21 +244,22 @@
 			<Feature AllowAdvertise="no" Id="ext_php_oggvorbis" Title="$(loc.Featureext_php_oggvorbisTitle)" Description="$(loc.Featureext_php_oggvorbisDescription)" Level="10">
 				<ComponentRef Id="php_oggvorbis"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_openssl" Title="$(loc.Featureext_php_opensslTitle)" Description="$(loc.Featureext_php_opensslDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_openssl" Title="$(loc.Featureext_php_opensslTitle)" Description="$(loc.Featureext_php_opensslDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_openssl"/>
 				<ComponentRef Id="ssleay32DLL"/>
 				<ComponentRef Id="libeay32DLL"/>
-				<ComponentRef Id="opensslCNF"/>
-				<ComponentRef Id="READMESSLTXT"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_operator" Title="$(loc.Featureext_php_operatorTitle)" Description="$(loc.Featureext_php_operatorDescription)" Level="10">
 				<ComponentRef Id="php_operator"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_oracle" Title="$(loc.Featureext_php_oracleTitle)" Description="$(loc.Featureext_php_oracleDescription)" Level="10">
-				<ComponentRef Id="php_oracle"/>
+			<Feature AllowAdvertise="no" Id="ext_php_oci" Title="$(loc.Featureext_php_ociTitle)" Description="$(loc.Featureext_php_ociDescription)" Level="10">
+				<ComponentRef Id="php_oci"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_oci8" Title="$(loc.Featureext_php_oci8Title)" Description="$(loc.Featureext_php_oci8Description)" Level="10">
 				<ComponentRef Id="php_oci8"/>
+			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_oci8_11g" Title="$(loc.Featureext_php_oci8_11gTitle)" Description="$(loc.Featureext_php_oci8_11gDescription)" Level="10">
+				<ComponentRef Id="php_oci8_11g"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_parsekit" Title="$(loc.Featureext_php_parsekitTitle)" Description="$(loc.Featureext_php_parsekitDescription)" Level="10">
 				<ComponentRef Id="php_parsekit"/>
@@ -267,8 +276,7 @@
 			<Feature AllowAdvertise="no" Id="ext_php_phk" Title="$(loc.Featureext_php_phkTitle)" Description="$(loc.Featureext_php_phkDescription)" Level="10">
 				<ComponentRef Id="php_phk"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_pdo" Title="$(loc.Featureext_php_pdoTitle)" Description="$(loc.Featureext_php_pdoDescription)" Level="10">
-				<ComponentRef Id="php_pdo"/>
+			<Feature AllowAdvertise="no" Id="ext_php_pdo" Title="$(loc.Featureext_php_pdoTitle)" Description="$(loc.Featureext_php_pdoDescription)"  TypicalDefault="install" Level="1">
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_firebird" Title="$(loc.Featureext_php_pdo_firebirdTitle)" Description="$(loc.Featureext_php_pdo_firebirdDescription)" Level="10">
 					<ComponentRef Id="php_pdo_firebird"/>
 					<ComponentRef Id="gds32DLL"/>
@@ -283,23 +291,20 @@
 					<ComponentRef Id="php_pdo_mssql"/>
 					<ComponentRef Id="ntwdblibDLL"/>
 				</Feature>
-				<Feature AllowAdvertise="no" Id="ext_php_pdo_mysql" Title="$(loc.Featureext_php_pdo_mysqlTitle)" Description="$(loc.Featureext_php_pdo_mysqlDescription)" Level="10">
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_mysql" Title="$(loc.Featureext_php_pdo_mysqlTitle)" Description="$(loc.Featureext_php_pdo_mysqlDescription)" TypicalDefault="install" Level="1">
 					<ComponentRef Id="php_pdo_mysql"/>
-					<ComponentRef Id="libmysqlDLL"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_oci" Title="$(loc.Featureext_php_pdo_ociTitle)" Description="$(loc.Featureext_php_pdo_ociDescription)" Level="10">
 					<ComponentRef Id="php_pdo_oci"/>
 				</Feature>
-				<Feature AllowAdvertise="no" Id="ext_php_pdo_oci8" Title="$(loc.Featureext_php_pdo_oci8Title)" Description="$(loc.Featureext_php_pdo_oci8Description)" Level="10">
-					<ComponentRef Id="php_pdo_oci8"/>
-				</Feature>
-				<Feature AllowAdvertise="no" Id="ext_php_pdo_odbc" Title="$(loc.Featureext_php_pdo_odbcTitle)" Description="$(loc.Featureext_php_pdo_odbcDescription)" Level="10">
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_odbc" Title="$(loc.Featureext_php_pdo_odbcTitle)" Description="$(loc.Featureext_php_pdo_odbcDescription)" TypicalDefault="install" Level="1">
 					<ComponentRef Id="php_pdo_odbc"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_pgsql" Title="$(loc.Featureext_php_pdo_pgsqlTitle)" Description="$(loc.Featureext_php_pdo_pgsqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_pgsql"/>
+                    <ComponentRef Id="libpqDLL"/>
 				</Feature>
-				<Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite" Title="$(loc.Featureext_php_pdo_sqliteTitle)" Description="$(loc.Featureext_php_pdo_sqliteDescription)" Level="10">
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite" Title="$(loc.Featureext_php_pdo_sqliteTitle)" Description="$(loc.Featureext_php_pdo_sqliteDescription)" TypicalDefault="install" Level="1">
 					<ComponentRef Id="php_pdo_sqlite"/>
 				</Feature>
                 <Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite_external" Title="$(loc.Featureext_php_pdo_sqlite_externalTitle)" Description="$(loc.Featureext_php_pdo_sqlite_externalDescription)" Level="10">
@@ -319,13 +324,14 @@
 			<Feature AllowAdvertise="no" Id="ext_php_pop3" Title="$(loc.Featureext_php_pop3Title)" Description="$(loc.Featureext_php_pop3Description)" Level="10">
 				<ComponentRef Id="php_pop3"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_pgsql" Title="$(loc.Featureext_php_pgsqlTitle)" Description="$(loc.Featureext_php_pgsqlDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_pgsql" Title="$(loc.Featureext_php_pgsqlTitle)" Description="$(loc.Featureext_php_pgsqlDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_pgsql"/>
+                <ComponentRef Id="libpqDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_printer" Title="$(loc.Featureext_php_printerTitle)" Description="$(loc.Featureext_php_printerDescription)" Level="10">
 				<ComponentRef Id="php_printer"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_pspell" Title="$(loc.Featureext_php_pspellTitle)" Description="$(loc.Featureext_php_pspellDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_pspell" Title="$(loc.Featureext_php_pspellTitle)" Description="$(loc.Featureext_php_pspellDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_pspell"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_radius" Title="$(loc.Featureext_php_radiusTitle)" Description="$(loc.Featureext_php_radiusDescription)" Level="10">
@@ -351,20 +357,21 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_snmp" Title="$(loc.Featureext_php_snmpTitle)" Description="$(loc.Featureext_php_snmpDescription)" Level="10">
 				<ComponentRef Id="php_snmp"/>
-				<ComponentRef Id="mibsdir" />
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_soap" Title="$(loc.Featureext_php_soapTitle)" Description="$(loc.Featureext_php_soapDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_soap" Title="$(loc.Featureext_php_soapTitle)" Description="$(loc.Featureext_php_soapDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_soap"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_sockets" Title="$(loc.Featureext_php_socketsTitle)" Description="$(loc.Featureext_php_socketsDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_sockets" Title="$(loc.Featureext_php_socketsTitle)" Description="$(loc.Featureext_php_socketsDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_sockets"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_spl_types" Title="$(loc.Featureext_php_spl_typesTitle)" Description="$(loc.Featureext_php_spl_typesDescription)" Level="10">
 				<ComponentRef Id="php_spl_types"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_sqlite" Title="$(loc.Featureext_php_sqliteTitle)" Description="$(loc.Featureext_php_sqliteDescription)" Level="10">
-				<ComponentRef Id="php_pdo"/>
 				<ComponentRef Id="php_sqlite"/>
+			</Feature>
+            <Feature AllowAdvertise="no" Id="ext_php_sqlite3" Title="$(loc.Featureext_php_sqlite3Title)" Description="$(loc.Featureext_php_sqlite3Description)" TypicalDefault="install" Level="1">
+				<ComponentRef Id="php_sqlite3"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ssh2" Title="$(loc.Featureext_php_ssh2Title)" Description="$(loc.Featureext_php_ssh2Description)" Level="10">
 				<ComponentRef Id="php_ssh2"/>
@@ -385,7 +392,7 @@
 			<Feature AllowAdvertise="no" Id="ext_php_sybase_ct" Title="$(loc.Featureext_php_sybase_ctTitle)" Description="$(loc.Featureext_php_sybase_ctDescription)" Level="10">
 				<ComponentRef Id="php_sybase_ct"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_tidy" Title="$(loc.Featureext_php_tidyTitle)" Description="$(loc.Featureext_php_tidyDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_tidy" Title="$(loc.Featureext_php_tidyTitle)" Description="$(loc.Featureext_php_tidyDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_tidy"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_threads" Title="$(loc.Featureext_php_threadsTitle)" Description="$(loc.Featureext_php_threadsDescription)" Level="10">
@@ -412,7 +419,7 @@
 			<Feature AllowAdvertise="no" Id="ext_php_win32std" Title="$(loc.Featureext_php_win32stdTitle)" Description="$(loc.Featureext_php_win32stdDescription)" Level="10">
 				<ComponentRef Id="php_win32std"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_xmlrpc" Title="$(loc.Featureext_php_xmlrpcTitle)" Description="$(loc.Featureext_php_xmlrpcDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_xmlrpc" Title="$(loc.Featureext_php_xmlrpcTitle)" Description="$(loc.Featureext_php_xmlrpcDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_xmlrpc"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_xsl" Title="$(loc.Featureext_php_xslTitle)" Description="$(loc.Featureext_php_xslDescription)" Level="10">
@@ -425,7 +432,7 @@
 			<Feature AllowAdvertise="no" Id="ext_php_yami" Title="$(loc.Featureext_php_yamiTitle)" Description="$(loc.Featureext_php_yamiDescription)" Level="10">
 				<ComponentRef Id="php_yami"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="ext_php_zip" Title="$(loc.Featureext_php_zipTitle)" Description="$(loc.Featureext_php_zipDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_zip" Title="$(loc.Featureext_php_zipTitle)" Description="$(loc.Featureext_php_zipDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_zip"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_zlib_filter" Title="$(loc.Featureext_php_zlib_filterTitle)" Description="$(loc.Featureext_php_zlib_filterDescription)" Level="10">

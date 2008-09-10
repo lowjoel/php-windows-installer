@@ -25,11 +25,13 @@
         Minimum='5.2.0' />
     </Upgrade>
 
-    <Condition Message="You need to be an administrator to install PHP using this installer.">
-      Privileged
+    <Condition 
+	  Message="You need to be an administrator to install PHP using this installer.">
+      <![CDATA[Privileged OR (AdminUser AND VersionNT >= 600]]>
     </Condition>
     
-    <Condition Message="PHP requires Windows NT/2000/XP/2003 or later to install">
+    <Condition 
+	  Message="PHP requires Windows NT/2000/XP/2003 or later to install">
       <![CDATA[( VersionNT < 400 ) OR ( Version9x <> 0 )]]>
     </Condition>
 
@@ -49,7 +51,7 @@
         <FileSearch Id="CheckFile" Name="php.ini"/>
       </DirectorySearch>
     </Property>
-
+    
     <Property Id="XITAMIDIR">
       <RegistrySearch 
         Id="xitamiRegistry" 
@@ -69,7 +71,34 @@
           Path="config"/>
       </RegistrySearch>
     </Property>
-
+	
+	<Property Id="FASTCGI60MODULEINSTALLED">
+	  <RegistrySearch 
+        Id="fastcgi60Registry" 
+        Root="HKLM" 
+        Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" 
+        Type="raw"
+        Name="{E136BB09-1BB2-49A0-9FF3-5C25564D3819}"/>
+	</Property>
+	<Property Id="FASTCGI70MODULEINSTALLED">
+	  <RegistrySearch 
+        Id="fastcgi70Registry" 
+        Root="HKLM" 
+        Key="SOFTWARE\Microsoft\InetStp\Components" 
+        Type="raw"
+        Name="FastCgi"/>
+	</Property>
+	<CustomAction Id='CheckFASTCGIINSTALLED' Property='FASTCGIINSTALLED' Value='1' />
+	<CustomAction Id='CheckFASTCGINOTINSTALLED' Property='FASTCGIINSTALLED' Value='0' />
+	<InstallUISequence>
+        <Custom Action="CheckFASTCGIINSTALLED" After="CostInitialize">
+			<![CDATA[FASTCGI60MODULEINSTALLED OR FASTCGI70MODULEINSTALLED]]>
+		</Custom>
+        <Custom Action="CheckFASTCGINOTINSTALLED" After="CostInitialize">
+			<![CDATA[NOT FASTCGI60MODULEINSTALLED AND NOT FASTCGI70MODULEINSTALLED]]>
+		</Custom>
+    </InstallUISequence>
+	
     <Property Id="APACHEREGDIR">
       <RegistrySearch Id="apacheRegistry" 
         Root="HKLM" 
@@ -96,13 +125,6 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles">
         <Directory Id="INSTALLDIR" Name="PHP">
-          <Component Id="gopearBAT" 
-            DiskId="1" 
-            Guid="C8385835-A5DD-4A90-9A44-5F49DE05B0B7">
-            <File Id="file2" 
-              Name="go-pear.bat" 
-              Source="Files\go-pear.bat"/>
-          </Component>
           <Component Id="installTXT" 
             DiskId="1" 
             Guid="D1055308-60DA-4C10-A29B-E582D0A3D675">
@@ -237,16 +259,18 @@
             Guid="E4C43E12-F31C-4A8C-A084-4E604274D4C9">
             <Registry Id="w2k3EventMessageFile" 
               Root="HKLM" 
-              Key="System\CurrentControlSet\Services\EventLog\Application\PHP\EventMessageFile" 
+              Key="System\CurrentControlSet\Services\EventLog\Application\PHP" 
               Action="write" 
-              Type="string" 
-              Name="[!INSTALLDIR]\dev\php6ts.dll"/>
+              Type="string"
+              Name="EventMessageFile"
+              Value="[!INSTALLDIR]\dev\php6ts.dll"/>
             <Registry Id="w2k3TypesSupported" 
               Root="HKLM" 
-              Key="System\CurrentControlSet\Services\EventLog\Application\PHP\TypesSupported" 
+              Key="System\CurrentControlSet\Services\EventLog\Application\PHP" 
               Action="write" 
               Type="integer" 
-              Name="7"/>
+              Name="TypesSupported"
+              Value="7"/>
             <Condition>VersionNT = 502</Condition>	
           </Component>
           <Component Id="php6tsDLL" 
@@ -282,17 +306,6 @@
                 Source="Files\dev\php6ts.lib"/>
             </Component>
           </Directory>
-          <Directory Id="PEARdirectory" 
-            Name="PEAR">
-            <Component Id="gopearPHAR" 
-              DiskId="1" 
-              Guid="F3B9AE05-9E15-4E06-8192-91C513C8209A">
-              <File Id="file181" 
-                Name="GO-PEA_1.PHA" 
-                LongName="go-pear.phar" 
-                Source="Files\PEAR\go-pear.phar"/>
-            </Component>
-          </Directory>
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder" 
@@ -301,9 +314,6 @@
         <Directory Id="ProgramMenuDir" 
           Name="PHP6" 
           LongName="PHP 6"/>
-      </Directory>
-      <Directory Id="usrdirectory" Name="usr">
-          <Directory Id="mibsdirectory" Name="mibs" />
       </Directory>
     </Directory>
     <Feature AllowAdvertise="no" 
@@ -359,7 +369,8 @@
       <Feature AllowAdvertise="no" 
         Id="WebServers" 
         Title="$(loc.FeatureWebServersTitle)" 
-        Description="$(loc.FeatureWebServersDescription)" 
+        Description="$(loc.FeatureWebServersDescription)"
+        Display="hidden"
         Level="10">
         <ComponentRef Id="Empty"/>
         <Feature AllowAdvertise="no" 
@@ -413,15 +424,6 @@
           <ComponentRef Id="iis4ISAPIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
-          Id="iis4FastCGI" 
-          Title="$(loc.Featureiis4FastCGITitle)" 
-          Description="$(loc.Featureiis4FastCGIDescription)" 
-          Level="1">
-          <ComponentRef Id="phpcgiEXE"/>
-          <ComponentRef Id="cgiforceredirect"/>
-          <ComponentRef Id="iis4FastCGIregistry"/>
-        </Feature>
-        <Feature AllowAdvertise="no" 
           Id="iis4CGI" 
           Title="$(loc.Featureiis4CGITitle)" 
           Description="$(loc.Featureiis4CGIDescription)" 
@@ -432,11 +434,20 @@
           <ComponentRef Id="iis4CGIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
+          Id="iis4FastCGI" 
+          Title="$(loc.Featureiis4FastCGITitle)" 
+          Description="$(loc.Featureiis4FastCGIDescription)" 
+          Level="1">
+          <ComponentRef Id="phpcgiEXE"/>
+          <ComponentRef Id="cgiforceredirect"/>
+          <ComponentRef Id="iis4FastCGIregistry"/>
+        </Feature>
+        <Feature AllowAdvertise="no" 
           Id="nsapi" 
           Title="$(loc.FeaturensapiTitle)"
           Description="$(loc.FeaturensapiDescription)" 
           Level="10">
-          <ComponentRef Id="php5nsapiDLL"/>
+		  <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="nsapiregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
@@ -460,17 +471,17 @@
           <ComponentRef Id="sambarregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
-          Id="cgi" 
-          Title="$(loc.FeaturecgiTitle)" 
-          Description="$(loc.FeaturecgiDescription)" 
+          Id="netserve" 
+          Title="$(loc.FeaturenetserveTitle)" 
+          Description="$(loc.FeaturenetserveDescription)" 
           Level="1">
           <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="cgiregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
-          Id="netserve" 
-          Title="$(loc.FeaturenetserveTitle)" 
-          Description="$(loc.FeaturenetserveDescription)" 
+          Id="cgi" 
+          Title="$(loc.FeaturecgiTitle)" 
+          Description="$(loc.FeaturecgiDescription)" 
           Level="1">
           <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="cgiregistry"/>
@@ -490,14 +501,6 @@
         Description="$(loc.FeatureextrasDescription)" 
         Level="10">
         <ComponentRef Id="Empty"/>
-        <Feature AllowAdvertise="no" 
-          Id="PEAR" 
-          Title="$(loc.FeaturePEARTitle)" 
-          Description="$(loc.FeaturePEARDescription)" 
-          Level="1">
-          <ComponentRef Id="gopearPHAR"/>
-          <ComponentRef Id="gopearBAT"/>
-        </Feature>
         <Feature AllowAdvertise="no" 
           Id="Manual" 
           Title="$(loc.FeatureManualTitle)" 

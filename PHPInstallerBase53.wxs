@@ -27,7 +27,7 @@
 
     <Condition 
 	  Message="You need to be an administrator to install PHP using this installer.">
-      Privileged
+      <![CDATA[Privileged OR (AdminUser AND VersionNT >= 600]]>
     </Condition>
     
     <Condition 
@@ -71,7 +71,34 @@
           Path="config"/>
       </RegistrySearch>
     </Property>
-
+	
+	<Property Id="FASTCGI60MODULEINSTALLED">
+	  <RegistrySearch 
+        Id="fastcgi60Registry" 
+        Root="HKLM" 
+        Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" 
+        Type="raw"
+        Name="{E136BB09-1BB2-49A0-9FF3-5C25564D3819}"/>
+	</Property>
+	<Property Id="FASTCGI70MODULEINSTALLED">
+	  <RegistrySearch 
+        Id="fastcgi70Registry" 
+        Root="HKLM" 
+        Key="SOFTWARE\Microsoft\InetStp\Components" 
+        Type="raw"
+        Name="FastCgi"/>
+	</Property>
+	<CustomAction Id='CheckFASTCGIINSTALLED' Property='FASTCGIINSTALLED' Value='1' />
+	<CustomAction Id='CheckFASTCGINOTINSTALLED' Property='FASTCGIINSTALLED' Value='0' />
+	<InstallUISequence>
+        <Custom Action="CheckFASTCGIINSTALLED" After="CostInitialize">
+			<![CDATA[FASTCGI60MODULEINSTALLED OR FASTCGI70MODULEINSTALLED]]>
+		</Custom>
+        <Custom Action="CheckFASTCGINOTINSTALLED" After="CostInitialize">
+			<![CDATA[NOT FASTCGI60MODULEINSTALLED AND NOT FASTCGI70MODULEINSTALLED]]>
+		</Custom>
+    </InstallUISequence>
+	
     <Property Id="APACHEREGDIR">
       <RegistrySearch Id="apacheRegistry" 
         Root="HKLM" 

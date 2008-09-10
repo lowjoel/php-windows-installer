@@ -27,7 +27,7 @@
 
     <Condition 
 	  Message="You need to be an administrator to install PHP using this installer.">
-      Privileged
+      <![CDATA[Privileged OR (AdminUser AND VersionNT >= 600]]>
     </Condition>
     
     <Condition 
@@ -52,6 +52,33 @@
       </DirectorySearch>
     </Property>
     
+    <Property Id="FASTCGI60MODULEINSTALLED">
+	  <RegistrySearch 
+        Id="fastcgi60Registry" 
+        Root="HKLM" 
+        Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" 
+        Type="raw"
+        Name="{E136BB09-1BB2-49A0-9FF3-5C25564D3819}"/>
+	</Property>
+	<Property Id="FASTCGI70MODULEINSTALLED">
+	  <RegistrySearch 
+        Id="fastcgi70Registry" 
+        Root="HKLM" 
+        Key="SOFTWARE\Microsoft\InetStp\Components" 
+        Type="raw"
+        Name="FastCgi"/>
+	</Property>
+	<CustomAction Id='CheckFASTCGIINSTALLED' Property='FASTCGIINSTALLED' Value='1' />
+	<CustomAction Id='CheckFASTCGINOTINSTALLED' Property='FASTCGIINSTALLED' Value='0' />
+	<InstallUISequence>
+        <Custom Action="CheckFASTCGIINSTALLED" After="CostInitialize">
+			<![CDATA[FASTCGI60MODULEINSTALLED OR FASTCGI70MODULEINSTALLED]]>
+		</Custom>
+        <Custom Action="CheckFASTCGINOTINSTALLED" After="CostInitialize">
+			<![CDATA[NOT FASTCGI60MODULEINSTALLED AND NOT FASTCGI70MODULEINSTALLED]]>
+		</Custom>
+    </InstallUISequence>
+	
     <Property Id="APACHEREGDIR">
       <RegistrySearch Id="apacheRegistry" 
         Root="HKLM" 
@@ -375,15 +402,15 @@
     <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts52.vbs" /> 
     
     <CustomAction Id="iis700FastCGIadd" 
-      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/fastCGI /+[fullPath='[INSTALLDIR]php-cgi.exe']" 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/fastCGI /+[fullPath='[INSTALLDIR]php-cgi.exe']" 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGI" 
-      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /+[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /+[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGIremove" 
-      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /-[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /-[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="fcgiconfigJSFastCGI" 

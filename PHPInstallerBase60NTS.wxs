@@ -374,6 +374,14 @@
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="iis4FastCGIregistry"/>
         </Feature>
+		<Feature AllowAdvertise="no" 
+          Id="cgi" 
+          Title="$(loc.FeaturecgiTitle)" 
+          Description="$(loc.FeaturecgiDescription)" 
+          Level="1">
+          <ComponentRef Id="phpcgiEXE"/>
+          <ComponentRef Id="cgiregistry"/>
+        </Feature>
         <Feature AllowAdvertise="no" 
           Id="noconfig" 
           Title="$(loc.FeaturecgiTitle)" 

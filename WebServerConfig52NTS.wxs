@@ -18,6 +18,17 @@
           Type="string" 
           Value="iis4FastCGI"/>  
       </Component>
+      <Component Id="cgiregistry" 
+        DiskId="1" 
+        Guid="6B49A096-49A4-11DC-8314-0800200C9A66">
+        <Registry Id="cgiregistryWebServerType" 
+          Root="HKLM" 
+          Key="Software\PHP" 
+          Name="WebServerType"
+          Action="write" 
+          Type="string" 
+          Value="cgi"/>  
+      </Component>
       <Component Id="noconfigregistry" 
         DiskId="1" 
         Guid="6B49A097-49A4-11DC-8314-0800200C9A66">

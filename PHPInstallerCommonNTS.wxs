@@ -556,8 +556,10 @@
             X="20" Y="50" Width="330" Height="180" Property="WEBSERVERPICKER" />
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="$(loc.WixUINext)">
           <Publish Event="AddLocal" Value="iis4FastCGI"><![CDATA[WEBSERVERPICKER = "iis4FastCGI"]]></Publish>
+          <Publish Event="AddLocal" Value="cgi"><![CDATA[WEBSERVERPICKER = "cgi"]]></Publish>
           <Publish Event="AddLocal" Value="noconfig"><![CDATA[WEBSERVERPICKER = "noconfig"]]></Publish>
           <Publish Event="Remove" Value="iis4FastCGI"><![CDATA[WEBSERVERPICKER <> "iis4FastCGI"]]></Publish>
+          <Publish Event="Remove" Value="cgi"><![CDATA[WEBSERVERPICKER <> "cgi"]]></Publish>
           <Publish Event="Remove" Value="noconfig"><![CDATA[WEBSERVERPICKER <> "noconfig"]]></Publish>
           <Publish Event="SpawnDialog" Value="FastCGINotInstalled"><![CDATA[WEBSERVERPICKER = "iis4FastCGI" AND FASTCGIINSTALLED = 0]]></Publish>
 		  <Publish Event="NewDialog" Value="[WixUI_WebServerDlg_Next]"><![CDATA[WEBSERVERPICKER <> "iis4FastCGI" OR (WEBSERVERPICKER = "iis4FastCGI" AND FASTCGIINSTALLED <> 0)]]></Publish>
@@ -584,8 +586,10 @@
       <RadioButtonGroup Property="WEBSERVERPICKER">
         <RadioButton Text="$(loc.Featureiis4FastCGITitle)"
           Value="iis4FastCGI" X="5" Y="0" Width="250" Height="15" />
-        <RadioButton Text="$(loc.WebServerDlgNoWebServer)"
-          Value="noconfig" X="5" Y="12" Width="250" Height="15" />  
+        <RadioButton Text="$(loc.FeaturecgiTitle)"
+          Value="cgi" X="5" Y="15" Width="250" Height="15" />
+		<RadioButton Text="$(loc.WebServerDlgNoWebServer)"
+          Value="noconfig" X="5" Y="30" Width="250" Height="15" />  
       </RadioButtonGroup>
 
       

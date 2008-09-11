@@ -22,7 +22,7 @@ if ( !empty($includemsm) ) {
 	$Merge = $PHPInstallerBaseWXS->createElement('Merge');
 	$Merge = $TargetDir->appendChild($Merge);
 	$Merge->setAttribute('Id','VCRedist');
-	$Merge->setAttribute('SourceFile','Microsoft_VC90_CRT_x86.msm');
+	$Merge->setAttribute('SourceFile',"Microsoft_VC90_CRT_{$includemsm}.msm");
 	$Merge->setAttribute('DiskId','1');
 	$Merge->setAttribute('Language','0');
 	

@@ -17,12 +17,16 @@ if %2==nts set extrants="nts-"
 if %2==nts set suffix="NTS"
 if %2==vc9 set extrabuildtype="vc9-"
 if %2==vc9 set includevc9msm="x86"
+if %2==x64 set extrabuildtype="vc9-x64-"
+if %2==x64 set includevc9msm="x86_x64"
 
 if (%3)==() goto build
 if %3==nts set extrants="nts-"
 if %3==nts set suffix="NTS"
 if %3==vc9 set extrabuildtype="vc9-"
 if %3==vc9 set includevc9msm="x86"
+if %3==x64 set extrabuildtype="vc9-x64-"
+if %3==x64 set includevc9msm="x86_x64"
 
 :build
 set msiname="php-%1-%extrants%win32-%extrabuildtype%installer.msi"

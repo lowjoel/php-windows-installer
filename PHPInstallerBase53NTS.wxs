@@ -410,19 +410,28 @@
     <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts52.vbs" /> 
     
     <CustomAction Id="iis700FastCGIadd" 
-      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/fastCGI /+[fullPath='[INSTALLDIR]php-cgi.exe']" 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI /+&quot;[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]]&quot;" 
       Return="ignore" 
 	  Execute="deferred"
+	  Impersonate="no"
+      Directory="INSTALLDIR"/>
+    <CustomAction Id="iis700FastCGIaddremove" 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI /-&quot;[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]]&quot;" 
+      Return="ignore" 
+	  Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGI" 
-      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /+[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /+&quot;[\[]name='PHP_via_FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'[\]]&quot;" 
       Return="ignore" 
 	  Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGIremove" 
-      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /-[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /-&quot;[\[]name='PHP_via_FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'[\]]&quot;" 
       Return="ignore" 
 	  Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="fcgiconfigJSFastCGI" 
       ExeCommand="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;"
@@ -444,6 +453,9 @@
     <InstallExecuteSequence>
       <Custom Action="iis700FastCGIadd" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="iis700FastCGIaddremove" After="InstallInitialize">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="iis700FastCGI" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>

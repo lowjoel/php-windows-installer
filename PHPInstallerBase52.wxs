@@ -555,16 +555,20 @@
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGIadd" 
-      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/fastCGI /+[fullPath='[INSTALLDIR]php-cgi.exe']" 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI /+&quot;[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]]&quot;" 
       Return="ignore" 
+	  Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700CGI" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;-+[name='PHP-CGI',path='*.php',verb='GET,HEAD,POST',modules='CgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe'&quot;" 
       Return="ignore" 
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGI" 
-      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /+[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /+&quot;[\[]name='PHP_via_FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'[\]]&quot;" 
       Return="ignore" 
+	  Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700ISAPI" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;-+[name='PHP-ISAPI',path='*.php',verb='GET,HEAD,POST',modules='IsapiModule',scriptProcessor='[INSTALLDIR]php5isapi.dll'&quot;" 
@@ -582,9 +586,17 @@
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;--[name='PHP-CGI',path='*.php',verb='GET,HEAD,POST',modules='CgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe'&quot;" 
       Return="ignore" 
       Directory="INSTALLDIR"/>
-    <CustomAction Id="iis700FastCGIremove" 
-      ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /-[name='PHP-FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'] " 
+    <CustomAction Id="iis700FastCGIaddremove" 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI /-&quot;[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]]&quot;" 
       Return="ignore" 
+	  Execute="deferred"
+	  Impersonate="no"
+      Directory="INSTALLDIR"/>
+    <CustomAction Id="iis700FastCGIremove" 
+      ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /-&quot;[\[]name='PHP_via_FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'[\]]&quot;" 
+      Return="ignore" 
+	  Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700ISAPIremove" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;--[name='PHP-ISAPI',path='*.php',verb='GET,HEAD,POST',modules='IsapiModule',scriptProcessor='[INSTALLDIR]php5isapi.dll'&quot;" 
@@ -641,10 +653,10 @@
       <Custom Action="netserveCGIInterpretersremove" After="InstallFinalize">
         <![CDATA[&netserve = 2]]>
       </Custom>
-      <Custom Action="iis700FastCGIadd" After="InstallFinalize">
+      <Custom Action="iis700FastCGIadd" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="iis700FastCGI" After="InstallFinalize">
+      <Custom Action="iis700FastCGI" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="iis700CGI" After="InstallFinalize">
@@ -662,7 +674,10 @@
       <Custom Action="iis700CGIremove" After="InstallFinalize">
         <![CDATA[VersionNT >= 600 AND &iis4CGI = 2]]>
       </Custom>
-      <Custom Action="iis700FastCGIremove" After="InstallFinalize">
+      <Custom Action="iis700FastCGIaddremove" After="InstallInitialize">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 2]]>
+      </Custom>
+      <Custom Action="iis700FastCGIremove" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="iis700ISAPIremove" After="InstallFinalize">

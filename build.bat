@@ -9,27 +9,39 @@ copy ExtensionsFeatures%phpver%.wxs ExtensionsFeatures.wxs
 
 set suffix=
 set extrants=
-set extrabuildtype=
+set extrasnaps=
+set buildtype="VC6-x86"
 set includevc9msm=
 
 if (%2)==() goto build
 if %2==nts set extrants="nts-"
 if %2==nts set suffix="NTS"
-if %2==vc9 set extrabuildtype="vc9-"
+if %2==vc9 set buildtype="VC9-x86"
 if %2==vc9 set includevc9msm="x86"
-if %2==x64 set extrabuildtype="vc9-x64-"
+if %2==x64 set buildtype="VC9-x64"
 if %2==x64 set includevc9msm="x86_x64"
+if %2==snapshot set extrasnaps="-latest"
 
 if (%3)==() goto build
 if %3==nts set extrants="nts-"
 if %3==nts set suffix="NTS"
-if %3==vc9 set extrabuildtype="vc9-"
+if %3==vc9 set buildtype="VC9-x86"
 if %3==vc9 set includevc9msm="x86"
-if %3==x64 set extrabuildtype="vc9-x64-"
+if %3==x64 set buildtype="VC9-x64"
 if %3==x64 set includevc9msm="x86_x64"
+if %3==snapshot set extrasnaps="-latest"
+
+if (%4)==() goto build
+if %4==nts set extrants="nts-"
+if %4==nts set suffix="NTS"
+if %4==vc9 set buildtype="VC9-x86"
+if %4==vc9 set includevc9msm="x86"
+if %4==x64 set buildtype="VC9-x64"
+if %4==x64 set includevc9msm="x86_x64"
+if %4==snapshot set extrasnaps="-latest"
 
 :build
-set msiname="php-%1-%extrants%win32-%extrabuildtype%installer.msi"
+set msiname="php-%1-%extrants%win32-%buildtype%-installer%extrasnaps%.msi"
 
 echo Building ExtensionsComponents.wxs
 Files\php.exe GenExtensionsComponents.wxs.php "%phpver%"

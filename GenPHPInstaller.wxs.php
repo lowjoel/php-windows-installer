@@ -45,6 +45,10 @@ $PHPInstallerBaseWXS->save("PHPInstaller$version.wxs");
 // remove extension info from php.ini-recommended
 $infile = fopen("Files/php.ini-recommended",'r');
 $outfile = fopen("Files/php.ini",'w');
+if (!$outfile || $infile) {
+	echo "Cannot open php.ini or php.ini-recommended\n";
+	exit(1);
+}
 while (!feof($infile)) {
     $buffer = fgets($infile);
     if ( stristr($buffer,';extension') === FALSE ) {

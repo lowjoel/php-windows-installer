@@ -139,4 +139,8 @@
   <Extension Name="php_ffi" Guid="B18F94FC-4688-4C7E-87A1-8EEC8F52417D"/>
   <Extension Name="php_intl" Guid="9048A2B4-188A-438D-8AB8-6BFE7D0910FE"/>
   <Extension Name="php_oci8_11g" Guid="0A362A05-C876-420C-8F82-9F8AB8912A78"/>
+  <Extension Name="bcmath" Guid="45ACA2D5-2948-4132-A934-D92BE0E8D3F7"/>
+  <Extension Name="bz2" Guid="E45B574F-4D05-4C6A-B4DF-DB0030618B4B"/>
+  <Extension Name="calendar" Guid="DA822400-49BA-405A-9602-F40E58D2DA57"/>
+  <Extension Name="com_dotnet" Guid="28210AEA-1E67-4B02-919D-2554593AC21A"/>
 </Extensions>

@@ -399,10 +399,10 @@
           Title="$(loc.Featureapache13Title)" 
           Description="$(loc.Featureapache13Description)" 
           Level="10">
-<!--
+
           <ComponentRef Id="php5apacheDLL"/>
           <ComponentRef Id="php5apache_hooksDLL"/>
--->
+
           <ComponentRef Id="phpwinEXE"/>
           <ComponentRef Id="apache13registry"/>
         </Feature>

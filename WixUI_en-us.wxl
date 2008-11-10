@@ -81,8 +81,8 @@
   <String Id="FatalErrorDescription1">[ProductName] Setup Wizard ended prematurely because of an error. Your system has not been modified. To install this program at a later time, run Setup Wizard again.</String>
   <String Id="FatalErrorDescription2">Click the Finish button to exit the Setup Wizard.</String>
   
-  <String Id="FastCGINotInstalledIIS6">FastCGI is not installed in the current version of IIS. You can download it at www.iis.net/1521/ItemPermalink.ashx</String>
-  <String Id="FastCGINotInstalledIIS7">FastCGI is not installed in the current version of IIS. To enable FastCGI support on IIS7.0, go to Server Manager -> Roles -> Add Role Services.</String>
+  <String Id="FastCGINotInstalledIIS6">FastCGI is not installed on the current version of IIS. You can download it at http://www.iis.net/1521/ItemPermalink.ashx</String>
+  <String Id="FastCGINotInstalledIIS7">FastCGI is not installed on the current version of IIS. To enable FastCGI support go to Server Manager -> Roles -> Add Role Services -> CGI.</String>
 
   <String Id="FilesInUse_Title">[ProductName] Setup</String>
   <String Id="FilesInUseExit">E&amp;xit</String>

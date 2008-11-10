@@ -58,7 +58,8 @@
         Root="HKLM" 
         Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{E136BB09-1BB2-49A0-9FF3-5C25564D3819}" 
         Type="raw"
-        Name="Version"/>
+        Name="Version"
+        Win64="yes"/>
 	</Property>
 	<Property Id="FASTCGI70MODULEINSTALLED">
 	  <RegistrySearch 
@@ -85,7 +86,8 @@
         Root="HKLM" 
         Key="Software\PHP" 
         Type="raw" 
-        Name="ApacheDir"/>
+        Name="ApacheDir"
+        Win64="yes"/>
     </Property>
 
     <CustomAction Id='AssignAPACHEDIR' Property='APACHEDIR' Value='[%ProgramFiles]' />
@@ -100,7 +102,8 @@
         Root="HKLM" 
         Key="Software\PHP" 
         Type="raw" 
-        Name="WebServerType"/>
+        Name="WebServerType"
+        Win64="yes"/>
     </Property>
     
     <Directory Id="TARGETDIR" Name="SourceDir">

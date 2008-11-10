@@ -58,7 +58,8 @@
         Root="HKLM" 
         Key="Software\iMatrix\Installed Components\Xitami" 
         Type="raw" 
-        Name="Directory"/>
+        Name="Directory"
+        Win64="yes"/>
     </Property>
 
     <Property Id="SAMBARDIR">
@@ -66,7 +67,8 @@
         Root="HKLM" 
         Key="SOFTWARE\Sambar Technologies\Sambar Server" 
         Type="directory" 
-        Name="Installation Dir">
+        Name="Installation Dir"
+        Win64="yes">
         <DirectorySearch Id="sambarConfigDir" 
           Path="config"/>
       </RegistrySearch>
@@ -78,7 +80,8 @@
         Root="HKLM" 
         Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{E136BB09-1BB2-49A0-9FF3-5C25564D3819}" 
         Type="raw"
-        Name="Version"/>
+        Name="Version"
+        Win64="yes"/>
 	</Property>
 	<Property Id="FASTCGI70MODULEINSTALLED">
 	  <RegistrySearch 
@@ -105,7 +108,8 @@
         Root="HKLM" 
         Key="Software\PHP" 
         Type="raw" 
-        Name="ApacheDir"/>
+        Name="ApacheDir"
+        Win64="yes"/>
     </Property>
 
     <CustomAction Id='AssignAPACHEDIR' Property='APACHEDIR' Value='[%ProgramFiles]' />
@@ -120,7 +124,8 @@
         Root="HKLM" 
         Key="Software\PHP" 
         Type="raw" 
-        Name="WebServerType"/>
+        Name="WebServerType"
+        Win64="yes"/>
     </Property>
     
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -548,14 +553,20 @@
     <CustomAction Id="netserveCGIInterpretersadd" 
       ExeCommand="&quot;[%ProgramFiles]NetServe Web Server\config.exe /add CGIInterpreters php^|[INSTALLDIR]php-cgi.exe']" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="netserveCustomCGIVariablesadd" 
       ExeCommand="&quot;[%ProgramFiles]NetServe Web Server\config.exe /add CustomCGIVariables REDIRECT_STATUS^|200']" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="netserveCGIInterpretersremove" 
       ExeCommand="&quot;[%ProgramFiles]NetServe Web Server\config.exe /del CGIInterpreters php^|[INSTALLDIR]php-cgi.exe']" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGIadd" 
       ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI /+&quot;[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]]&quot;" 
@@ -566,6 +577,8 @@
     <CustomAction Id="iis700CGI" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;-+[name='PHP-CGI',path='*.php',verb='GET,HEAD,POST',modules='CgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe'&quot;" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGI" 
       ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG /section:system.webServer/handlers /+&quot;[\[]name='PHP_via_FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'[\]]&quot;" 
@@ -576,18 +589,26 @@
     <CustomAction Id="iis700ISAPI" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;-+[name='PHP-ISAPI',path='*.php',verb='GET,HEAD,POST',modules='IsapiModule',scriptProcessor='[INSTALLDIR]php5isapi.dll'&quot;" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700RCGI" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:isapiCgiRestriction &quot;-+[path='[INSTALLDIR]php-cgi.exe',allowed='true',groupId='PHP',description='PHP']&quot;" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700RISAPI" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:isapiCgiRestriction &quot;-+[path='[INSTALLDIR]php5isapi.dll',allowed='true',groupId='PHP',description='PHP']&quot;" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700CGIremove" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;--[name='PHP-CGI',path='*.php',verb='GET,HEAD,POST',modules='CgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe'&quot;" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iis700FastCGIaddremove" 
       ExeCommand="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI /-&quot;[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]]&quot;" 
@@ -604,56 +625,78 @@
     <CustomAction Id="iis700ISAPIremove" 
       ExeCommand="&quot;[WindowsFolder]System32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:handlers &quot;--[name='PHP-ISAPI',path='*.php',verb='GET,HEAD,POST',modules='IsapiModule',scriptProcessor='[INSTALLDIR]php5isapi.dll'&quot;" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iisextVBSCGI" 
       ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /AddFile &quot;[INSTALLDIR]php-cgi.exe&quot; 1 PHP 1 &quot;PHP: Hypertext Processor&quot;"
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iisextVBSISAPI" 
       ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /AddFile &quot;[INSTALLDIR]php5isapi.dll&quot; 1 PHP 1 &quot;PHP: Hypertext Processor&quot;" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iisextVBSCGIremove" 
       ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /rmfile &quot;[INSTALLDIR]php-cgi.exe&quot;"
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="iisextVBSISAPIremove" 
       ExeCommand="cscript &quot;[WindowsFolder]system32\iisext.vbs&quot; /rmfile &quot;[INSTALLDIR]php5isapi.dll&quot;" 
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="fcgiconfigJSFastCGI" 
       ExeCommand="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;"
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="fcgiconfigJSFastCGIremove" 
       ExeCommand="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -remove -section:&quot;PHP&quot;ß"
       Return="ignore" 
+      Execute="deferred"
+	  Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="configIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
+      Execute="deferred"
+	  Impersonate="no"
       VBScriptCall="configIIS4" />
     <CustomAction Id="unconfigIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
+      Execute="deferred"
+	  Impersonate="no"
       VBScriptCall="unconfigIIS4" />
     <CustomAction Id="configApache" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
+      Execute="deferred"
+	  Impersonate="no"
       VBScriptCall="configApache" />
     <CustomAction Id="unconfigApache" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
+      Execute="deferred"
+	  Impersonate="no"
       VBScriptCall="unconfigApache" />
   
     <InstallExecuteSequence>
-      <Custom Action="netserveCGIInterpretersadd" After="InstallFinalize">
+      <Custom Action="netserveCGIInterpretersadd" After="InstallInitialize">
         <![CDATA[&netserve = 3]]>
       </Custom>
-      <Custom Action="netserveCustomCGIVariablesadd" After="InstallFinalize">
+      <Custom Action="netserveCustomCGIVariablesadd" After="InstallInitialize">
         <![CDATA[&netserve = 3]]>
       </Custom>
-      <Custom Action="netserveCGIInterpretersremove" After="InstallFinalize">
+      <Custom Action="netserveCGIInterpretersremove" After="InstallInitialize">
         <![CDATA[&netserve = 2]]>
       </Custom>
       <Custom Action="iis700FastCGIadd" After="InstallInitialize">
@@ -662,19 +705,19 @@
       <Custom Action="iis700FastCGI" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="iis700CGI" After="InstallFinalize">
+      <Custom Action="iis700CGI" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4CGI = 3]]>
       </Custom>
-      <Custom Action="iis700ISAPI" After="InstallFinalize">
+      <Custom Action="iis700ISAPI" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4ISAPI = 3]]>
       </Custom>
-      <Custom Action="iis700RCGI" After="InstallFinalize">
+      <Custom Action="iis700RCGI" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4CGI = 3]]>
       </Custom>
-      <Custom Action="iis700RISAPI" After="InstallFinalize">
+      <Custom Action="iis700RISAPI" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4ISAPI = 3]]>
       </Custom>
-      <Custom Action="iis700CGIremove" After="InstallFinalize">
+      <Custom Action="iis700CGIremove" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4CGI = 2]]>
       </Custom>
       <Custom Action="iis700FastCGIaddremove" After="InstallInitialize">
@@ -683,37 +726,37 @@
       <Custom Action="iis700FastCGIremove" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 2]]>
       </Custom>
-      <Custom Action="iis700ISAPIremove" After="InstallFinalize">
+      <Custom Action="iis700ISAPIremove" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4ISAPI = 2]]>
       </Custom>
-      <Custom Action="iisextVBSCGI" After="InstallFinalize">
+      <Custom Action="iisextVBSCGI" After="InstallInitialize">
         <![CDATA[VersionNT = 502 AND &iis4CGI = 3]]>
       </Custom>
-      <Custom Action="iisextVBSISAPI" After="InstallFinalize">
+      <Custom Action="iisextVBSISAPI" After="InstallInitialize">
         <![CDATA[VersionNT = 502 AND &iis4ISAPI = 3]]>
       </Custom>
-      <Custom Action="iisextVBSCGIremove" After="InstallFinalize">
+      <Custom Action="iisextVBSCGIremove" After="InstallInitialize">
         <![CDATA[VersionNT = 502 AND &iis4CGI = 2]]>
       </Custom>
-      <Custom Action="iisextVBSISAPIremove" After="InstallFinalize">
+      <Custom Action="iisextVBSISAPIremove" After="InstallInitialize">
         <![CDATA[VersionNT = 502 AND &iis4ISAPI = 2]]>
       </Custom>
-      <Custom Action="fcgiconfigJSFastCGI" After="InstallFinalize">
+      <Custom Action="fcgiconfigJSFastCGI" After="InstallInitialize">
         <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="fcgiconfigJSFastCGIremove" After="InstallFinalize">
+      <Custom Action="fcgiconfigJSFastCGIremove" After="InstallInitialize">
         <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 2]]>
       </Custom>
-      <Custom Action="unconfigIIS4" After="InstallValidate">
+      <Custom Action="unconfigIIS4" After="InstallInitialize">
         <![CDATA[VersionNT < 600 AND (&iis4ISAPI = 2 OR &iis4CGI = 2 OR &iis4FastCGI = 2)]]>
       </Custom>
-      <Custom Action="configIIS4" After="InstallFinalize">
+      <Custom Action="configIIS4" After="InstallInitialize">
         <![CDATA[VersionNT < 600 AND (&iis4ISAPI = 3 OR &iis4CGI = 3 OR &iis4FastCGI = 3)]]>
       </Custom>
-      <Custom Action="unconfigApache" After="InstallValidate">
+      <Custom Action="unconfigApache" After="InstallInitialize">
         <![CDATA[&apache13 = 2 OR &apache20 = 2 OR &apache22 = 2 OR &apacheCGI = 2]]>
       </Custom>
-      <Custom Action="configApache" After="InstallFinalize">
+      <Custom Action="configApache" After="InstallInitialize">
         <![CDATA[&apache13 = 3 OR &apache20 = 3 OR &apache22 = 3 OR &apacheCGI = 3]]>
       </Custom>
       <RemoveExistingProducts After="InstallValidate" />

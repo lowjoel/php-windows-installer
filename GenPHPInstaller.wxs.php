@@ -29,11 +29,12 @@ if ( !empty($includemsm) ) {
 	$MainFeature = $PHPInstallerBaseWXS->getElementsByTagName('Feature')->item(0);
 	$Feature = $PHPInstallerBaseWXS->createElement('Feature');
 	$Feature = $MainFeature->appendChild($Feature);
-	$Feature->setAttribute('Id','VCRedist');
+	$Feature->setAttribute('Id','VCRedistFeature');
 	$Feature->setAttribute('Title','Visual C++ 9.0 Runtime');
 	$Feature->setAttribute('AllowAdvertise','no');
 	$Feature->setAttribute('Display','hidden');
 	$Feature->setAttribute('Level','1');
+    $Feature->setAttribute('InstallDefault','source');
 	
 	$MergeRef = $PHPInstallerBaseWXS->createElement('MergeRef');
 	$MergeRef = $Feature->appendChild($MergeRef);

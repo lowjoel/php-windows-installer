@@ -405,10 +405,8 @@
           Title="$(loc.Featureapache13Title)" 
           Description="$(loc.Featureapache13Description)" 
           Level="10">
-
           <ComponentRef Id="php5apacheDLL"/>
           <ComponentRef Id="php5apache_hooksDLL"/>
-
           <ComponentRef Id="phpwinEXE"/>
           <ComponentRef Id="apache13registry"/>
         </Feature>
@@ -667,26 +665,18 @@
     <CustomAction Id="configIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
-      Execute="deferred"
-	  Impersonate="no"
       VBScriptCall="configIIS4" />
     <CustomAction Id="unconfigIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
-      Execute="deferred"
-	  Impersonate="no"
       VBScriptCall="unconfigIIS4" />
     <CustomAction Id="configApache" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
-      Execute="deferred"
-	  Impersonate="no"
       VBScriptCall="configApache" />
     <CustomAction Id="unconfigApache" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
-      Execute="deferred"
-	  Impersonate="no"
       VBScriptCall="unconfigApache" />
   
     <InstallExecuteSequence>

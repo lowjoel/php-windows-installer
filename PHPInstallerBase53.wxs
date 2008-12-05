@@ -632,32 +632,23 @@
     <CustomAction Id="fcgiconfigJSFastCGIremove" 
       ExeCommand="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -remove -section:&quot;PHP&quot;ß"
       Return="ignore" 
-      Execute="deferred"
-	  Impersonate="no"
+      Impersonate="no"
       Directory="INSTALLDIR"/>
     <CustomAction Id="configIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
-      Execute="deferred"
-	  Impersonate="no"
       VBScriptCall="configIIS4" />
     <CustomAction Id="unconfigIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
-      Execute="deferred"
-	  Impersonate="no"
       VBScriptCall="unconfigIIS4" />
     <CustomAction Id="configApache" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
-      Execute="deferred"
-	  Impersonate="no"
       VBScriptCall="configApache" />
     <CustomAction Id="unconfigApache" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
-      Execute="deferred"
-	  Impersonate="no"
       VBScriptCall="unconfigApache" />
   
     <InstallExecuteSequence>

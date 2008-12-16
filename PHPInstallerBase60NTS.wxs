@@ -467,10 +467,10 @@
       <Custom Action="iis700FastCGIremove" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 2]]>
       </Custom>
-      <Custom Action="fcgiconfigJSFastCGI" After="InstallFinalize">
+      <Custom Action="fcgiconfigJSFastCGI" After="InstallInitialize">
         <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="fcgiconfigJSFastCGIremove" After="InstallFinalize">
+      <Custom Action="fcgiconfigJSFastCGIremove" After="InstallInitialize">
         <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="unconfigIIS4" After="InstallValidate">

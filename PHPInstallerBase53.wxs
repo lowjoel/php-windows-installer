@@ -118,7 +118,7 @@
         <Custom Action="AssignAPACHEDIR" After="CostInitialize">NOT APACHEDIR</Custom>
         <Custom Action="AssignAPACHEDIR2" After="CostInitialize">APACHEREGDIR</Custom>
     </InstallUISequence>
-
+    
     <Property Id="WEBSERVERPICKER">
       <RegistrySearch Id="webservertype" 
         Root="HKLM" 
@@ -319,7 +319,7 @@
         LongName="Programs">
         <Directory Id="ProgramMenuDir" 
           Name="PHP5" 
-          LongName="PHP 5" />
+          LongName="PHP 5"/>
       </Directory>
     </Directory>
     <Feature AllowAdvertise="no" 
@@ -384,10 +384,8 @@
           Title="$(loc.Featureapache13Title)" 
           Description="$(loc.Featureapache13Description)" 
           Level="10">
-<!--
           <ComponentRef Id="php5apacheDLL"/>
           <ComponentRef Id="php5apache_hooksDLL"/>
--->
           <ComponentRef Id="phpwinEXE"/>
           <ComponentRef Id="apache13registry"/>
         </Feature>
@@ -398,7 +396,7 @@
           Level="10">
           <ComponentRef Id="php5apache2DLL"/>
           <ComponentRef Id="php5apache2_filterDLL"/>
-<!-- <ComponentRef Id="php5apache_hooksDLL"/> -->
+          <ComponentRef Id="php5apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
           <ComponentRef Id="apache20registry"/>
         </Feature>
@@ -709,16 +707,16 @@
       <Custom Action="fcgiconfigJSFastCGIremove" After="InstallInitialize">
         <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 2]]>
       </Custom>
-      <Custom Action="unconfigIIS4" After="InstallInitialize">
+      <Custom Action="unconfigIIS4" After="InstallValidate">
         <![CDATA[VersionNT < 600 AND (&iis4ISAPI = 2 OR &iis4CGI = 2 OR &iis4FastCGI = 2)]]>
       </Custom>
-      <Custom Action="configIIS4" After="InstallInitialize">
+      <Custom Action="configIIS4" After="InstallFinalize">
         <![CDATA[VersionNT < 600 AND (&iis4ISAPI = 3 OR &iis4CGI = 3 OR &iis4FastCGI = 3)]]>
       </Custom>
-      <Custom Action="unconfigApache" After="InstallInitialize">
+      <Custom Action="unconfigApache" After="InstallValidate">
         <![CDATA[&apache13 = 2 OR &apache20 = 2 OR &apache22 = 2 OR &apacheCGI = 2]]>
       </Custom>
-      <Custom Action="configApache" After="InstallInitialize">
+      <Custom Action="configApache" After="InstallFinalize">
         <![CDATA[&apache13 = 3 OR &apache20 = 3 OR &apache22 = 3 OR &apacheCGI = 3]]>
       </Custom>
       <RemoveExistingProducts After="InstallValidate" />

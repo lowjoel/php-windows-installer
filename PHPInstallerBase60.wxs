@@ -118,7 +118,7 @@
         <Custom Action="AssignAPACHEDIR" After="CostInitialize">NOT APACHEDIR</Custom>
         <Custom Action="AssignAPACHEDIR2" After="CostInitialize">APACHEREGDIR</Custom>
     </InstallUISequence>
-
+    
     <Property Id="WEBSERVERPICKER">
       <RegistrySearch Id="webservertype" 
         Root="HKLM" 

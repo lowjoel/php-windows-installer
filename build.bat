@@ -44,10 +44,10 @@ if %4==snapshot set extrasnaps="-latest"
 set msiname="php-%1-%extrants%win32-%buildtype%-installer%extrasnaps%.msi"
 
 echo Building ExtensionsComponents.wxs
-Files\php.exe GenExtensionsComponents.wxs.php "%phpver%"
+Files\php.exe -n GenExtensionsComponents.wxs.php "%phpver%"
 
 echo Building PHPInstaller%1.wxs
-Files\php.exe GenPHPInstaller.wxs.php "PHPInstallerBase%phpver%%suffix%.wxs" "%1" "%includevc9msm%"
+Files\php.exe -n GenPHPInstaller.wxs.php "PHPInstallerBase%phpver%%suffix%.wxs" "%1" "%includevc9msm%"
 
 echo Building WebServerConfig%1.wxs
 copy WebServerConfig%phpver%%suffix%.wxs WebServerConfig%1.wxs

@@ -220,7 +220,6 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_mssql" Title="$(loc.Featureext_php_mssqlTitle)" Description="$(loc.Featureext_php_mssqlDescription)" Level="10">
 				<ComponentRef Id="php_mssql"/>
-				<ComponentRef Id="ntwdblibDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_mysql" Title="$(loc.Featureext_php_mysqlTitle)" Description="$(loc.Featureext_php_mysqlDescription)" Level="10">
 				<ComponentRef Id="php_mysql"/>
@@ -284,7 +283,6 @@
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_mssql" Title="$(loc.Featureext_php_pdo_mssqlTitle)" Description="$(loc.Featureext_php_pdo_mssqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_mssql"/>
-					<ComponentRef Id="ntwdblibDLL"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_mysql" Title="$(loc.Featureext_php_pdo_mysqlTitle)" Description="$(loc.Featureext_php_pdo_mysqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_mysql"/>

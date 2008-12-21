@@ -510,7 +510,7 @@
       <Custom Action="iis700FastCGISetInstanceMaxRequests" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="iis700FastCGISetPHPRC" After="InstallInitialize">
+      <Custom Action="iis700FastCGISetPHP_FCGI_MAX_REQUESTS" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="iis700FastCGIremove" After="InstallInitialize">

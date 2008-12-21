@@ -25,20 +25,20 @@ if ( !empty($includemsm) ) {
 	$Merge->setAttribute('SourceFile',"Microsoft_VC90_CRT_{$includemsm}.msm");
 	$Merge->setAttribute('DiskId','1');
 	$Merge->setAttribute('Language','0');
-	
+	$Merge = $PHPInstallerBaseWXS->createElement('Merge');
+	$Merge = $TargetDir->appendChild($Merge);
+	$Merge->setAttribute('Id','VCRedist_policy');
+	$Merge->setAttribute('SourceFile',"policy_9_0_Microsoft_VC90_CRT_{$includemsm}.msm");
+	$Merge->setAttribute('DiskId','1');
+	$Merge->setAttribute('Language','0');
+    
 	$MainFeature = $PHPInstallerBaseWXS->getElementsByTagName('Feature')->item(0);
-	$Feature = $PHPInstallerBaseWXS->createElement('Feature');
-	$Feature = $MainFeature->appendChild($Feature);
-	$Feature->setAttribute('Id','VCRedistFeature');
-	$Feature->setAttribute('Title','Visual C++ 9.0 Runtime');
-	$Feature->setAttribute('AllowAdvertise','no');
-	$Feature->setAttribute('Display','hidden');
-	$Feature->setAttribute('Level','1');
-    $Feature->setAttribute('InstallDefault','source');
-	
 	$MergeRef = $PHPInstallerBaseWXS->createElement('MergeRef');
-	$MergeRef = $Feature->appendChild($MergeRef);
+	$MergeRef = $MainFeature->appendChild($MergeRef);
 	$MergeRef->setAttribute('Id','VCRedist');
+    $MergeRef = $PHPInstallerBaseWXS->createElement('MergeRef');
+	$MergeRef = $MainFeature->appendChild($MergeRef);
+	$MergeRef->setAttribute('Id','VCRedist_policy');
 }
 
 $PHPInstallerBaseWXS->save("PHPInstaller$version.wxs");

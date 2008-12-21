@@ -4,9 +4,6 @@ set phpver=%1
 set phpver=%phpver:~0,3%
 set phpver=%phpver:.=%
 
-echo Building ExtensionsFeatures.wxs
-copy ExtensionsFeatures%phpver%.wxs ExtensionsFeatures.wxs
-
 set suffix=
 set extrants=
 set extrasnaps=
@@ -42,6 +39,9 @@ if %4==snapshot set extrasnaps="-latest"
 
 :build
 set msiname="php-%1-%extrants%win32-%buildtype%-installer%extrasnaps%.msi"
+
+echo Building ExtensionsFeatures.wxs
+copy ExtensionsFeatures%phpver%.wxs ExtensionsFeatures.wxs
 
 echo Building ExtensionsComponents.wxs
 Files\php.exe -n GenExtensionsComponents.wxs.php "%phpver%"

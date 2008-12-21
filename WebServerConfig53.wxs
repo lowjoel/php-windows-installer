@@ -2,11 +2,9 @@
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
   <Fragment Id='FragmentWebServerConfig'>
     <DirectoryRef Id='INSTALLDIR'>
-<!--
       <Component Id="php5apacheDLL" DiskId="1" Guid="FEEF42A9-BCCA-44DD-88E5-501D39B87DA0">
         <File Id="filephp5apacheDLL" Name="PHP5AP_1.DLL" LongName="php5apache.dll" Source="Files\php5apache.dll" />
       </Component>
--->
       <Component Id="php5apache2DLL" DiskId="1" Guid="97997967-0ED5-4695-A714-F1333A0FC1B9">
         <File Id="filephp5apache2DLL" Name="PHP5AP_2.DLL" LongName="php5apache2.dll" Source="Files\php5apache2.dll" />
       </Component>
@@ -19,11 +17,9 @@
       <Component Id="php5apache2_2_filterDLL" DiskId="1" Guid="828FA07E-3624-11DC-8CB8-308555D89593">
         <File Id="filephp5apache2_2_filterDLL" Name="PHP5AP_3.DLL" LongName="php5apache2_2_filter.dll" Source="Files\php5apache2_2_filter.dll" />
       </Component>
-<!--
       <Component Id="php5apache_hooksDLL" DiskId="1" Guid="C4DB476D-1A0A-4C46-826C-1D3FD4BA45D0">
         <File Id="filephp5apache_hooksDLL" Name="PHP5AP_4.DLL" LongName="php5apache_hooks.dll" Source="Files\php5apache_hooks.dll" />
       </Component>
--->
       <Component Id="php5isapiDLL" DiskId="1" Guid="5B5419B5-917A-462A-B325-CB61B82E5FF2">
         <File Id="filephp5isapiDLL" Name="PHP5IS_1.DLL" LongName="php5isapi.dll" Source="Files\php5isapi.dll" />
       </Component>

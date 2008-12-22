@@ -9,8 +9,8 @@ sub configApache
     strDirective = vbCrLf & vbCrLf & "#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
     strApacheDir = Session.Property("APACHEDIR")
     strPHPPath = Replace(Session.TargetPath("INSTALLDIR"),"\","/")
-    If ( right(strApacheDir,1) <> "/" ) then 
-        strApacheDir = strApacheDir & "/"
+    If ( right(strApacheDir,1) <> "\" ) then 
+        strApacheDir = strApacheDir & "\"
     End If
     
     If ( Session.FeatureRequestState("apacheCGI") = 3 ) Then

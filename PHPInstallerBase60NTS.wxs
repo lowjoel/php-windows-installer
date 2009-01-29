@@ -412,7 +412,8 @@
     </Feature>
 
     <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts52.vbs" /> 
-    
+    <Binary Id="WixCA" src="Wix\wixca.dll"/>
+
     <CustomAction Id="iis700FastCGIaddCmd"
       Property="iis700FastCGIadd"
       Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI /+&quot;[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]]&quot;" />

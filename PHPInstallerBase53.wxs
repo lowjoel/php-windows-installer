@@ -518,7 +518,8 @@
     </Feature>
 
     <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts52.vbs" /> 
-    
+    <Binary Id="WixCA" src="Wix\wixca.dll"/>
+
     <CustomAction Id="netserveCGIInterpretersaddCmd"
       Property="netserveCGIInterpretersadd"
       Value="&quot;[%ProgramFiles]NetServe Web Server\config.exe /add CGIInterpreters php^|[INSTALLDIR]php-cgi.exe']" />

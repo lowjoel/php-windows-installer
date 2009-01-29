@@ -609,7 +609,7 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGICmd"
       Property="fcgiconfigJSFastCGI"
-      Value="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;" />
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;" />
     <CustomAction Id="fcgiconfigJSFastCGI" 
       BinaryKey="WixCA"
       DllEntry="CAQuietExec" 
@@ -618,7 +618,7 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGISetInstanceMaxRequestsCmd"
       Property="fcgiconfigJSFastCGISetInstanceMaxRequests"
-      Value="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -InstanceMaxRequests:10000" />
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -InstanceMaxRequests:10000" />
     <CustomAction Id="fcgiconfigJSFastCGISetInstanceMaxRequests" 
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
@@ -627,7 +627,7 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd"
       Property="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTS"
-      Value="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[INSTALLDIR]&quot;" />
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[INSTALLDIR]&quot;" />
     <CustomAction Id="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTS" 
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
@@ -636,7 +636,7 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGIremoveCmd"
       Property="fcgiconfigJSFastCGIremove"
-      Value="cscript &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -remove -section:&quot;PHP&quot;" />
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -remove -section:&quot;PHP&quot;" />
     <CustomAction Id="fcgiconfigJSFastCGIremove" 
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 

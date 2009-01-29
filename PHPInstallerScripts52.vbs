@@ -172,14 +172,14 @@ sub configIIS4
     End If
     If ( Session.FeatureRequestState("iis4FastCGI") = 3 ) Then
         Set objShell = CreateObject("WScript.Shell")
-        Set colSystemEnvVars = objShell.Environment("System")
-        PHPExecutable = colSystemEnvVars("WINDIR") & "\system32\inetsrv\fcgiext.dll"
+        PHPExecutable = objShell.ExpandEnvironmentStrings("%WINDIR%") & "\system32\inetsrv\fcgiext.dll"
     End If
     
     If ( GetWindowsVersion < 5.2 ) Then
         'use short path syntax here
         Set objFSO = CreateObject("Scripting.FileSystemObject")
-        PHPExecutable = objFSO.GetFile(PHPExecutable).ShortPath
+        Set objFile = objFSO.GetFile(PHPExecutable)
+        PHPExecutable = objFile.ShortPath
     Else
         'use quotes and long name syntax
         PHPExecutable = """" & PHPExecutable & """"

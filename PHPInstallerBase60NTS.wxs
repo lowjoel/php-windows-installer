@@ -31,8 +31,8 @@
     </Condition>
     
     <Condition 
-	  Message="PHP requires Windows NT/2000/XP/2003 or later to install">
-      <![CDATA[( VersionNT < 400 ) OR ( Version9x <> 0 )]]>
+      Message="PHP requires Windows 2000/XP/2003/Vista/2008 or later to install">
+      <![CDATA[( VersionNT <= 500 ) OR ( Version9x <> 0 )]]>
     </Condition>
 
     <Media Id="1" 
@@ -53,34 +53,34 @@
     </Property>
     
     <Property Id="FASTCGI60MODULEINSTALLED">
-	  <RegistrySearch 
-        Id="fastcgi60Registry" 
-        Root="HKLM" 
-        Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{E136BB09-1BB2-49A0-9FF3-5C25564D3819}" 
-        Type="raw"
-        Name="Version"
-        Win64="yes"/>
-	</Property>
-	<Property Id="FASTCGI70MODULEINSTALLED">
-	  <RegistrySearch 
+      <DirectorySearch Id="InetsrvDir"
+        Path="[WindowsFolder]system32\inetsrv"
+        Depth="0">
+        <FileSearch 
+          Id="FcgiExtFile"
+          Name="fcgiext.dll"/>
+      </DirectorySearch>
+    </Property>
+    <Property Id="FASTCGI70MODULEINSTALLED">
+      <RegistrySearch 
         Id="fastcgi70Registry" 
         Root="HKLM" 
         Key="SOFTWARE\Microsoft\InetStp\Components" 
         Type="raw"
         Name="FastCgi"
         Win64="yes"/>
-	</Property>
-	<CustomAction Id='CheckFASTCGIINSTALLED' Property='FASTCGIINSTALLED' Value='1' />
-	<CustomAction Id='CheckFASTCGINOTINSTALLED' Property='FASTCGIINSTALLED' Value='0' />
-	<InstallUISequence>
-        <Custom Action="CheckFASTCGIINSTALLED" After="CostInitialize">
-			<![CDATA[FASTCGI60MODULEINSTALLED OR FASTCGI70MODULEINSTALLED]]>
-		</Custom>
-        <Custom Action="CheckFASTCGINOTINSTALLED" After="CostInitialize">
-			<![CDATA[NOT FASTCGI60MODULEINSTALLED AND NOT FASTCGI70MODULEINSTALLED]]>
-		</Custom>
+    </Property>
+    <CustomAction Id='CheckFASTCGIINSTALLED' Property='FASTCGIINSTALLED' Value='1' />
+    <CustomAction Id='CheckFASTCGINOTINSTALLED' Property='FASTCGIINSTALLED' Value='0' />
+    <InstallUISequence>
+      <Custom Action="CheckFASTCGIINSTALLED" After="CostInitialize">
+        <![CDATA[FASTCGI60MODULEINSTALLED OR FASTCGI70MODULEINSTALLED]]>
+      </Custom>
+      <Custom Action="CheckFASTCGINOTINSTALLED" After="CostInitialize">
+        <![CDATA[NOT FASTCGI60MODULEINSTALLED AND NOT FASTCGI70MODULEINSTALLED]]>
+      </Custom>
     </InstallUISequence>
-	
+    
     <Property Id="APACHEREGDIR">
       <RegistrySearch Id="apacheRegistry" 
         Root="HKLM" 
@@ -477,40 +477,76 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGICmd"
       Property="fcgiconfigJSFastCGI"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;" />
+      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;" />
     <CustomAction Id="fcgiconfigJSFastCGI" 
       BinaryKey="WixCA"
       DllEntry="CAQuietExec" 
       Return="ignore"
       Execute="deferred"
       Impersonate="no" />
+    <CustomAction Id="fcgiconfigJSFastCGICmdXP"
+      Property="fcgiconfigJSFastCGIXP"
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;" />      
+    <CustomAction Id="fcgiconfigJSFastCGIXP" 
+      BinaryKey="WixCA"
+      DllEntry="CAQuietExec" 
+      Return="ignore"
+      Execute="deferred"
+      Impersonate="no" />      
     <CustomAction Id="fcgiconfigJSFastCGISetInstanceMaxRequestsCmd"
       Property="fcgiconfigJSFastCGISetInstanceMaxRequests"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -InstanceMaxRequests:10000" />
+      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -InstanceMaxRequests:10000" />
     <CustomAction Id="fcgiconfigJSFastCGISetInstanceMaxRequests" 
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
       Return="ignore"
       Execute="deferred"
       Impersonate="no" />
+    <CustomAction Id="fcgiconfigJSFastCGISetInstanceMaxRequestsCmdXP"
+      Property="fcgiconfigJSFastCGISetInstanceMaxRequestsXP"
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -InstanceMaxRequests:10000" />
+    <CustomAction Id="fcgiconfigJSFastCGISetInstanceMaxRequestsXP" 
+      BinaryKey="WixCA" 
+      DllEntry="CAQuietExec" 
+      Return="ignore"
+      Execute="deferred"
+      Impersonate="no" />      
     <CustomAction Id="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd"
       Property="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTS"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[INSTALLDIR]&quot;" />
+      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[INSTALLDIR]&quot;" />
     <CustomAction Id="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTS" 
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
       Return="ignore"
       Execute="deferred"
       Impersonate="no" />
+    <CustomAction Id="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmdXP"
+      Property="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSXP"
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[INSTALLDIR]&quot;" />
+    <CustomAction Id="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSXP" 
+      BinaryKey="WixCA" 
+      DllEntry="CAQuietExec" 
+      Return="ignore"
+      Execute="deferred"
+      Impersonate="no" />      
     <CustomAction Id="fcgiconfigJSFastCGIremoveCmd"
       Property="fcgiconfigJSFastCGIremove"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -remove -section:&quot;PHP&quot;" />
+      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -remove -section:&quot;PHP&quot;" />
     <CustomAction Id="fcgiconfigJSFastCGIremove" 
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
       Return="ignore"
       Execute="deferred"
       Impersonate="no" />
+    <CustomAction Id="fcgiconfigJSFastCGIremoveCmdXP"
+      Property="fcgiconfigJSFastCGIremoveXP"
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -remove -section:&quot;PHP&quot;" />            
+    <CustomAction Id="fcgiconfigJSFastCGIremoveXP" 
+      BinaryKey="WixCA" 
+      DllEntry="CAQuietExec" 
+      Return="ignore"
+      Execute="deferred"
+      Impersonate="no" />      
     <CustomAction Id="configIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
@@ -564,34 +600,52 @@
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGICmd" After="InstallInitialize">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGI" After="fcgiconfigJSFastCGICmd">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequestsCmd" After="fcgiconfigJSFastCGI">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequests" After="fcgiconfigJSFastCGISetInstanceMaxRequestsCmd">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd" After="fcgiconfigJSFastCGISetInstanceMaxRequests">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTS" After="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 3]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="configIIS4" After="InstallFinalize">
-        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
+      <Custom Action="fcgiconfigJSFastCGICmdXP" After="InstallInitialize">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGIXP" After="fcgiconfigJSFastCGICmdXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequestsCmdXP" After="fcgiconfigJSFastCGIXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequestsXP" After="fcgiconfigJSFastCGISetInstanceMaxRequestsCmdXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmdXP" After="fcgiconfigJSFastCGISetInstanceMaxRequestsXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSXP" After="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmdXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGIremoveCmd" After="InstallInitialize">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 2]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGIremove" After="fcgiconfigJSFastCGIremoveCmd">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) OR (VersionNT = 502 AND ServicePackLevel >= 2)) AND &iis4FastCGI = 2]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
       </Custom>
-      <Custom Action="unconfigIIS4" After="fcgiconfigJSFastCGIremove">
-        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 2]]>
+      <Custom Action="fcgiconfigJSFastCGIremoveCmdXP" After="InstallInitialize">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGIremoveXP" After="fcgiconfigJSFastCGIremoveCmdXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
       </Custom>
       <RemoveExistingProducts After="InstallValidate" />
     </InstallExecuteSequence>

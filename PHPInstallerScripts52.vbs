@@ -171,8 +171,7 @@ sub configIIS4
         PHPExecutable = strPHPPath & "php5isapi.dll"
     End If
     If ( Session.FeatureRequestState("iis4FastCGI") = 3 ) Then
-        Set objShell = CreateObject("WScript.Shell")
-        PHPExecutable = objShell.ExpandEnvironmentStrings("%WINDIR%") & "\system32\inetsrv\fcgiext.dll"
+	Exit Sub
     End If
     
     If ( GetWindowsVersion < 5.2 ) Then
@@ -245,6 +244,10 @@ sub unconfigIIS4
  
     'it could all go dreadfully wrong - so set error handler for graceful exits
     On Error Resume Next
+
+    If ( Session.FeatureRequestState("iis4FastCGI") = 2 ) Then
+	Exit Sub
+    End If
  
     Set WebService = GetObject("IIS://LocalHost/W3SVC")
     If (Err.Number <> 0) Then

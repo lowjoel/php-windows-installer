@@ -174,7 +174,7 @@ sub configIIS4
 	Exit Sub
     End If
     
-    If ( GetWindowsVersion < 5.2 ) Then
+    If ( FormatNumber(GetWindowsVersion) < FormatNumber("5.2") ) Then
         'use short path syntax here
         Set objFSO = CreateObject("Scripting.FileSystemObject")
         Set objFile = objFSO.GetFile(PHPExecutable)

@@ -376,6 +376,7 @@
           Level="1">
           <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="cgiforceredirect"/>
+          <ComponentRef Id="fastcgiimpersonate"/>
           <ComponentRef Id="iis4FastCGIregistry"/>
         </Feature>
 		<Feature AllowAdvertise="no" 

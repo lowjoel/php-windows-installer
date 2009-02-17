@@ -33,6 +33,15 @@
           Key="cgi.fix_pathinfo" Directory="INSTALLDIR" Name="php.ini"
           Section="PHP" Value="1" />
       </Component>
+      <Component Id="fastcgiimpersonate" DiskId="1" Guid="61290EEB-616B-4434-8283-D7BDC7008D25">
+        <IniFile Id="fastcgiimpersonateINI"
+          Action="addLine"
+          Key="fastcgi.impersonate"
+          Directory="INSTALLDIR"
+          Name="php.ini"
+          Section="PHP"
+          Value="1"/>
+      </Component>
       <Component Id="iis3CGI" DiskId="1" Guid="20842834-47E2-483C-AE09-B4E90C12E314">
         <Registry Id="iis3RegScriptMap" 
           Root="HKLM"

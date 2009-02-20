@@ -1,7 +1,7 @@
 Const ForReading = 1
 Const ForWriting = 2
 
-sub configApache
+Sub configApache
 
     Dim objFSO
     Dim objFile
@@ -14,24 +14,24 @@ sub configApache
     End If
     
     If ( Session.FeatureRequestState("apacheCGI") = 3 ) Then
-		strDirective = strDirective & "ScriptAlias /php/ """ & strPHPPath & """" & vbCrLf
-		strDirective = strDirective & "Action application/x-httpd-php """ & strPHPPath & "php-cgi.exe""" & vbCrLf
-	End If
+        strDirective = strDirective & "ScriptAlias /php/ """ & strPHPPath & """" & vbCrLf
+        strDirective = strDirective & "Action application/x-httpd-php """ & strPHPPath & "php-cgi.exe""" & vbCrLf
+    End If
     
     If ( Session.FeatureRequestState("apache22") = 3 ) Then
-		strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-		strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2_2.dll""" & vbCrLf
-	End If
+        strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
+        strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2_2.dll""" & vbCrLf
+    End If
         
-	If ( Session.FeatureRequestState("apache20") = 3 ) Then
-		strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-		strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2.dll""" & vbCrLf
-	End If
+    If ( Session.FeatureRequestState("apache20") = 3 ) Then
+        strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
+        strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2.dll""" & vbCrLf
+    End If
         
-	If ( Session.FeatureRequestState("apache13") = 3 ) Then
-		strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-		strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache.dll""" & vbCrLf
-	End If
+    If ( Session.FeatureRequestState("apache13") = 3 ) Then
+        strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
+        strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache.dll""" & vbCrLf
+    End If
     
     strDirective = strDirective &  "#END PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
     
@@ -98,9 +98,9 @@ sub configApache
     objFile.WriteLine strText
     objFile.Close
     
-end sub
+End Sub
 
-sub unconfigApache
+Sub unconfigApache
 
     Dim objFSO
     Dim objFile
@@ -143,11 +143,12 @@ sub unconfigApache
     objFile.WriteLine strNewText
     objFile.Close
 
-end sub
+End Sub
 
-sub configIIS4
+Sub configIIS4
 
     Dim WebService
+    Dim WebService1
     Dim Paths
     Dim Nodes()
     Dim NumExtensions
@@ -159,7 +160,10 @@ sub configIIS4
     Dim J
     Dim K
     Dim MapNode, ScriptMaps, OutMaps(), Map, MapBits
- 
+    Dim fAddScriptMap
+    Dim DefaultDocuments
+
+    fAddScriptMap = TRUE
     strPHPPath = Session.TargetPath("INSTALLDIR")
     If ( right(strPHPPath,1) <> "\" ) then 
         strPHPPath = strPHPPath & "\"
@@ -171,17 +175,7 @@ sub configIIS4
         PHPExecutable = strPHPPath & "php5isapi.dll"
     End If
     If ( Session.FeatureRequestState("iis4FastCGI") = 3 ) Then
-	Exit Sub
-    End If
-    
-    If ( FormatNumber(GetWindowsVersion) < FormatNumber("5.2") ) Then
-        'use short path syntax here
-        Set objFSO = CreateObject("Scripting.FileSystemObject")
-        Set objFile = objFSO.GetFile(PHPExecutable)
-        PHPExecutable = objFile.ShortPath
-    Else
-        'use quotes and long name syntax
-        PHPExecutable = """" & PHPExecutable & """"
+        fAddScriptMap = FALSE
     End If
     
     'it could all go dreadfully wrong - so set error handler for graceful exits
@@ -192,42 +186,74 @@ sub configIIS4
         FatalError ("Error trying access the local web service: GetObject Failed.")
         Exit Sub
     End If
-    'I may be doing the wrong thing with inheritance here - it seems to work, however!
-    Paths = WebService.GetDataPaths("scriptmaps", IIS_DATA_INHERIT)
-    If Err.Number <> 0 Then Paths = WebService.GetDataPaths("scriptmaps", IIS_DATA_NO_INHERIT)
-    If (Err.Number <> 0) Then
-        FatalError ("Error trying to find the nodes containing scriptmaps :GetDataPaths Failed.")
-        Exit Sub
+
+    ' Add index.php to default documents list at server level
+    DefaultDocuments = WebService.DefaultDoc
+    If ( InStr(DefaultDocuments,"index.php") = 0 ) Then
+        DefaultDocuments = DefaultDocuments & ",index.php"
+        WebService.DefaultDoc = DefaultDocuments
+        WebService.SetInfo
     End If
-    For Each FullPath In Paths
-        Set MapNode = GetObject(FullPath)
-        ReDim OutMaps(0)
-        J = 0
-        For Each Map In MapNode.ScriptMaps
-            'split the extension from the scriptmap entry
-            MapBits = Split(Map, ",")
-            If MapBits(0) <> ".php" Then
-                'if the extension doesn't match any of our php ones, preserve it
-                ReDim Preserve OutMaps(J)
-                OutMaps(J) = Map
-                J = J + 1
-            End If
-        Next
 
-        ReDim Preserve OutMaps(J + 1 - 1)
+    ' Add index.php to default documents list of SiteId 1
+    Set WebService1 = GetObject("IIS://LocalHost/W3SVC/1")
+    If (Err.Number = 0) Then
+        DefaultDocuments = WebService1.DefaultDoc
+        If ( InStr(DefaultDocuments,"index.php") = 0 ) Then
+            DefaultDocuments = DefaultDocuments & ",index.php"
+            WebService1.DefaultDoc = DefaultDocuments
+            WebService1.SetInfo
+        End If
+    End If
 
-        'add our php extensions to OutMaps
-        OutMaps(J) = ".php" & "," & PHPExecutable & ",1"
+    If ( fAddScriptMap = TRUE ) Then
+        If ( FormatNumber(GetWindowsVersion) < FormatNumber("5.2") ) Then
+            'use short path syntax here
+            Set objFSO = CreateObject("Scripting.FileSystemObject")
+            Set objFile = objFSO.GetFile(PHPExecutable)
+            PHPExecutable = objFile.ShortPath
+        Else
+            'use quotes and long name syntax
+            PHPExecutable = """" & PHPExecutable & """"
+        End If
+    
+        'I may be doing the wrong thing with inheritance here - it seems to work, however!
+        Paths = WebService.GetDataPaths("scriptmaps", IIS_DATA_INHERIT)
+        If Err.Number <> 0 Then Paths = WebService.GetDataPaths("scriptmaps", IIS_DATA_NO_INHERIT)
+        If (Err.Number <> 0) Then
+            FatalError ("Error trying to find the nodes containing scriptmaps :GetDataPaths Failed.")
+            Exit Sub
+        End If
+        For Each FullPath In Paths
+            Set MapNode = GetObject(FullPath)
+            ReDim OutMaps(0)
+            J = 0
+            For Each Map In MapNode.ScriptMaps
+                'split the extension from the scriptmap entry
+                MapBits = Split(Map, ",")
+                If MapBits(0) <> ".php" Then
+                    'if the extension doesn't match any of our php ones, preserve it
+                    ReDim Preserve OutMaps(J)
+                    OutMaps(J) = Map
+                    J = J + 1
+                End If
+            Next
+
+            ReDim Preserve OutMaps(J + 1 - 1)
+
+            'add our php extensions to OutMaps
+            OutMaps(J) = ".php" & "," & PHPExecutable & ",1"
    
-        'write the Outmap to the current node
-        MapNode.Put "ScriptMaps", (OutMaps)
-        'setinfo to make it so
-        MapNode.SetInfo
-    Next
+            'write the Outmap to the current node
+            MapNode.Put "ScriptMaps", (OutMaps)
+            'setinfo to make it so
+            MapNode.SetInfo
+        Next
+    End If
     
 End Sub
 
-sub unconfigIIS4
+Sub unconfigIIS4
 
     Dim WebService
     Dim Paths
@@ -241,12 +267,15 @@ sub unconfigIIS4
     Dim J
     Dim K
     Dim MapNode, ScriptMaps, OutMaps(), Map, MapBits
+    Dim fRemoveScriptMap
  
+    fRemoveScriptMap = TRUE
+
     'it could all go dreadfully wrong - so set error handler for graceful exits
     On Error Resume Next
 
     If ( Session.FeatureRequestState("iis4FastCGI") = 2 ) Then
-	Exit Sub
+        fRemoveScriptMap = FALSE
     End If
  
     Set WebService = GetObject("IIS://LocalHost/W3SVC")
@@ -254,35 +283,38 @@ sub unconfigIIS4
         FatalError ("Error trying access the local web service: GetObject Failed.")
         Exit Sub
     End If
-    'I may be doing the wrong thing with inheritance here - it seems to work, however!
-    Paths = WebService.GetDataPaths("scriptmaps", IIS_DATA_INHERIT)
-    If Err.Number <> 0 Then Paths = WebService.GetDataPaths("scriptmaps", IIS_DATA_NO_INHERIT)
-    If (Err.Number <> 0) Then
-        FatalError ("Error trying to find the nodes containing scriptmaps :GetDataPaths Failed.")
-        Exit Sub
-    End If
-    For Each FullPath In Paths
-        Set MapNode = GetObject(FullPath)
-        ReDim OutMaps(0)
-        J = 0
-        For Each Map In MapNode.ScriptMaps
-            'split the extension from the scriptmap entry
-            MapBits = Split(Map, ",")
-            If MapBits(0) <> ".php" Then
-                'if the extension doesn't match any of our php ones, preserve it
-                ReDim Preserve OutMaps(J)
-                OutMaps(J) = Map
-                J = J + 1
-            End If
+
+    If ( fRemoveScriptMap = TRUE ) Then
+        'I may be doing the wrong thing with inheritance here - it seems to work, however!
+        Paths = WebService.GetDataPaths("scriptmaps", IIS_DATA_INHERIT)
+        If Err.Number <> 0 Then Paths = WebService.GetDataPaths("scriptmaps", IIS_DATA_NO_INHERIT)
+        If (Err.Number <> 0) Then
+            FatalError ("Error trying to find the nodes containing scriptmaps :GetDataPaths Failed.")
+            Exit Sub
+        End If
+        For Each FullPath In Paths
+            Set MapNode = GetObject(FullPath)
+            ReDim OutMaps(0)
+            J = 0
+            For Each Map In MapNode.ScriptMaps
+                'split the extension from the scriptmap entry
+                MapBits = Split(Map, ",")
+                If MapBits(0) <> ".php" Then
+                    'if the extension doesn't match any of our php ones, preserve it
+                    ReDim Preserve OutMaps(J)
+                    OutMaps(J) = Map
+                    J = J + 1
+                End If
+            Next
+
+            'write the Outmap to the current node
+            MapNode.Put "ScriptMaps", (OutMaps)
+            'setinfo to make it so
+            MapNode.SetInfo
         Next
+    End If
 
-        'write the Outmap to the current node
-        MapNode.Put "ScriptMaps", (OutMaps)
-        'setinfo to make it so
-        MapNode.SetInfo
-    Next
-
-end sub
+End Sub
 
 Sub FatalError(Message)
     MsgBox Message & " You will need to manually configure the web server.", vbExclamation, "Error"

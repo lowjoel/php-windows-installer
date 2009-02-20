@@ -26,13 +26,13 @@
     </Upgrade>
 
     <Condition 
-	  Message="You need to be an administrator to install PHP using this installer.">
+      Message="You need to be an administrator to install PHP using this installer.">
       <![CDATA[Privileged OR (AdminUser AND VersionNT >= 600]]>
     </Condition>
     
     <Condition 
-	  Message="PHP requires Windows NT/2000/XP/2003/Vista/2008 or later to install">
-	  <![CDATA[( VersionNT < 400 ) OR ( Version9x <> 0 )]]>
+      Message="PHP requires Windows NT/2000/XP/2003/Vista/2008 or later to install">
+      <![CDATA[( VersionNT < 400 ) OR ( Version9x <> 0 )]]>
     </Condition>
 
     <Media Id="1" 
@@ -487,6 +487,15 @@
       Return="ignore" 
       Execute="deferred"
       Impersonate="no" />
+    <CustomAction Id="iis700IndexPhpCmd"
+      Property="iis700IndexPhp"
+      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/defaultDocument /+&quot;files.[\[]@end,value='index.php'[\]]&quot;" />
+    <CustomAction Id="iis700IndexPhp"
+      BinaryKey="WixCA"
+      DllEntry="CAQuietExec"
+      Return="ignore"
+      Execute="deferred"
+      Impersonate="no" />
     <CustomAction Id="iis700FastCGIaddremoveCmd"
       Property="iis700FastCGIaddremove"
       Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI /-&quot;[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]]&quot;" />
@@ -617,6 +626,12 @@
       <Custom Action="iis700FastCGI" After="iis700FastCGICmd">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
       </Custom>
+      <Custom Action="iis700IndexPhpCmd" After="iis700FastCGI">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="iis700IndexPhp" After="iis700IndexPhpCmd">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
+      </Custom>
       <Custom Action="iis700FastCGIremoveCmd" After="InstallInitialize">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 2]]>
       </Custom>
@@ -647,6 +662,9 @@
       <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTS" After="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd">
         <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
+      <Custom Action="configIIS4" After="InstallFinalize">
+        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
+      </Custom>
       <Custom Action="fcgiconfigJSFastCGICmdXP" After="InstallInitialize">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
@@ -676,6 +694,9 @@
       </Custom>
       <Custom Action="fcgiconfigJSFastCGIremoveXP" After="fcgiconfigJSFastCGIremoveCmdXP">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
+      </Custom>
+      <Custom Action="unconfigIIS4" After="InstallInitialize">
+        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 2]]>
       </Custom>
       <RemoveExistingProducts After="InstallValidate" />
     </InstallExecuteSequence>

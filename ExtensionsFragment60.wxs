@@ -17,6 +17,9 @@
 			<Component Id="libmysqlDLL" DiskId="1" Guid="4726DE50-BC55-46AC-9622-DEA04AE46E46">
 				<File Id="filelibmysqlDLL" Name="libmysql.dll" Source="Files\libmysql.dll" />
 			</Component>
+			<Component Id="libenchantDLL" DiskId="1" Guid="E27E4C40-156D-11DE-8C30-0800200C9A66">
+				<File Id="filelibenchantDLL" Name="LIBENC_1.DLL" LongName="libenchant.dll" Source="Files\libenchant.dll" />
+			</Component>
 			<Component Id="ntwdblibDLL" DiskId="1" Guid="7FA2C1EB-5166-4D16-AD36-DEF92A491D8B">
 				<File Id="filentwdblibDLL" Name="ntwdblib.dll" Source="Files\ntwdblib.dll" />
 			</Component>
@@ -38,26 +41,29 @@
 			<Component Id="fribidiDLL" DiskId="1" Guid="D08A7C40-924B-45B2-8053-C6A5117846B2">
 				<File Id="filefribidiDLL" Name="fribidi.dll" Source="Files\fribidi.dll" />
 			</Component>
-			<Component Id="icudt36DLL" DiskId="1" Guid="6370818E-7072-11DD-A88E-285D55D89593">
-				<File Id="fileicudt36DLL" Name="icudt36.dll" Source="Files\icudt36.dll" />
+			<Component Id="icudtDLL" DiskId="1" Guid="6370818E-7072-11DD-A88E-285D55D89593">
+				<File Id="fileicudtDLL" Name="icudt36.dll" Source="Files\icudt36.dll" />
 			</Component>
-			<Component Id="icuin36DLL" DiskId="1" Guid="6A57F7AC-7072-11DD-86B2-645D55D89593">
-				<File Id="fileicuin36DLL" Name="icuin36.dll" Source="Files\icuin36.dll" />
+			<Component Id="icuinDLL" DiskId="1" Guid="6A57F7AC-7072-11DD-86B2-645D55D89593">
+				<File Id="fileicuinDLL" Name="icuin36.dll" Source="Files\icuin36.dll" />
 			</Component>
-			<Component Id="icuio36DLL" DiskId="1" Guid="705AA974-7072-11DD-AC26-CE5D55D89593">
-				<File Id="fileicuio36DLL" Name="icuio36.dll" Source="Files\icuio36.dll" />
+			<Component Id="icuioDLL" DiskId="1" Guid="705AA974-7072-11DD-AC26-CE5D55D89593">
+				<File Id="fileicuioDLL" Name="icuio36.dll" Source="Files\icuio36.dll" />
 			</Component>
-			<Component Id="icule36DLL" DiskId="1" Guid="7729BDA8-7072-11DD-ADF2-165E55D89593">
-				<File Id="fileicule36DLL" Name="icule36.dll" Source="Files\icule36.dll" />
+			<Component Id="iculeDLL" DiskId="1" Guid="7729BDA8-7072-11DD-ADF2-165E55D89593">
+				<File Id="fileiculeDLL" Name="icule36.dll" Source="Files\icule36.dll" />
 			</Component>
-			<Component Id="iculx36DLL" DiskId="1" Guid="7E7C2D16-7072-11DD-B66F-5F5E55D89593">
-				<File Id="fileiculx36DLL" Name="iculx36.dll" Source="Files\iculx36.dll" />
+			<Component Id="iculxDLL" DiskId="1" Guid="7E7C2D16-7072-11DD-B66F-5F5E55D89593">
+				<File Id="fileiculxDLL" Name="iculx36.dll" Source="Files\iculx36.dll" />
 			</Component>
-			<Component Id="icutu36DLL" DiskId="1" Guid="83707DAE-7072-11DD-8A63-B75E55D89593">
-				<File Id="fileicutu36DLL" Name="icutu36.dll" Source="Files\icutu36.dll" />
+			<Component Id="icutuDLL" DiskId="1" Guid="83707DAE-7072-11DD-8A63-B75E55D89593">
+				<File Id="fileicutuDLL" Name="icutu36.dll" Source="Files\icutu36.dll" />
 			</Component>
-			<Component Id="icuuc36DLL" DiskId="1" Guid="93D0C0BE-7072-11DD-B624-6F5F55D89593">
-				<File Id="fileicuuc36DLL" Name="icuuc36.dll" Source="Files\icuuc36.dll" />
+			<Component Id="icuucDLL" DiskId="1" Guid="93D0C0BE-7072-11DD-B624-6F5F55D89593">
+				<File Id="fileicuucDLL" Name="icuuc36.dll" Source="Files\icuuc36.dll" />
+			</Component>
+			<Component Id="icutestDLL" DiskId="1" Guid="46853D20-1569-11DE-8C30-0800200C9A66">
+				<File Id="fileicutestDLL" Name="icutest.dll" Source="Files\icutest.dll" />
 			</Component>
 			<Directory Id="extdirectory" Name="ext">
 				<Component Id="extdir" DiskId="1" Guid="3AB11270-4135-4C8C-9578-B034CEF2659F">

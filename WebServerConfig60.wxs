@@ -2,9 +2,6 @@
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
   <Fragment Id='FragmentWebServerConfig'>
     <DirectoryRef Id='INSTALLDIR'>
-      <Component Id="php6apacheDLL" DiskId="1" Guid="FEEF42A9-BCCA-44DD-88E5-501D39B87DA0">
-        <File Id="filephp6apacheDLL" Name="PHP6AP_1.DLL" LongName="php6apache.dll" Source="Files\php6apache.dll" />
-      </Component>
       <Component Id="php6apache2DLL" DiskId="1" Guid="97997967-0ED5-4695-A714-F1333A0FC1B9">
         <File Id="filephp6apache2DLL" Name="PHP6AP_2.DLL" LongName="php6apache2.dll" Source="Files\php6apache2.dll" />
       </Component>
@@ -19,9 +16,6 @@
       </Component>
       <Component Id="php6apache_hooksDLL" DiskId="1" Guid="C4DB476D-1A0A-4C46-826C-1D3FD4BA45D0">
         <File Id="filephp6apache_hooksDLL" Name="PHP6AP_4.DLL" LongName="php6apache_hooks.dll" Source="Files\php6apache_hooks.dll" />
-      </Component>
-      <Component Id="php6isapiDLL" DiskId="1" Guid="5B5419B5-917A-462A-B325-CB61B82E5FF2">
-        <File Id="filephp6isapiDLL" Name="PHP6IS_1.DLL" LongName="php6isapi.dll" Source="Files\php6isapi.dll" />
       </Component>
       <Component Id="cgiforceredirect" DiskId="1" Guid="0A2DD92F-AFCC-417B-B909-395F9D3B79F5">
         <IniFile Id="cgiforceredirectINI" Action="addLine" 
@@ -56,30 +50,6 @@
           Key=".php" Directory="XITAMIDIR" Name="defaults.cfg"
           Section="Filter" Value="[!INSTALLDIR]\php-cgi.exe" />
         <Condition>XITAMIDIR</Condition>
-      </Component>
-      <Component Id="sambarINI" DiskId="1" Guid="629031D0-3624-11DC-ACF8-B08455D89593">
-        <IniFile Id="sambarINIMappings" Action="addLine" 
-          Key="*.php" Directory="SAMBARDIR" Name="mappings.ini"
-          Section="ISAPI" Value="[!INSTALLDIR]\php6isapi.dll" />
-        <Condition>SAMBARDIR</Condition>
-      </Component>
-      <Component Id="apache13registry" 
-        DiskId="1" 
-        Guid="5A29CBC6-49A4-11DC-8314-0800200C9A66">
-        <Registry Id='apache13registryApacheDir' 
-          Root='HKLM' 
-          Key='Software\PHP' 
-          Name='ApacheDir'
-          Action='write' 
-          Type='string' 
-          Value='[APACHEDIR]' />
-        <Registry Id="apache13registryWebServerType" 
-          Root="HKLM" 
-          Key="Software\PHP" 
-          Name="WebServerType"
-          Action="write" 
-          Type="string" 
-          Value="apache13"/>  
       </Component>
       <Component Id="apache20registry" 
         DiskId="1" 
@@ -135,17 +105,6 @@
           Type="string" 
           Value="apacheCGI"/>  
       </Component>
-      <Component Id="iis4ISAPIregistry" 
-        DiskId="1" 
-        Guid="6B49A091-49A4-11DC-8314-0800200C9A66">
-        <Registry Id="iis4ISAPIregistryWebServerType" 
-          Root="HKLM" 
-          Key="Software\PHP" 
-          Name="WebServerType"
-          Action="write" 
-          Type="string" 
-          Value="iis4ISAPI"/>  
-      </Component>
       <Component Id="iis4CGIregistry" 
         DiskId="1" 
         Guid="6B49A092-49A4-11DC-8314-0800200C9A66">
@@ -189,17 +148,6 @@
           Action="write" 
           Type="string" 
           Value="xitami"/>  
-      </Component>
-      <Component Id="sambarregistry" 
-        DiskId="1" 
-        Guid="6B49A095-49A4-11DC-8314-0800200C9A66">
-        <Registry Id="sambarregistryWebServerType" 
-          Root="HKLM" 
-          Key="Software\PHP" 
-          Name="WebServerType"
-          Action="write" 
-          Type="string" 
-          Value="sambar"/>  
       </Component>
       <Component Id="cgiregistry" 
         DiskId="1" 

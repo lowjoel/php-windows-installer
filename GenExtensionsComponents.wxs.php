@@ -2,6 +2,7 @@
 require_once "GenFunctions.php";
 
 $phpver = $argv[1];
+$buildtype = $argv[2];
 
 $ExtensionsWXS = new DOMDocument;
 $ExtensionsWXS->preserveWhiteSpace = false;
@@ -136,12 +137,48 @@ if ( is_dir('Files\PECL') ) {
 	}
 }
 
+// If this is a VC9 build, change the ICU library version
+var_dump($buildtype);
+if ( stripos($buildtype,'VC9') !== FALSE ) {
+	var_dump("I'm here");
+	$icuVer = '36';
+	if ( $phpver == '53' )
+		$icuVer = '38';
+	elseif ( $phpver == '60' )
+		$icuVer = '40';
+	
+	$icuFileIds = array(
+		"fileicudtDLL",
+		"fileicuinDLL",
+		"fileicuioDLL",
+		"fileiculeDLL",
+		"fileiculxDLL",
+		"fileicutuDLL",
+		"fileicuucDLL",
+		);
+	
+	$files = $ExtensionsWXS->getElementsByTagName("File");
+	$i = 0;
+	while ( $i < $files->length ) {
+		if ( in_array($files->item($i)->getAttribute('Id'),$icuFileIds) ) {
+			$files->item($i)->setAttribute('Source',str_replace('36',$icuVer,$files->item($i)->getAttribute('Source')));
+		}
+		$i++;
+	}
+}
+
 // Remove Files defined that don't exist
 $files = $ExtensionsWXS->getElementsByTagName("File");
 $i = 0;
 $hasSeenMbString = false;
+$filesSeen = array();
 while ( $i < $files->length ) {
-    if ( !is_file( realpath($files->item($i)->getAttribute('Source')) ) 
+	$filename = $files->item($i)->getAttribute('Source');
+	if ( in_array($filename,$filesSeen) ) {
+		$i++;
+		continue;
+	}
+	if ( !is_file( realpath($files->item($i)->getAttribute('Source')) ) 
             && $files->item($i)->parentNode->getAttribute('Id') != 'mibsdir' ) {
         $nodetoremove = $files->item($i)->parentNode;
         echo "Removing File " . $nodetoremove->getAttribute('Id') . " because " . realpath($files->item($i)->getAttribute('Source')) . " doesn't exist\n";
@@ -161,6 +198,7 @@ while ( $i < $files->length ) {
         else
             $i++;
     }
+	$filesSeen[] = $filename;
 }
 
 $ExtensionsWXS->save('ExtensionsComponents.wxs');

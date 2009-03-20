@@ -605,29 +605,23 @@
         <Control Id="Buttons" Type="RadioButtonGroup"
             X="20" Y="50" Width="330" Height="180" Property="WEBSERVERPICKER" />
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="$(loc.WixUINext)">
-          <Publish Event="AddLocal" Value="apache13"><![CDATA[WEBSERVERPICKER = "apache13"]]></Publish>
-          <Publish Event="AddLocal" Value="apache20"><![CDATA[WEBSERVERPICKER = "apache20"]]></Publish>
+          <!--<Publish Event="AddLocal" Value="apache20"><![CDATA[WEBSERVERPICKER = "apache20"]]></Publish>-->
           <Publish Event="AddLocal" Value="apache22"><![CDATA[WEBSERVERPICKER = "apache22"]]></Publish>
           <Publish Event="AddLocal" Value="apacheCGI"><![CDATA[WEBSERVERPICKER = "apacheCGI"]]></Publish>
-          <Publish Event="AddLocal" Value="iis4ISAPI"><![CDATA[WEBSERVERPICKER = "iis4ISAPI"]]></Publish>
           <Publish Event="AddLocal" Value="iis4FastCGI"><![CDATA[WEBSERVERPICKER = "iis4FastCGI"]]></Publish>
           <Publish Event="AddLocal" Value="iis4CGI"><![CDATA[WEBSERVERPICKER = "iis4CGI"]]></Publish>
           <Publish Event="AddLocal" Value="nsapi"><![CDATA[WEBSERVERPICKER = "nsapi"]]></Publish>
           <Publish Event="AddLocal" Value="xitami"><![CDATA[WEBSERVERPICKER = "xitami"]]></Publish>
-          <Publish Event="AddLocal" Value="sambar"><![CDATA[WEBSERVERPICKER = "sambar"]]></Publish>
           <Publish Event="AddLocal" Value="cgi"><![CDATA[WEBSERVERPICKER = "cgi"]]></Publish>
           <Publish Event="AddLocal" Value="netserve"><![CDATA[WEBSERVERPICKER = "netserve"]]></Publish>
           <Publish Event="AddLocal" Value="noconfig"><![CDATA[WEBSERVERPICKER = "noconfig"]]></Publish>
-          <Publish Event="Remove" Value="apache13"><![CDATA[WEBSERVERPICKER <> "apache13"]]></Publish>
-          <Publish Event="Remove" Value="apache20"><![CDATA[WEBSERVERPICKER <> "apache20"]]></Publish>
+          <!--<Publish Event="Remove" Value="apache20"><![CDATA[WEBSERVERPICKER <> "apache20"]]></Publish>-->
           <Publish Event="Remove" Value="apache22"><![CDATA[WEBSERVERPICKER <> "apache22"]]></Publish>
           <Publish Event="Remove" Value="apacheCGI"><![CDATA[WEBSERVERPICKER <> "apacheCGI"]]></Publish>
-          <Publish Event="Remove" Value="iis4ISAPI"><![CDATA[WEBSERVERPICKER <> "iis4ISAPI"]]></Publish>
           <Publish Event="Remove" Value="iis4FastCGI"><![CDATA[WEBSERVERPICKER <> "iis4FastCGI"]]></Publish>
           <Publish Event="Remove" Value="iis4CGI"><![CDATA[WEBSERVERPICKER <> "iis4CGI"]]></Publish>
           <Publish Event="Remove" Value="nsapi"><![CDATA[WEBSERVERPICKER <> "nsapi"]]></Publish>
           <Publish Event="Remove" Value="xitami"><![CDATA[WEBSERVERPICKER <> "xitami"]]></Publish>
-          <Publish Event="Remove" Value="sambar"><![CDATA[WEBSERVERPICKER <> "sambar"]]></Publish>
           <Publish Event="Remove" Value="cgi"><![CDATA[WEBSERVERPICKER <> "cgi"]]></Publish>
           <Publish Event="Remove" Value="netserve"><![CDATA[WEBSERVERPICKER <> "netserve"]]></Publish>
           <Publish Event="Remove" Value="noconfig"><![CDATA[WEBSERVERPICKER <> "noconfig"]]></Publish>
@@ -655,33 +649,26 @@
       </Dialog>
       
       <RadioButtonGroup Property="WEBSERVERPICKER">
-        <RadioButton Text="$(loc.Featureapache13Title)"
-          Value="apache13" X="5" Y="0" Width="250" Height="15" />
-        <RadioButton Text="$(loc.Featureapache20Title)"
-          Value="apache20" X="5" Y="12" Width="250" Height="15" />
+        <!--<RadioButton Text="$(loc.Featureapache20Title)"
+          Value="apache20" X="5" Y="0" Width="250" Height="15" />-->
         <RadioButton Text="$(loc.Featureapache22Title)"
-          Value="apache22" X="5" Y="24" Width="250" Height="15" />
+          Value="apache22" X="5" Y="12" Width="250" Height="15" />
         <RadioButton Text="$(loc.FeatureapacheCGITitle)"
-          Value="apacheCGI" X="5" Y="36" Width="250" Height="15" />
-        <RadioButton Text="$(loc.Featureiis4ISAPITitle)"
-          Value="iis4ISAPI" X="5" Y="48" Width="250" Height="15" />
+          Value="apacheCGI" X="5" Y="24" Width="250" Height="15" />
         <RadioButton Text="$(loc.Featureiis4FastCGITitle)"
-          Value="iis4FastCGI" X="5" Y="60" Width="250" Height="15" />
+          Value="iis4FastCGI" X="5" Y="36" Width="250" Height="15" />
         <RadioButton Text="$(loc.Featureiis4CGITitle)"
-          Value="iis4CGI" X="5" Y="72" Width="250" Height="15" />
+          Value="iis4CGI" X="5" Y="48" Width="250" Height="15" />
         <RadioButton Text="$(loc.FeaturensapiTitle)"
-          Value="nsapi" X="5" Y="84" Width="250" Height="15" />
+          Value="nsapi" X="5" Y="60" Width="250" Height="15" />
         <RadioButton Text="$(loc.FeaturexitamiTitle)"
-          Value="xitami" X="5" Y="96" Width="250" Height="15" />
-        <RadioButton Text="$(loc.FeaturesambarTitle)"
-          Value="sambar" X="5" Y="108" Width="250" Height="15" />
+          Value="xitami" X="5" Y="72" Width="250" Height="15" />
         <RadioButton Text="$(loc.FeaturenetserveTitle)"
-          Value="netserve" X="5" Y="120" Width="250" Height="15" />  
+          Value="netserve" X="5" Y="84" Width="250" Height="15" />  
         <RadioButton Text="$(loc.FeaturecgiTitle)"
-          Value="cgi" X="5" Y="132" Width="250" Height="15" />
-          
+          Value="cgi" X="5" Y="96" Width="250" Height="15" />
         <RadioButton Text="$(loc.WebServerDlgNoWebServer)"
-          Value="noconfig" X="5" Y="144" Width="250" Height="15" />  
+          Value="noconfig" X="5" Y="108" Width="250" Height="15" />  
       </RadioButtonGroup>
 
       

@@ -44,7 +44,7 @@ echo Building ExtensionsFeatures.wxs
 copy ExtensionsFeatures%phpver%.wxs ExtensionsFeatures.wxs
 
 echo Building ExtensionsComponents.wxs
-Files\php.exe -n GenExtensionsComponents.wxs.php "%phpver%"
+Files\php.exe -n GenExtensionsComponents.wxs.php "%phpver%" "%buildtype%"
 
 echo Building PHPInstaller%1.wxs
 Files\php.exe -n GenPHPInstaller.wxs.php "PHPInstallerBase%phpver%%suffix%.wxs" "%1" "%includevc9msm%"
@@ -53,7 +53,7 @@ echo Building WebServerConfig%1.wxs
 copy WebServerConfig%phpver%%suffix%.wxs WebServerConfig%1.wxs
 
 echo Compiling UI....
-Wix\candle.exe -out PHPInstallerCommon.wixobj PHPInstallerCommon%suffix%.wxs
+Wix\candle.exe -out PHPInstallerCommon.wixobj PHPInstallerCommon%phpver%%suffix%.wxs
 
 echo Building UI....
 Wix\lit.exe -out PHPInstallerCommon.wixlib PHPInstallerCommon.wixobj 

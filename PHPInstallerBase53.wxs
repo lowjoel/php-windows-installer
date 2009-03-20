@@ -379,17 +379,7 @@
         Display="hidden"
         Level="10">
         <ComponentRef Id="Empty"/>
-        <Feature AllowAdvertise="no" 
-          Id="apache13" 
-          Title="$(loc.Featureapache13Title)" 
-          Description="$(loc.Featureapache13Description)" 
-          Level="10">
-          <ComponentRef Id="php5apacheDLL"/>
-          <ComponentRef Id="php5apache_hooksDLL"/>
-          <ComponentRef Id="phpwinEXE"/>
-          <ComponentRef Id="apache13registry"/>
-        </Feature>
-        <Feature AllowAdvertise="no" 
+        <!--<Feature AllowAdvertise="no" 
           Id="apache20" 
           Title="$(loc.Featureapache20Title)" 
           Description="$(loc.Featureapache20Description)" 
@@ -399,7 +389,7 @@
           <ComponentRef Id="php5apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
           <ComponentRef Id="apache20registry"/>
-        </Feature>
+        </Feature>-->
         <Feature AllowAdvertise="no" 
           Id="apache22" 
           Title="$(loc.Featureapache22Title)" 
@@ -420,14 +410,6 @@
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="phpwinEXE"/>
           <ComponentRef Id="apacheCGIregistry"/>
-        </Feature>
-        <Feature AllowAdvertise="no" 
-          Id="iis4ISAPI" 
-          Title="$(loc.Featureiis4ISAPITitle)" 
-          Description="$(loc.Featureiis4ISAPIDescription)" 
-          Level="10">
-          <ComponentRef Id="php5isapiDLL"/>
-          <ComponentRef Id="iis4ISAPIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="iis4CGI" 
@@ -467,15 +449,6 @@
           <ComponentRef Id="cgifixpathinfo"/>
           <ComponentRef Id="xitamiINI"/>
           <ComponentRef Id="xitamiregistry"/>
-        </Feature>
-        <Feature AllowAdvertise="no" 
-          Id="sambar" 
-          Title="$(loc.FeaturesambarTitle)" 
-          Description="$(loc.FeaturesambarDescription)" 
-          Level="1">
-          <ComponentRef Id="php5isapiDLL"/>
-          <ComponentRef Id="sambarINI"/>
-          <ComponentRef Id="sambarregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
           Id="netserve" 

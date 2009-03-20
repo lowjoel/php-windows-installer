@@ -77,6 +77,10 @@
 			<Feature AllowAdvertise="no" Id="ext_php_doublemetaphone" Title="$(loc.Featureext_php_doublemetaphoneTitle)" Description="$(loc.Featureext_php_doublemetaphoneDescription)" Level="10">
 				<ComponentRef Id="php_doublemetaphone"/>
 			</Feature>
+			<Feature AllowAdvertise="no" Id="ext_php_enchant" Title="$(loc.Featureext_php_enchantTitle)" Description="$(loc.Featureext_php_enchantDescription)" Level="10">
+				<ComponentRef Id="php_enchant"/>
+				<ComponentRef Id="libenchantDLL"/>
+			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_event" Title="$(loc.Featureext_php_eventTitle)" Description="$(loc.Featureext_php_eventDescription)" Level="10">
 				<ComponentRef Id="php_event"/>
 			</Feature>
@@ -159,13 +163,13 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_intl" Title="$(loc.Featureext_php_intlTitle)" Description="$(loc.Featureext_php_intlDescription)" Level="10">
 				<ComponentRef Id="php_intl"/>
-				<ComponentRef Id="icudt36DLL"/>
-				<ComponentRef Id="icuin36DLL"/>
-				<ComponentRef Id="icuio36DLL"/>
-				<ComponentRef Id="icule36DLL"/>
-				<ComponentRef Id="iculx36DLL"/>
-				<ComponentRef Id="icutu36DLL"/>
-				<ComponentRef Id="icuuc36DLL"/>
+				<ComponentRef Id="icudtDLL"/>
+				<ComponentRef Id="icuinDLL"/>
+				<ComponentRef Id="icuioDLL"/>
+				<ComponentRef Id="iculeDLL"/>
+				<ComponentRef Id="iculxDLL"/>
+				<ComponentRef Id="icutuDLL"/>
+				<ComponentRef Id="icuucDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ixsfunc" Title="$(loc.Featureext_php_ixsfuncTitle)" Description="$(loc.Featureext_php_ixsfuncDescription)" Level="10">
 				<ComponentRef Id="php_ixsfunc"/>

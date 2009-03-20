@@ -629,6 +629,8 @@
   <String Id="Featureext_php_domxmlDescription">DOM XML Functions. NOTICE: This has been superseded by the DOM extension that ships with PHP 5.</String>
   <String Id="Featureext_php_doublemetaphoneTitle">doublemetaphone</String>
   <String Id="Featureext_php_doublemetaphoneDescription">Provide Double Metaphone functionality. The Double Metaphone algorithm by Lawrence Philips allows a word to be broken down into its phonemes.</String>
+  <String Id="Featureext_php_enchantTitle">Enchant</String>
+  <String Id="Featureext_php_enchantDescription">Enchant is the PHP binding for the Enchant library. Enchant steps in to provide uniformity and conformity on top of all spelling libraries, and implement certain features that may be lacking in any individual provider library.</String>
   <String Id="Featureext_php_eventTitle">event</String>
   <String Id="Featureext_php_eventDescription">Event Scheduling Engine</String>
   <String Id="Featureext_php_exifTitle">EXIF</String>

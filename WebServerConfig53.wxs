@@ -14,9 +14,6 @@
       <Component Id="php5apache2_2_filterDLL" DiskId="1" Guid="828FA07E-3624-11DC-8CB8-308555D89593">
         <File Id="filephp5apache2_2_filterDLL" Name="PHP5AP_3.DLL" LongName="php5apache2_2_filter.dll" Source="Files\php5apache2_2_filter.dll" />
       </Component>
-      <Component Id="php5apache_hooksDLL" DiskId="1" Guid="C4DB476D-1A0A-4C46-826C-1D3FD4BA45D0">
-        <File Id="filephp5apache_hooksDLL" Name="PHP5AP_4.DLL" LongName="php5apache_hooks.dll" Source="Files\php5apache_hooks.dll" />
-      </Component>
       <Component Id="cgiforceredirect" DiskId="1" Guid="0A2DD92F-AFCC-417B-B909-395F9D3B79F5">
         <IniFile Id="cgiforceredirectINI" Action="addLine" 
           Key="cgi.force_redirect" Directory="INSTALLDIR" Name="php.ini"

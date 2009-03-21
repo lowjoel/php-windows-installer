@@ -386,7 +386,6 @@
           Level="10">
           <ComponentRef Id="php6apache2DLL"/>
           <ComponentRef Id="php6apache2_filterDLL"/>
-          <ComponentRef Id="php6apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
           <ComponentRef Id="apache20registry"/>
         </Feature>
@@ -397,7 +396,6 @@
           Level="10">
           <ComponentRef Id="php6apache2_2DLL"/>
           <ComponentRef Id="php6apache2_2_filterDLL"/>
-          <ComponentRef Id="php6apache_hooksDLL"/>
           <ComponentRef Id="phpwinEXE"/>
           <ComponentRef Id="apache22registry"/>
         </Feature>

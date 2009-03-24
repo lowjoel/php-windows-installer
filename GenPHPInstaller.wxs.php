@@ -43,11 +43,11 @@ if ( !empty($includemsm) ) {
 
 $PHPInstallerBaseWXS->save("PHPInstaller$version.wxs");
 
-// remove extension info from php.ini-recommended
-$infile = fopen("Files/php.ini-recommended",'r');
+// remove extension info from php.ini-production
+$infile = fopen("Files/php.ini-production",'r');
 $outfile = fopen("Files/php.ini",'w');
 if (!$outfile || !$infile) {
-	echo "Cannot open php.ini or php.ini-recommended\n";
+	echo "Cannot open php.ini or php.ini-production\n";
 	exit(1);
 }
 while (!feof($infile)) {

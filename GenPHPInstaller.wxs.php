@@ -44,7 +44,10 @@ if ( !empty($includemsm) ) {
 $PHPInstallerBaseWXS->save("PHPInstaller$version.wxs");
 
 // remove extension info from php.ini-production
-$infile = fopen("Files/php.ini-production",'r');
+if ( is_file("Files/php.ini-production") )
+	$infile = fopen("Files/php.ini-production",'r');
+else
+	$infile = fopen("Files/php.ini-recommended",'r');
 $outfile = fopen("Files/php.ini",'w');
 if (!$outfile || !$infile) {
 	echo "Cannot open php.ini or php.ini-production\n";

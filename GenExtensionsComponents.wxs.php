@@ -162,6 +162,7 @@ if ( stripos($buildtype,'VC9') !== FALSE ) {
 	while ( $i < $files->length ) {
 		if ( in_array($files->item($i)->getAttribute('Id'),$icuFileIds) ) {
 			$files->item($i)->setAttribute('Source',str_replace('36',$icuVer,$files->item($i)->getAttribute('Source')));
+			$files->item($i)->setAttribute('Name',str_replace('36',$icuVer,$files->item($i)->getAttribute('Name')));
 		}
 		$i++;
 	}

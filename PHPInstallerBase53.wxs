@@ -489,7 +489,7 @@
       </Feature>
     </Feature>
 
-    <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts52.vbs" /> 
+    <Binary Id="PHPInstallerScripts" SourceFile="PHPInstallerScripts53.vbs" /> 
     <Binary Id="WixCA" src="Wix\wixca.dll"/>
 
     <CustomAction Id="netserveCGIInterpretersaddCmd"

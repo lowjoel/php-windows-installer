@@ -358,23 +358,10 @@
       <ComponentRef Id="phprecommendedINI"/>
       <ComponentRef Id="win2003eventlog"/>
       <ComponentRef Id="PHPRegistry"/>
-    
-      <Feature AllowAdvertise="no" 
-        Id="MainProgram" 
-        Title="$(loc.FeatureMainProgramTitle)" 
-        Description="$(loc.FeatureMainProgramDescription)" 
-        TypicalDefault="install" 
-        Level="1">
-        <ComponentRef Id="php5tsDLL"/>
-        <ComponentRef Id="php5tsLIB"/>
-        <ComponentRef Id="php5embedLIB"/>
-        <Feature AllowAdvertise="no" 
-          Id="MainExecutable" 
-          Title="$(loc.FeatureMainExecutableTitle)" 
-          Description="$(loc.FeatureMainExecutableDescription)" 
-          Level="1">
-          <ComponentRef Id="phpEXE"/>
-        </Feature>
+      <ComponentRef Id="php5tsDLL"/>
+      <ComponentRef Id="php5tsLIB"/>
+      <ComponentRef Id="php5embedLIB"/>
+      <ComponentRef Id="phpEXE"/>
         <Feature AllowAdvertise="no" 
           Id="ScriptExecutable" 
           Title="$(loc.FeatureScriptExecutableTitle)" 

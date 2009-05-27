@@ -355,7 +355,6 @@
             <ComponentRef Id="RegisterPHPFilesREG"/>
           </Feature>
         </Feature>
-      </Feature>
     
       <FeatureRef Id="Extensions"/>
       

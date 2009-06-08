@@ -413,6 +413,7 @@
           <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="fastcgiimpersonate"/>
+          <ComponentRef Id="maxexecutiontime" />
           <ComponentRef Id="iis4FastCGIregistry"/>
         </Feature>
         <Feature AllowAdvertise="no" 
@@ -523,6 +524,24 @@
       Return="ignore" 
       Execute="deferred"
       Impersonate="no" />
+    <CustomAction Id="iis700FastCGISetActivityTimeoutCmd"
+      Property="iis700FastCGISetActivityTimeout"
+      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI &quot;/[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]].activityTimeout:300&quot; /commit:apphost" />
+    <CustomAction Id="iis700FastCGISetActivityTimeout" 
+      BinaryKey="WixCA" 
+      DllEntry="CAQuietExec" 
+      Return="ignore" 
+      Execute="deferred"
+      Impersonate="no" />
+    <CustomAction Id="iis700FastCGISetRequestTimeoutCmd"
+      Property="iis700FastCGISetRequestTimeout"
+      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI &quot;/[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]].requestTimeout:300&quot; /commit:apphost" />
+    <CustomAction Id="iis700FastCGISetRequestTimeout"
+      BinaryKey="WixCA" 
+      DllEntry="CAQuietExec" 
+      Return="ignore" 
+      Execute="deferred"
+      Impersonate="no" />
     <CustomAction Id="iis700FastCGISetPHP_FCGI_MAX_REQUESTSCmd"
       Property="iis700FastCGISetPHP_FCGI_MAX_REQUESTS"
       Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI /+&quot;[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]].environmentVariables.[\[]name='PHP_FCGI_MAX_REQUESTS',value='10000'[\]]&quot; /commit:apphost" />
@@ -610,7 +629,43 @@
       DllEntry="CAQuietExec" 
       Return="ignore"
       Execute="deferred"
-      Impersonate="no" />      
+      Impersonate="no" />
+    <CustomAction Id="fcgiconfigJSFastCGISetActivityTimeoutCmd"
+      Property="fcgiconfigJSFastCGISetActivityTimeout"
+      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ActivityTimeout:300" />
+    <CustomAction Id="fcgiconfigJSFastCGISetActivityTimeout"
+      BinaryKey="WixCA" 
+      DllEntry="CAQuietExec" 
+      Return="ignore"
+      Execute="deferred"
+      Impersonate="no" />
+    <CustomAction Id="fcgiconfigJSFastCGISetActivityTimeoutCmdXP"
+      Property="fcgiconfigJSFastCGISetActivityTimeoutXP"
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ActivityTimeout:300" />
+    <CustomAction Id="fcgiconfigJSFastCGISetActivityTimeoutXP"
+      BinaryKey="WixCA" 
+      DllEntry="CAQuietExec" 
+      Return="ignore"
+      Execute="deferred"
+      Impersonate="no" />
+    <CustomAction Id="fcgiconfigJSFastCGISetRequestTimeoutCmd"
+      Property="fcgiconfigJSFastCGISetRequestTimeout"
+      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -RequestTimeout:300" />
+    <CustomAction Id="fcgiconfigJSFastCGISetRequestTimeout"
+      BinaryKey="WixCA" 
+      DllEntry="CAQuietExec" 
+      Return="ignore"
+      Execute="deferred"
+      Impersonate="no" />
+    <CustomAction Id="fcgiconfigJSFastCGISetRequestTimeoutCmdXP"
+      Property="fcgiconfigJSFastCGISetRequestTimeoutXP"
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -RequestTimeout:300" />
+    <CustomAction Id="fcgiconfigJSFastCGISetRequestTimeoutXP" 
+      BinaryKey="WixCA" 
+      DllEntry="CAQuietExec" 
+      Return="ignore"
+      Execute="deferred"
+      Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd"
       Property="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTS"
       Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[INSTALLDIR]&quot;" />
@@ -695,7 +750,19 @@
       <Custom Action="iis700FastCGISetInstanceMaxRequests" After="iis700FastCGISetInstanceMaxRequestsCmd">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="iis700FastCGISetPHP_FCGI_MAX_REQUESTSCmd" After="iis700FastCGISetInstanceMaxRequests">
+      <Custom Action="iis700FastCGISetActivityTimeoutCmd" After="iis700FastCGISetInstanceMaxRequests">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="iis700FastCGISetActivityTimeout" After="iis700FastCGISetActivityTimeoutCmd">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="iis700FastCGISetRequestTimeoutCmd" After="iis700FastCGISetActivityTimeout">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="iis700FastCGISetRequestTimeout" After="iis700FastCGISetRequestTimeoutCmd">
+        <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="iis700FastCGISetPHP_FCGI_MAX_REQUESTSCmd" After="iis700FastCGISetRequestTimeout">
         <![CDATA[VersionNT >= 600 AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="iis700FastCGISetPHP_FCGI_MAX_REQUESTS" After="iis700FastCGISetPHP_FCGI_MAX_REQUESTSCmd">
@@ -743,7 +810,19 @@
       <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequests" After="fcgiconfigJSFastCGISetInstanceMaxRequestsCmd">
         <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd" After="fcgiconfigJSFastCGISetInstanceMaxRequests">
+      <Custom Action="fcgiconfigJSFastCGISetActivityTimeoutCmd" After="fcgiconfigJSFastCGISetInstanceMaxRequests">
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetActivityTimeout" After="fcgiconfigJSFastCGISetActivityTimeoutCmd">
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetRequestTimeoutCmd" After="fcgiconfigJSFastCGISetActivityTimeout">
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetRequestTimeout" After="fcgiconfigJSFastCGISetRequestTimeoutCmd">
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd" After="fcgiconfigJSFastCGISetRequestTimeout">
         <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTS" After="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd">
@@ -761,7 +840,19 @@
       <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequestsXP" After="fcgiconfigJSFastCGISetInstanceMaxRequestsCmdXP">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmdXP" After="fcgiconfigJSFastCGISetInstanceMaxRequestsXP">
+      <Custom Action="fcgiconfigJSFastCGISetActivityTimeoutCmdXP" After="fcgiconfigJSFastCGISetInstanceMaxRequestsXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetActivityTimeoutXP" After="fcgiconfigJSFastCGISetActivityTimeoutCmdXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetRequestTimeoutCmdXP" After="fcgiconfigJSFastCGISetActivityTimeoutXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetRequestTimeoutXP" After="fcgiconfigJSFastCGISetRequestTimeoutCmdXP">
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmdXP" After="fcgiconfigJSFastCGISetRequestTimeoutXP">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSXP" After="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmdXP">

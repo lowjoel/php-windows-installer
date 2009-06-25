@@ -157,6 +157,14 @@
               Name="news.txt" 
               Source="Files\news.txt"/>
           </Component>
+          <Component Id="readmedistbinsTXT" 
+            DiskId="1" 
+            Guid="23359910-5f6e-11de-8a39-0800200c9a66">
+            <File Id="filereadmedistbinsTXT" 
+            Name="README_1.TXT" 
+            LongName="readme-redist-bins.txt"
+            Source="Files\readme-redist-bins.txt"/>
+          </Component>
           <Component Id="phpcgiEXE" 
             DiskId="1" 
             Guid="7ECF5817-CAB7-41EE-9E91-DDD2B1F5951B">
@@ -332,6 +340,7 @@
       Level="1">
       <ComponentRef Id="licenseTXT"/>
       <ComponentRef Id="newsTXT"/>
+      <ComponentRef Id="readmedistbinsTXT"/>
       <ComponentRef Id="installTXT"/>
       <ComponentRef Id="phpGIF"/>
       <ComponentRef Id="phprecommendedINI"/>

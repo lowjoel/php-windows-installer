@@ -41,8 +41,6 @@ if ( !empty($includemsm) ) {
 	$MergeRef->setAttribute('Id','VCRedist_policy');
 }
 
-$PHPInstallerBaseWXS->save("PHPInstaller$version.wxs");
-
 // remove extension info from php.ini-production
 if ( is_file("Files/php.ini-production") )
 	$infile = fopen("Files/php.ini-production",'r');
@@ -61,6 +59,32 @@ while (!feof($infile)) {
 }
 fclose($infile);
 fclose($outfile);
+
+// check for presence of certain file; if not there then remove the feature from the installer
+$files = array(
+    'readme-redist-bins.txt' => 'readmedistbinsTXT',
+    );
+
+foreach ( $files as $filename => $component ) {
+    if ( !file_exists("Files/$filename") ) {
+        $Components = $PHPInstallerBaseWXS->getElementsByTagName('Component');
+        foreach ( $Components as $Component ) {
+            if ( $Component->getAttribute('Id') == $component ) {
+                $Component->parentNode->removeChild($Component);
+                break;
+            }
+        }
+        $ComponentRefs = $PHPInstallerBaseWXS->getElementsByTagName('ComponentRef');
+        foreach ( $ComponentRefs as $ComponentRef ) {
+            if ( $ComponentRef->getAttribute('Id') == $component ) {
+                $ComponentRef->parentNode->removeChild($ComponentRef);
+                break;
+            }
+        }
+    }
+}
+
+$PHPInstallerBaseWXS->save("PHPInstaller$version.wxs");
 
 exit;
 ?>

@@ -165,6 +165,13 @@
             LongName="readme-redist-bins.txt"
             Source="Files\readme-redist-bins.txt"/>
           </Component>
+          <Component Id="phpcgiEXE" 
+            DiskId="1" 
+            Guid="7ECF5817-CAB7-41EE-9E91-DDD2B1F5951B">
+            <File Id="file12" 
+            Name="php-cgi.exe" 
+            Source="Files\php-cgi.exe"/>
+          </Component>
           <Component Id="phpwinEXE" 
             DiskId="1" 
             Guid="BA2ADC66-E28C-4D5F-B4DA-E5F0874B2A10">
@@ -287,6 +294,22 @@
               Name="php5ts.dll" 
               Source="Files\php5ts.dll"/>
           </Component>
+          <Component Id="pharcommandPHAR" 
+            DiskId="1" 
+            Guid="86e9a7a0-5f6c-11de-8a39-0800200c9a66">
+            <File Id="filepharcommandPHAR" 
+              Name="PHARCO_1.PHA" 
+              LongName="pharcommand.phar" 
+              Source="Files\pharcommand.phar"/>
+          </Component>
+          <Component Id="pharBAT" 
+            DiskId="1" 
+            Guid="d266c230-5f6c-11de-8a39-0800200c9a66">
+            <File Id="filepharpharBAT" 
+              Name="PHAR.P_1.bat"
+              LongName="phar.phar.bar" 
+              Source="Files\phar.phar.bat"/>
+          </Component>
           <Component Id="phpCHM" 
             DiskId="1" 
             Guid="43C45330-3624-11DC-999C-478455D89593">
@@ -343,6 +366,8 @@
       <ComponentRef Id="php5tsLIB"/>
       <ComponentRef Id="php5embedLIB"/>
       <ComponentRef Id="phpEXE"/>
+      <ComponentRef Id="pharcommandPHAR"/>
+      <ComponentRef Id="pharBAT"/>
         <Feature AllowAdvertise="no" 
           Id="ScriptExecutable" 
           Title="$(loc.FeatureScriptExecutableTitle)" 

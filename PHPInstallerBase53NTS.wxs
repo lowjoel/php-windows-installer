@@ -272,6 +272,22 @@
               Name="php5.dll" 
               Source="Files\php5.dll"/>
           </Component>
+          <Component Id="pharcommandPHAR" 
+            DiskId="1" 
+            Guid="86e9a7a0-5f6c-11de-8a39-0800200c9a66">
+            <File Id="filepharcommandPHAR" 
+              Name="PHARCO_1.PHA" 
+              LongName="pharcommand.phar" 
+              Source="Files\pharcommand.phar"/>
+          </Component>
+          <Component Id="pharBAT" 
+            DiskId="1" 
+            Guid="d266c230-5f6c-11de-8a39-0800200c9a66">
+            <File Id="filepharpharBAT" 
+              Name="PHAR.P_1.bat"
+              LongName="phar.phar.bar" 
+              Source="Files\phar.phar.bat"/>
+          </Component>
           <Component Id="phpCHM" 
             DiskId="1" 
             Guid="43C45330-3624-11DC-999C-478455D89593">
@@ -328,6 +344,8 @@
       <ComponentRef Id="php5LIB"/>
       <ComponentRef Id="php5embedLIB"/>
       <ComponentRef Id="phpEXE"/>
+      <ComponentRef Id="pharcommandPHAR"/>
+      <ComponentRef Id="pharBAT"/>
         <Feature AllowAdvertise="no" 
           Id="ScriptExecutable" 
           Title="$(loc.FeatureScriptExecutableTitle)" 

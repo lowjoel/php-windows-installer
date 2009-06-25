@@ -138,9 +138,7 @@ if ( is_dir('Files\PECL') ) {
 }
 
 // If this is a VC9 build, change the ICU library version
-var_dump($buildtype);
 if ( stripos($buildtype,'VC9') !== FALSE ) {
-	var_dump("I'm here");
 	$icuVer = '36';
 	if ( $phpver == '53' )
 		$icuVer = '38';

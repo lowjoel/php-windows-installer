@@ -371,12 +371,6 @@
         Level="10">
         <ComponentRef Id="Empty"/>
         <Feature AllowAdvertise="no" 
-          Id="iis4ISAPI" 
-          Title="$(loc.Featureiis4ISAPITitle)" 
-          Description="$(loc.Featureiis4ISAPIDescription)" 
-          Level="10">
-        </Feature>
-        <Feature AllowAdvertise="no" 
           Id="iis4CGI" 
           Title="$(loc.Featureiis4CGITitle)" 
           Description="$(loc.Featureiis4CGIDescription)" 

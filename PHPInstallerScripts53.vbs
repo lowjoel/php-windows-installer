@@ -166,9 +166,6 @@ Sub configIIS4
     If ( Session.FeatureRequestState("iis4CGI") = 3 ) Then
         PHPExecutable = strPHPPath & "php-cgi.exe"
     End If
-    If ( Session.FeatureRequestState("iis4ISAPI") = 3 ) Then
-        PHPExecutable = strPHPPath & "php5isapi.dll"
-    End If
     If ( Session.FeatureRequestState("iis4FastCGI") = 3 ) Then
         fAddScriptMap = FALSE
     End If

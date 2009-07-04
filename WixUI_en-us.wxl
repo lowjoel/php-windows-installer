@@ -733,8 +733,8 @@
   <String Id="Featureext_php_operatorDescription">Operator overloading for Objects</String>
   <String Id="Featureext_php_oracleTitle">Oracle *DEPRECATED*</String>
   <String Id="Featureext_php_oracleDescription">Oracle 7 functions NOTE: DEPRECATED - USE ORACLE 8 FUNCTIONS BELOW</String>
-  <String Id="Featureext_php_oci8Title">Oracle (8)</String>
-  <String Id="Featureext_php_oci8Description">Oracle 8 functions</String>
+  <String Id="Featureext_php_oci8Title">Oracle (10)</String>
+  <String Id="Featureext_php_oci8Description">Oracle 10 functions</String>
   <String Id="Featureext_php_oci8_11gTitle">Oracle (11g)</String>
   <String Id="Featureext_php_oci8_11gDescription">Oracle Driver for Oracle 11g</String>
   <String Id="Featureext_php_parsekitTitle">parsekit</String>

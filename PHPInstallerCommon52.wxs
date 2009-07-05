@@ -609,7 +609,7 @@
           <Publish Event="AddLocal" Value="apache20"><![CDATA[WEBSERVERPICKER = "apache20"]]></Publish>
           <Publish Event="AddLocal" Value="apache22"><![CDATA[WEBSERVERPICKER = "apache22"]]></Publish>
           <Publish Event="AddLocal" Value="apacheCGI"><![CDATA[WEBSERVERPICKER = "apacheCGI"]]></Publish>
-          <!--<Publish Event="AddLocal" Value="iis4ISAPI"><![CDATA[WEBSERVERPICKER = "iis4ISAPI"]]></Publish>-->
+          <Publish Event="AddLocal" Value="iis4ISAPI"><![CDATA[WEBSERVERPICKER = "iis4ISAPI"]]></Publish>
           <Publish Event="AddLocal" Value="iis4FastCGI"><![CDATA[WEBSERVERPICKER = "iis4FastCGI"]]></Publish>
           <Publish Event="AddLocal" Value="iis4CGI"><![CDATA[WEBSERVERPICKER = "iis4CGI"]]></Publish>
           <Publish Event="AddLocal" Value="nsapi"><![CDATA[WEBSERVERPICKER = "nsapi"]]></Publish>
@@ -622,7 +622,7 @@
           <Publish Event="Remove" Value="apache20"><![CDATA[WEBSERVERPICKER <> "apache20"]]></Publish>
           <Publish Event="Remove" Value="apache22"><![CDATA[WEBSERVERPICKER <> "apache22"]]></Publish>
           <Publish Event="Remove" Value="apacheCGI"><![CDATA[WEBSERVERPICKER <> "apacheCGI"]]></Publish>
-          <!--<Publish Event="Remove" Value="iis4ISAPI"><![CDATA[WEBSERVERPICKER <> "iis4ISAPI"]]></Publish>-->
+          <Publish Event="Remove" Value="iis4ISAPI"><![CDATA[WEBSERVERPICKER <> "iis4ISAPI"]]></Publish>
           <Publish Event="Remove" Value="iis4FastCGI"><![CDATA[WEBSERVERPICKER <> "iis4FastCGI"]]></Publish>
           <Publish Event="Remove" Value="iis4CGI"><![CDATA[WEBSERVERPICKER <> "iis4CGI"]]></Publish>
           <Publish Event="Remove" Value="nsapi"><![CDATA[WEBSERVERPICKER <> "nsapi"]]></Publish>
@@ -663,8 +663,8 @@
           Value="apache22" X="5" Y="24" Width="250" Height="15" />
         <RadioButton Text="$(loc.FeatureapacheCGITitle)"
           Value="apacheCGI" X="5" Y="36" Width="250" Height="15" />
-        <!--<RadioButton Text="$(loc.Featureiis4ISAPITitle)"
-          Value="iis4ISAPI" X="5" Y="48" Width="250" Height="15" />-->
+        <RadioButton Text="$(loc.Featureiis4ISAPITitle)"
+          Value="iis4ISAPI" X="5" Y="48" Width="250" Height="15" />
         <RadioButton Text="$(loc.Featureiis4FastCGITitle)"
           Value="iis4FastCGI" X="5" Y="48" Width="250" Height="15" />
         <RadioButton Text="$(loc.Featureiis4CGITitle)"

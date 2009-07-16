@@ -12,10 +12,15 @@
           Key="fastcgi.impersonate" Directory="INSTALLDIR" Name="php.ini"
           Section="PHP" Value="1"/>
       </Component>
+      <Component Id="fastcgilogging" DiskId="1" Guid="218C8790-7233-11DE-8A39-0800200C9A66">
+        <IniFile Id="fastcgiloggingINI" Action="addLine"
+          Key="fastcgi.logging" Directory="INSTALLDIR" Name="php.ini"
+          Section="PHP" Value="0"/>
+      </Component>
       <Component Id="maxexecutiontime" DiskId="1" Guid="5C6D1771-0D27-42C3-946B-3E0E138CF5DA">
         <IniFile Id="maxexecutiontimeINI" Action="addLine"
           Key="max_execution_time" Directory="INSTALLDIR" Name="php.ini"
-          Section="PHP" Value="300"/>
+          Section="PHP" Value="600"/>
       </Component>
       <Component Id="iis4FastCGIregistry" 
         DiskId="1" 

@@ -294,6 +294,16 @@
               Value="7"/>
             <Condition>VersionNT = 502</Condition>	
           </Component>
+	  <Component Id="errorlog"
+	    DiskId="1"
+	    Guid="C90F9100-7234-11DE-8A39-0800200C9A66">
+	    <IniFile Id="logerrorsINI" Action="addLine" 
+	      Key="log_errors" Directory="INSTALLDIR" Name="php.ini"
+	      Section="PHP" Value="On" />
+	    <IniFile Id="errorlogINI" Action="addLine" 
+	      Key="error_log" Directory="INSTALLDIR" Name="php.ini"
+	      Section="PHP" Value="[TempFolder]\php-errors.log" />
+	  </Component>
           <Component Id="php5tsDLL" 
             DiskId="1" 
             Guid="14A95C34-564F-4BF9-BFC7-0DAA48A96BA2">
@@ -371,6 +381,7 @@
       <ComponentRef Id="php5tsLIB"/>
       <ComponentRef Id="php5embedLIB"/>
       <ComponentRef Id="phpEXE"/>
+      <ComponentRef Id="errorlog"/>
         <Feature AllowAdvertise="no" 
           Id="ScriptExecutable" 
           Title="$(loc.FeatureScriptExecutableTitle)" 
@@ -463,6 +474,7 @@
           <ComponentRef Id="phpcgiEXE"/>
           <ComponentRef Id="cgiforceredirect"/>
           <ComponentRef Id="fastcgiimpersonate"/>
+          <ComponentRef Id="fastcgilogging"/>
           <ComponentRef Id="maxexecutiontime" />
           <ComponentRef Id="iis4FastCGIregistry"/>
         </Feature>
@@ -593,7 +605,7 @@
       Impersonate="no" />
     <CustomAction Id="iis700FastCGISetActivityTimeoutCmd"
       Property="iis700FastCGISetActivityTimeout"
-      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI &quot;/[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]].activityTimeout:300&quot; /commit:apphost" />
+      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI &quot;/[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]].activityTimeout:600&quot; /commit:apphost" />
     <CustomAction Id="iis700FastCGISetActivityTimeout" 
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
@@ -602,7 +614,7 @@
       Impersonate="no" />
     <CustomAction Id="iis700FastCGISetRequestTimeoutCmd"
       Property="iis700FastCGISetRequestTimeout"
-      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI &quot;/[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]].requestTimeout:300&quot; /commit:apphost" />
+      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/fastCGI &quot;/[\[]fullPath='[INSTALLDIR]php-cgi.exe'[\]].requestTimeout:600&quot; /commit:apphost" />
     <CustomAction Id="iis700FastCGISetRequestTimeout"
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
@@ -699,7 +711,7 @@
       Impersonate="no" />      
     <CustomAction Id="fcgiconfigJSFastCGISetActivityTimeoutCmd"
       Property="fcgiconfigJSFastCGISetActivityTimeout"
-      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ActivityTimeout:300" />
+      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ActivityTimeout:600" />
     <CustomAction Id="fcgiconfigJSFastCGISetActivityTimeout"
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
@@ -708,7 +720,7 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGISetActivityTimeoutCmdXP"
       Property="fcgiconfigJSFastCGISetActivityTimeoutXP"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ActivityTimeout:300" />
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ActivityTimeout:600" />
     <CustomAction Id="fcgiconfigJSFastCGISetActivityTimeoutXP"
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
@@ -717,7 +729,7 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGISetRequestTimeoutCmd"
       Property="fcgiconfigJSFastCGISetRequestTimeout"
-      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -RequestTimeout:300" />
+      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -RequestTimeout:600" />
     <CustomAction Id="fcgiconfigJSFastCGISetRequestTimeout"
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
@@ -726,7 +738,7 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGISetRequestTimeoutCmdXP"
       Property="fcgiconfigJSFastCGISetRequestTimeoutXP"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -RequestTimeout:300" />
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -RequestTimeout:600" />
     <CustomAction Id="fcgiconfigJSFastCGISetRequestTimeoutXP" 
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 

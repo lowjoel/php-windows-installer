@@ -49,7 +49,7 @@
       <Component Id="maxexecutiontime" DiskId="1" Guid="5C6D1771-0D27-42C3-946B-3E0E138CF5DA">
         <IniFile Id="maxexecutiontimeINI" Action="addLine"
           Key="max_execution_time" Directory="INSTALLDIR" Name="php.ini"
-          Section="PHP" Value="600"/>
+          Section="PHP" Value="300"/>
       </Component>
       <Component Id="iis3CGI" DiskId="1" Guid="20842834-47E2-483C-AE09-B4E90C12E314">
         <Registry Id="iis3RegScriptMap" 

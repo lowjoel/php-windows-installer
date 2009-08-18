@@ -273,7 +273,7 @@
 	      Section="PHP" Value="On" />
 	    <IniFile Id="errorlogINI" Action="addLine" 
 	      Key="error_log" Directory="INSTALLDIR" Name="php.ini"
-	      Section="PHP" Value="&quot;[TempFolder]\php-errors.log&quot;" />
+	      Section="PHP" Value="&quot;[%windir]\temp\php-errors.log&quot;" />
 	  </Component>
           <Component Id="php5DLL" 
             DiskId="1" 

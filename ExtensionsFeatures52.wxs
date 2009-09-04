@@ -306,10 +306,10 @@
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite" Title="$(loc.Featureext_php_pdo_sqliteTitle)" Description="$(loc.Featureext_php_pdo_sqliteDescription)" Level="10">
 					<ComponentRef Id="php_pdo_sqlite"/>
 				</Feature>
-                <Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite_external" Title="$(loc.Featureext_php_pdo_sqlite_externalTitle)" Description="$(loc.Featureext_php_pdo_sqlite_externalDescription)" Level="10">
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite_external" Title="$(loc.Featureext_php_pdo_sqlite_externalTitle)" Description="$(loc.Featureext_php_pdo_sqlite_externalDescription)" Level="10">
 					<ComponentRef Id="php_pdo_sqlite_external"/>
 				</Feature>
-                <Feature AllowAdvertise="no" Id="ext_php_pdo_user" Title="$(loc.Featureext_php_pdo_userTitle)" Description="$(loc.Featureext_php_pdo_userDescription)" Level="10">
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_user" Title="$(loc.Featureext_php_pdo_userTitle)" Description="$(loc.Featureext_php_pdo_userDescription)" Level="10">
 					<ComponentRef Id="php_pdo_user"/>
 				</Feature>
 			</Feature>

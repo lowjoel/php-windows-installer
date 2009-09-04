@@ -118,7 +118,7 @@
 			<Feature AllowAdvertise="no" Id="ext_php_gopher" Title="$(loc.Featureext_php_gopherTitle)" Description="$(loc.Featureext_php_gopherDescription)" Level="10">
 				<ComponentRef Id="php_gopher"/>
 			</Feature>
-            <Feature AllowAdvertise="no" Id="ext_php_haru" Title="$(loc.Featureext_php_haruTitle)" Description="$(loc.Featureext_php_haruDescription)" Level="10">
+			<Feature AllowAdvertise="no" Id="ext_php_haru" Title="$(loc.Featureext_php_haruTitle)" Description="$(loc.Featureext_php_haruDescription)" Level="10">
 				<ComponentRef Id="php_haru"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_htscanner" Title="$(loc.Featureext_php_htscannerTitle)" Description="$(loc.Featureext_php_htscannerDescription)" Level="10">
@@ -304,15 +304,15 @@
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_pgsql" Title="$(loc.Featureext_php_pdo_pgsqlTitle)" Description="$(loc.Featureext_php_pdo_pgsqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_pgsql"/>
-                    <ComponentRef Id="libpqDLL"/>
+					<ComponentRef Id="libpqDLL"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite" Title="$(loc.Featureext_php_pdo_sqliteTitle)" Description="$(loc.Featureext_php_pdo_sqliteDescription)" TypicalDefault="install" Level="1">
 					<ComponentRef Id="php_pdo_sqlite"/>
 				</Feature>
-                <Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite_external" Title="$(loc.Featureext_php_pdo_sqlite_externalTitle)" Description="$(loc.Featureext_php_pdo_sqlite_externalDescription)" Level="10">
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite_external" Title="$(loc.Featureext_php_pdo_sqlite_externalTitle)" Description="$(loc.Featureext_php_pdo_sqlite_externalDescription)" Level="10">
 					<ComponentRef Id="php_pdo_sqlite_external"/>
 				</Feature>
-                <Feature AllowAdvertise="no" Id="ext_php_pdo_user" Title="$(loc.Featureext_php_pdo_userTitle)" Description="$(loc.Featureext_php_pdo_userDescription)" Level="10">
+				<Feature AllowAdvertise="no" Id="ext_php_pdo_user" Title="$(loc.Featureext_php_pdo_userTitle)" Description="$(loc.Featureext_php_pdo_userDescription)" Level="10">
 					<ComponentRef Id="php_pdo_user"/>
 				</Feature>
 			</Feature>
@@ -328,7 +328,7 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_pgsql" Title="$(loc.Featureext_php_pgsqlTitle)" Description="$(loc.Featureext_php_pgsqlDescription)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_pgsql"/>
-                <ComponentRef Id="libpqDLL"/>
+				<ComponentRef Id="libpqDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_printer" Title="$(loc.Featureext_php_printerTitle)" Description="$(loc.Featureext_php_printerDescription)" Level="10">
 				<ComponentRef Id="php_printer"/>
@@ -372,7 +372,7 @@
 			<Feature AllowAdvertise="no" Id="ext_php_sqlite" Title="$(loc.Featureext_php_sqliteTitle)" Description="$(loc.Featureext_php_sqliteDescription)" Level="10">
 				<ComponentRef Id="php_sqlite"/>
 			</Feature>
-            <Feature AllowAdvertise="no" Id="ext_php_sqlite3" Title="$(loc.Featureext_php_sqlite3Title)" Description="$(loc.Featureext_php_sqlite3Description)" TypicalDefault="install" Level="1">
+			<Feature AllowAdvertise="no" Id="ext_php_sqlite3" Title="$(loc.Featureext_php_sqlite3Title)" Description="$(loc.Featureext_php_sqlite3Description)" TypicalDefault="install" Level="1">
 				<ComponentRef Id="php_sqlite3"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ssh2" Title="$(loc.Featureext_php_ssh2Title)" Description="$(loc.Featureext_php_ssh2Description)" Level="10">

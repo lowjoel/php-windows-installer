@@ -220,6 +220,7 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_mssql" Title="$(loc.Featureext_php_mssqlTitle)" Description="$(loc.Featureext_php_mssqlDescription)" Level="10">
 				<ComponentRef Id="php_mssql"/>
+				<ComponentRef Id="ntwdblibDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_mysql" Title="$(loc.Featureext_php_mysqlTitle)" Description="$(loc.Featureext_php_mysqlDescription)" Level="10">
 				<ComponentRef Id="php_mysql"/>
@@ -283,6 +284,7 @@
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_mssql" Title="$(loc.Featureext_php_pdo_mssqlTitle)" Description="$(loc.Featureext_php_pdo_mssqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_mssql"/>
+					<ComponentRef Id="ntwdblibDLL"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_mysql" Title="$(loc.Featureext_php_pdo_mysqlTitle)" Description="$(loc.Featureext_php_pdo_mysqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_mysql"/>
@@ -299,6 +301,7 @@
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_pgsql" Title="$(loc.Featureext_php_pdo_pgsqlTitle)" Description="$(loc.Featureext_php_pdo_pgsqlDescription)" Level="10">
 					<ComponentRef Id="php_pdo_pgsql"/>
+					<ComponentRef Id="libpqDLL"/>
 				</Feature>
 				<Feature AllowAdvertise="no" Id="ext_php_pdo_sqlite" Title="$(loc.Featureext_php_pdo_sqliteTitle)" Description="$(loc.Featureext_php_pdo_sqliteDescription)" Level="10">
 					<ComponentRef Id="php_pdo_sqlite"/>
@@ -322,6 +325,7 @@
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_pgsql" Title="$(loc.Featureext_php_pgsqlTitle)" Description="$(loc.Featureext_php_pgsqlDescription)" Level="10">
 				<ComponentRef Id="php_pgsql"/>
+				<ComponentRef Id="libpqDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_printer" Title="$(loc.Featureext_php_printerTitle)" Description="$(loc.Featureext_php_printerDescription)" Level="10">
 				<ComponentRef Id="php_printer"/>

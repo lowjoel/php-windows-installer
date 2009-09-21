@@ -131,6 +131,13 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles">
         <Directory Id="INSTALLDIR" Name="PHP">
+          <Component Id="gopearBAT" 
+            DiskId="1" 
+            Guid="C8385835-A5DD-4A90-9A44-5F49DE05B0B7">
+            <File Id="file2" 
+              Name="go-pear.bat" 
+              Source="Files\go-pear.bat"/>
+          </Component>
           <Component Id="installTXT" 
             DiskId="1" 
             Guid="D1055308-60DA-4C10-A29B-E582D0A3D675">
@@ -346,6 +353,17 @@
                 Source="Files\dev\php5ts.lib"/>
             </Component>
           </Directory>
+          <Directory Id="PEARdirectory" 
+            Name="PEAR">
+            <Component Id="gopearPHAR" 
+              DiskId="1" 
+              Guid="F3B9AE05-9E15-4E06-8192-91C513C8209A">
+              <File Id="file181" 
+                Name="GO-PEA_1.PHA" 
+                LongName="go-pear.phar" 
+                Source="Files\PEAR\go-pear.phar"/>
+            </Component>
+          </Directory>
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder" 
@@ -505,6 +523,14 @@
         Description="$(loc.FeatureextrasDescription)" 
         Level="10">
         <ComponentRef Id="Empty"/>
+        <Feature AllowAdvertise="no" 
+          Id="PEAR" 
+          Title="$(loc.FeaturePEARTitle)" 
+          Description="$(loc.FeaturePEARDescription)" 
+          Level="1">
+          <ComponentRef Id="gopearPHAR"/>
+          <ComponentRef Id="gopearBAT"/>
+        </Feature>
         <Feature AllowAdvertise="no" 
           Id="Manual" 
           Title="$(loc.FeatureManualTitle)" 

@@ -584,7 +584,7 @@
       DllEntry="CAQuietExec" 
       Return="ignore"
       Execute="deferred"
-      Impersonate="no" />      
+      Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGISetActivityTimeoutCmd"
       Property="fcgiconfigJSFastCGISetActivityTimeout"
       Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ActivityTimeout:600" />
@@ -660,10 +660,18 @@
     <CustomAction Id="configIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
+      Execute="deferred"
+      Impersonate="no" 
       VBScriptCall="configIIS4" />
+    <CustomAction Id="configIIS4CustomActionDataValue" 
+      Return="check" 
+      Property="configIIS4" 
+      Value="[INSTALLDIR]" />
     <CustomAction Id="unconfigIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
+      Execute="deferred"
+      Impersonate="no" 
       VBScriptCall="unconfigIIS4" />
  
     <InstallExecuteSequence>
@@ -757,9 +765,6 @@
       <Custom Action="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTS" After="fcgiconfigJSFastCGISetPHPRCAndMAX_REQUESTSCmd">
         <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="configIIS4" After="InstallFinalize">
-        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
-      </Custom>
       <Custom Action="fcgiconfigJSFastCGICmdXP" After="InstallInitialize">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
@@ -801,6 +806,12 @@
       </Custom>
       <Custom Action="fcgiconfigJSFastCGIremoveXP" After="fcgiconfigJSFastCGIremoveCmdXP">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
+      </Custom>
+      <Custom Action="configIIS4CustomActionDataValue" After="WriteRegistryValues">
+        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
+      </Custom>
+      <Custom Action="configIIS4" After="configIIS4CustomActionDataValue">
+        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="unconfigIIS4" After="InstallInitialize">
         <![CDATA[VersionNT < 600 AND &iis4FastCGI = 2]]>

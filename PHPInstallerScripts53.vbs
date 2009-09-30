@@ -6,27 +6,36 @@ Sub configApache
     Dim objFSO
     Dim objFile
 
-    strDirective = vbCrLf & vbCrLf & "#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
-    strApacheDir = Session.Property("APACHEDIR")
-    strPHPPath = Replace(Session.TargetPath("INSTALLDIR"),"\","/")
+    Args = Split( Session.Property("CustomActionData"), "," )
+    strApacheDir = Args(0)
+    strInstallDir = Args(1)
+    
     If ( right(strApacheDir,1) <> "\" ) then 
         strApacheDir = strApacheDir & "\"
     End If
+    strWebServerType = GetRegistryValue("Software\PHP","WebServerType")
+    strPHPPath = Replace(strInstallDir,"\","/")
     
-    If ( Session.FeatureRequestState("apacheCGI") = 3 ) Then
+    strDirective = vbCrLf & vbCrLf & "#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
+    If ( strWebServerType = "apacheCGI" ) Then
         strDirective = strDirective & "ScriptAlias /php/ """ & strPHPPath & """" & vbCrLf
         strDirective = strDirective & "Action application/x-httpd-php """ & strPHPPath & "php-cgi.exe""" & vbCrLf
     End If
     
-    If ( Session.FeatureRequestState("apache22") = 3 ) Then
+    If ( strWebServerType = "apache22" ) Then
         strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
         strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2_2.dll""" & vbCrLf
     End If
     
-    'If ( Session.FeatureRequestState("apache20") = 3 ) Then
-    '    strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-    '    strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2.dll""" & vbCrLf
-    'End If
+    If ( strWebServerType = "apache20" ) Then
+        strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
+        strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2.dll""" & vbCrLf
+    End If
+    
+    If ( strWebServerType = "apache13" ) Then
+        strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
+        strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache.dll""" & vbCrLf
+    End If
     
     strDirective = strDirective &  "#END PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
     
@@ -100,7 +109,7 @@ Sub unconfigApache
     Dim objFSO
     Dim objFile
 
-    strApacheDir = Session.Property("APACHEREGDIR")
+    strApacheDir = GetRegistryValue("Software\PHP","ApacheDir")
     If ( right(strApacheDir,1) <> "\" ) then 
         strApacheDir = strApacheDir & "\"
     End If
@@ -159,14 +168,18 @@ Sub configIIS4
     Dim DefaultDocuments
 
     fAddScriptMap = TRUE
-    strPHPPath = Session.TargetPath("INSTALLDIR")
+    strWebServerType = GetRegistryValue("Software\PHP","WebServerType")
+    strPHPPath = Session.Property("CustomActionData")
     If ( right(strPHPPath,1) <> "\" ) then 
         strPHPPath = strPHPPath & "\"
     End If
-    If ( Session.FeatureRequestState("iis4CGI") = 3 ) Then
+    If ( strWebServerType = "iis4CGI" ) Then
         PHPExecutable = strPHPPath & "php-cgi.exe"
     End If
-    If ( Session.FeatureRequestState("iis4FastCGI") = 3 ) Then
+    If ( strWebServerType = "iis4ISAPI" ) Then
+        PHPExecutable = strPHPPath & "php5isapi.dll"
+    End If
+    If ( strWebServerType = "iis4FastCGI" ) Then
         fAddScriptMap = FALSE
     End If
     
@@ -266,7 +279,8 @@ Sub unconfigIIS4
     'it could all go dreadfully wrong - so set error handler for graceful exits
     On Error Resume Next
 
-    If ( Session.FeatureRequestState("iis4FastCGI") = 2 ) Then
+    strWebServerType = GetRegistryValue("Software\PHP","WebServerType")
+    If ( strWebServerType = "iis4FastCGI" ) Then
         fRemoveScriptMap = FALSE
     End If
  
@@ -319,4 +333,16 @@ Function GetWindowsVersion
         ver=objItem.Version
     Next
     GetWindowsVersion = Left(ver,3)
+End Function
+
+Function GetRegistryValue(strKeyPath,strValueName)
+    const HKEY_LOCAL_MACHINE = &H80000002
+    strComputer = "."
+    
+    Set oReg=GetObject("winmgmts:{impersonationLevel=impersonate}!\\" &_
+        strComputer & "\root\default:StdRegProv")
+
+    oReg.GetStringValue HKEY_LOCAL_MACHINE,strKeyPath,strValueName,strValue
+    
+    GetRegistryValue = strValue
 End Function

@@ -80,6 +80,10 @@
 			<Feature AllowAdvertise="no" Id="ext_php_enchant" Title="$(loc.Featureext_php_enchantTitle)" Description="$(loc.Featureext_php_enchantDescription)" Level="10">
 				<ComponentRef Id="php_enchant"/>
 				<ComponentRef Id="libenchantDLL"/>
+				<ComponentRef Id="glib2DLL"/>
+				<ComponentRef Id="gmodule2DLL"/>
+				<ComponentRef Id="libenchantmyspellDLL"/>
+				<ComponentRef Id="libenchantispellDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_event" Title="$(loc.Featureext_php_eventTitle)" Description="$(loc.Featureext_php_eventDescription)" Level="10">
 				<ComponentRef Id="php_event"/>

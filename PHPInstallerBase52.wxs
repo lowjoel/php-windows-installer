@@ -211,6 +211,13 @@
               Action='write' 
               Type='string' 
               Value='[INSTALLDIR]' />
+            <Registry Id='PHPRegistryVersion' 
+              Root='HKLM' 
+              Key='Software\PHP' 
+              Name='Version'
+              Action='write' 
+              Type='string' 
+              Value='5.2.0' />
           </Component>
           <Component Id="phpEXE" 
             DiskId="1" 

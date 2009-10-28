@@ -15,6 +15,15 @@ $PHPInstallerBaseWXS->getElementsByTagName('Product')->item(0)->setAttribute("Na
 $PHPInstallerBaseWXS->getElementsByTagName('Product')->item(0)->setAttribute("Version","$version");
 $PHPInstallerBaseWXS->getElementsByTagName('Product')->item(0)->setAttribute("Id",genGUID());
 $PHPInstallerBaseWXS->getElementsByTagName('Package')->item(0)->setAttribute("Description","PHP $version Installer");
+$tags = $PHPInstallerBaseWXS->getElementsByTagName('Registry');
+$i = 0;
+while ( $i < $tags->length ) {
+    if ( $tags->item($i)->getAttribute('Id') == 'PHPRegistryVersion' ) {
+        $tags->item($i)->setAttribute("Value","$version");
+        break;
+    }
+    $i++;
+}
 
 // Add in the VC9 MSM if we are building that installer
 if ( !empty($includemsm) ) {

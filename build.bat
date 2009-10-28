@@ -53,7 +53,7 @@ echo Building WebServerConfig%1.wxs
 copy WebServerConfig%phpver%%suffix%.wxs WebServerConfig%1.wxs
 
 echo Compiling UI....
-Wix\candle.exe -out PHPInstallerCommon.wixobj PHPInstallerCommon%suffix%%phpver%.wxs
+Wix\candle.exe -out PHPInstallerCommon.wixobj PHPInstallerCommon%phpver%%suffix%.wxs
 
 echo Building UI....
 Wix\lit.exe -out PHPInstallerCommon.wixlib PHPInstallerCommon.wixobj 

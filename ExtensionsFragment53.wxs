@@ -24,13 +24,13 @@
 				<File Id="fileglib2DLL" Name="glib-2.dll" Source="Files\glib-2.dll" />
 			</Component>
 			<Component Id="gmodule2DLL" DiskId="1" Guid="9F64F164-C395-4edf-A615-44A212FBCCB7">
-				<File Id="filegmodule2DLL" Name="gmodul_2.dll" Source="Files\gmodule-2.dll" />
+				<File Id="filegmodule2DLL" Name="gmodul2.dll" LongName="gmodule-2.dll" Source="Files\gmodule-2.dll" />
 			</Component>
 			<Component Id="libenchantmyspellDLL" DiskId="1" Guid="A53BEC7D-A42C-4bfb-A64B-1727E786A270">
-				<File Id="filelibenchantmyspellDLL" Name="libenm_1.dll" Source="Files\libenchant_myspell.dll" />
+				<File Id="filelibenchantmyspellDLL" Name="libenm_1.dll" LongName="libenchant_myspell.dll" Source="Files\libenchant_myspell.dll" />
 			</Component>
 			<Component Id="libenchantispellDLL" DiskId="1" Guid="C39C22EC-D3F5-4a73-A27A-BF4C1F45F8C1">
-				<File Id="filelibenchantispellDLL" Name="libeni_1.dll" Source="Files\libenchant_ispell.dll" />
+				<File Id="filelibenchantispellDLL" Name="libeni_1.dll" LongName="libenchant_ispell.dll"  Source="Files\libenchant_ispell.dll" />
 			</Component>
 			<Component Id="ntwdblibDLL" DiskId="1" Guid="7FA2C1EB-5166-4D16-AD36-DEF92A491D8B">
 				<File Id="filentwdblibDLL" Name="ntwdblib.dll" Source="Files\ntwdblib.dll" />

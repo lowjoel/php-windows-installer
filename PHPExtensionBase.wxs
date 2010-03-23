@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
+  <Product Name="PHP Extension" 
+    Id="A062A356-1B4E-4367-8E5B-26363021051B" 
+    UpgradeCode="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9" 
+    Language="1033" 
+    Codepage="1252" 
+    Version="5.2.0" 
+    Manufacturer="The PHP Group">
+
+    <Package Id="????????-????-????-????-????????????" 
+      Keywords="Installer" 
+      Description="PHP Extension Installer" 
+      Comments="PHP Extension" 
+      Manufacturer="The PHP Group" 
+      InstallerVersion="100" 
+      Languages="1033" 
+      Compressed="yes" 
+      SummaryCodepage="1252"
+      InstallPrivileges="elevated" />
+  
+    <Upgrade Id="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9">
+      <UpgradeVersion Property='OLDVERSION'
+        MigrateFeatures="yes" />
+    </Upgrade>
+
+    <Condition 
+	  Message="You need to be an administrator to install PHP using this installer.">
+      <![CDATA[Privileged OR (AdminUser AND VersionNT >= 600]]>
+    </Condition>
+    
+    <Condition 
+      Message="PHP requires Windows NT/2000/XP/2003/Vista/2008 or later to install">
+      <![CDATA[( VersionNT < 400 ) OR ( Version9x <> 0 )]]>
+    </Condition>
+
+    <Media Id="1" 
+      Cabinet="PHP.cab" 
+      EmbedCab="yes" 
+      DiskPrompt="CD-ROM #1"/>
+      
+    <Property Id="DiskPrompt" Value="PHP Extension Installer"/>
+    
+    <Property Id="ALLUSERS">1</Property>
+    
+    <Property Id="WEBSERVERPICKER">
+      <RegistrySearch Id="webservertype" 
+        Root="HKLM" 
+        Key="Software\PHP" 
+        Type="raw" 
+        Name="WebServerType"
+        Win64="yes"/>
+    </Property>
+    
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="INSTALLDIR" Name="PHP">
+          <Component Id="extextras" 
+            DiskId="1" 
+            Guid="C8385835-A5DD-4A90-9A44-5F49DE05B0B7">
+          </Component>
+          <Directory Id="extdirectory" Name="ext">
+	    <Component Id="extDLL" 
+	      DiskId="1" 
+	      Guid="3AB11270-4135-4C8C-9578-B034CEF2659F">
+	    </Component>
+	  </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature AllowAdvertise="no" 
+      Id="Complete" 
+      Title="$(loc.FeatureCompleteTitle)" 
+      Description="$(loc.FeatureCompleteDescription)" 
+      TypicalDefault="install" 
+      Display="expand" 
+      ConfigurableDirectory="INSTALLDIR" 
+      Level="1">
+      <ComponentRef Id="extextras"/>
+      <ComponentRef Id="extDLL"/>
+    </Feature>
+    
+    <Binary Id="WixCA" src="Wix\wixca.dll"/>
+    
+    <InstallExecuteSequence>
+      <RemoveExistingProducts After="InstallValidate" />
+    </InstallExecuteSequence>
+    
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR"/>
+    <Property Id="WIXUI_APACHEDIR" Value="APACHEDIR"/>
+    
+    <UIRef Id="WixUI_Minimal"/>
+  </Product>
+</Wix>

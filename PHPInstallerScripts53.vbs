@@ -13,7 +13,7 @@ Sub configApache
     If ( right(strApacheDir,1) <> "\" ) then 
         strApacheDir = strApacheDir & "\"
     End If
-    strWebServerType = GetRegistryValue("Software\PHP","WebServerType")
+    strWebServerType = GetRegistryValue("Software\PHP53","WebServerType")
     strPHPPath = Replace(strInstallDir,"\","/")
     
     strDirective = vbCrLf & vbCrLf & "#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
@@ -109,7 +109,7 @@ Sub unconfigApache
     Dim objFSO
     Dim objFile
 
-    strApacheDir = GetRegistryValue("Software\PHP","ApacheDir")
+    strApacheDir = GetRegistryValue("Software\PHP53","ApacheDir")
     If ( right(strApacheDir,1) <> "\" ) then 
         strApacheDir = strApacheDir & "\"
     End If
@@ -168,7 +168,7 @@ Sub configIIS4
     Dim DefaultDocuments
 
     fAddScriptMap = TRUE
-    strWebServerType = GetRegistryValue("Software\PHP","WebServerType")
+    strWebServerType = GetRegistryValue("Software\PHP53","WebServerType")
     strPHPPath = Session.Property("CustomActionData")
     If ( right(strPHPPath,1) <> "\" ) then 
         strPHPPath = strPHPPath & "\"
@@ -279,7 +279,7 @@ Sub unconfigIIS4
     'it could all go dreadfully wrong - so set error handler for graceful exits
     On Error Resume Next
 
-    strWebServerType = GetRegistryValue("Software\PHP","WebServerType")
+    strWebServerType = GetRegistryValue("Software\PHP53","WebServerType")
     If ( strWebServerType = "iis4FastCGI" ) Then
         fRemoveScriptMap = FALSE
     End If

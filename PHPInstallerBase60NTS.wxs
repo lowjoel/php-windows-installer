@@ -676,10 +676,18 @@
       Execute="deferred"
       Impersonate="no" 
       VBScriptCall="configIIS4" />
-    <CustomAction Id="configIIS4CustomActionDataValue" 
+    <CustomAction Id="configIIS4CGICustomActionDataValue" 
       Return="check" 
       Property="configIIS4" 
-      Value="[INSTALLDIR]" />
+      Value="[INSTALLDIR],iis4CGI" />
+    <CustomAction Id="configIIS4ISAPICustomActionDataValue" 
+      Return="check" 
+      Property="configIIS4" 
+      Value="[INSTALLDIR],iis4ISAPI" />
+    <CustomAction Id="configIIS4FastCGICustomActionDataValue" 
+      Return="check" 
+      Property="configIIS4" 
+      Value="[INSTALLDIR],iis4FastCGI" />
     <CustomAction Id="unconfigIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
@@ -820,11 +828,17 @@
       <Custom Action="fcgiconfigJSFastCGIremoveXP" After="fcgiconfigJSFastCGIremoveCmdXP">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
       </Custom>
-      <Custom Action="configIIS4CustomActionDataValue" After="WriteRegistryValues">
+      <Custom Action="configIIS4CGICustomActionDataValue" After="WriteRegistryValues">
+        <![CDATA[VersionNT < 600 AND &iis4CGI = 3]]>
+      </Custom>
+      <Custom Action="configIIS4ISAPICustomActionDataValue" After="WriteRegistryValues">
+        <![CDATA[VersionNT < 600 AND &iis4ISAPI = 3]]>
+      </Custom>
+      <Custom Action="configIIS4FastCGICustomActionDataValue" After="WriteRegistryValues">
         <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="configIIS4" After="configIIS4CustomActionDataValue">
-        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
+      <Custom Action="configIIS4" After="configIIS4FastCGICustomActionDataValue">
+        <![CDATA[VersionNT < 600 AND (&iis4FastCGI = 3 OR &iis4ISAPI = 3 OR &iis4CGI = 3)]]>
       </Custom>
       <Custom Action="unconfigIIS4" After="InstallInitialize">
         <![CDATA[VersionNT < 600 AND &iis4FastCGI = 2]]>

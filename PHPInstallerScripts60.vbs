@@ -9,11 +9,11 @@ Sub configApache
     Args = Split( Session.Property("CustomActionData"), "," )
     strApacheDir = Args(0)
     strInstallDir = Args(1)
+    strWebServerType = Args(2)
     
     If ( right(strApacheDir,1) <> "\" ) then 
         strApacheDir = strApacheDir & "\"
     End If
-    strWebServerType = GetRegistryValue("Software\PHP","WebServerType")
     strPHPPath = Replace(strInstallDir,"\","/")
     
     strDirective = vbCrLf & vbCrLf & "#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
@@ -169,8 +169,9 @@ Sub configIIS4
     Dim DefaultDocuments
 
     fAddScriptMap = TRUE
-    strWebServerType = GetRegistryValue("Software\PHP","WebServerType")
-    strPHPPath = Session.Property("CustomActionData")
+    Args = Split( Session.Property("CustomActionData"), "," )
+    strPHPPath = Args(0)
+    strWebServerType = Args(1)
     If ( right(strPHPPath,1) <> "\" ) then 
         strPHPPath = strPHPPath & "\"
     End If

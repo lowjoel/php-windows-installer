@@ -780,10 +780,18 @@
       Execute="deferred"
       Impersonate="no" 
       VBScriptCall="configIIS4" />
-    <CustomAction Id="configIIS4CustomActionDataValue" 
+    <CustomAction Id="configIIS4CGICustomActionDataValue" 
       Return="check" 
       Property="configIIS4" 
-      Value="[INSTALLDIR]" />
+      Value="[INSTALLDIR],iis4CGI" />
+    <CustomAction Id="configIIS4ISAPICustomActionDataValue" 
+      Return="check" 
+      Property="configIIS4" 
+      Value="[INSTALLDIR],iis4ISAPI" />
+    <CustomAction Id="configIIS4FastCGICustomActionDataValue" 
+      Return="check" 
+      Property="configIIS4" 
+      Value="[INSTALLDIR],iis4FastCGI" />
     <CustomAction Id="unconfigIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
@@ -796,10 +804,22 @@
       Execute="deferred"
       Impersonate="no" 
       VBScriptCall="configApache" />
-    <CustomAction Id="configApacheCustomActionDataValue" 
+    <CustomAction Id="configApache13CustomActionDataValue" 
       Return="check" 
       Property="configApache" 
-      Value="[APACHEDIR],[INSTALLDIR]" />
+      Value="[APACHEDIR],[INSTALLDIR],apache13" />
+    <CustomAction Id="configApache20CustomActionDataValue" 
+      Return="check" 
+      Property="configApache" 
+      Value="[APACHEDIR],[INSTALLDIR],apache20" />
+    <CustomAction Id="configApache22CustomActionDataValue" 
+      Return="check" 
+      Property="configApache" 
+      Value="[APACHEDIR],[INSTALLDIR],apache22" />
+    <CustomAction Id="configApacheCGICustomActionDataValue" 
+      Return="check" 
+      Property="configApache" 
+      Value="[APACHEDIR],[INSTALLDIR],apacheCGI" />
     <CustomAction Id="unconfigApache" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
@@ -958,19 +978,34 @@
       <Custom Action="fcgiconfigJSFastCGIremoveXP" After="fcgiconfigJSFastCGIremoveCmdXP">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
       </Custom>
-      <Custom Action="configIIS4CustomActionDataValue" After="WriteRegistryValues">
+      <Custom Action="configIIS4CGICustomActionDataValue" After="WriteRegistryValues">
+        <![CDATA[VersionNT < 600 AND &iis4CGI = 3]]>
+      </Custom>
+      <Custom Action="configIIS4ISAPICustomActionDataValue" After="WriteRegistryValues">
+        <![CDATA[VersionNT < 600 AND &iis4ISAPI = 3]]>
+      </Custom>
+      <Custom Action="configIIS4FastCGICustomActionDataValue" After="WriteRegistryValues">
         <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="configIIS4" After="configIIS4CustomActionDataValue">
-        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>
+      <Custom Action="configIIS4" After="configIIS4FastCGICustomActionDataValue">
+        <![CDATA[VersionNT < 600 AND (&iis4FastCGI = 3 OR &iis4ISAPI = 3 OR &iis4CGI = 3)]]>
       </Custom>
       <Custom Action="unconfigIIS4" After="InstallInitialize">
-        <![CDATA[VersionNT < 600 AND &iis4FastCGI = 2]]>
+        <![CDATA[VersionNT < 600 AND (&iis4FastCGI = 2 OR &iis4ISAPI = 2 OR &iis4CGI = 2)]]>
       </Custom>
-      <Custom Action="configApacheCustomActionDataValue" After="WriteRegistryValues">
-        <![CDATA[&apache13 = 3 OR &apache20 = 3 OR &apache22 = 3 OR &apacheCGI = 3]]>
+      <Custom Action="configApache13CustomActionDataValue" After="WriteRegistryValues">
+        <![CDATA[&apache13 = 3]]>
       </Custom>
-      <Custom Action="configApache" After="configApacheCustomActionDataValue">
+      <Custom Action="configApache20CustomActionDataValue" After="WriteRegistryValues">
+        <![CDATA[&apache20 = 3]]>
+      </Custom>
+      <Custom Action="configApache22CustomActionDataValue" After="WriteRegistryValues">
+        <![CDATA[&apache22 = 3]]>
+      </Custom>
+      <Custom Action="configApacheCGICustomActionDataValue" After="WriteRegistryValues">
+        <![CDATA[&apacheCGI = 3]]>
+      </Custom>
+      <Custom Action="configApache" After="configApacheCGICustomActionDataValue">
         <![CDATA[&apache13 = 3 OR &apache20 = 3 OR &apache22 = 3 OR &apacheCGI = 3]]>
       </Custom>
       <Custom Action="unconfigApache" After="InstallInitialize" >

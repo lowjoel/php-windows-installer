@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
   <Product Name="PHP 5.2.0" Id="A062A356-1B4E-4367-8E5B-26363021051B" 
-    UpgradeCode="ECF7FF5B-C55D-483B-88DE-51C5999DBE45"
+    UpgradeCode="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9" 
     Language="1033" 
     Codepage="1252" 
     Version="5.2.0" 
@@ -18,32 +18,20 @@
       SummaryCodepage="1252"
       InstallPrivileges="elevated" />
   
-    <Upgrade Id="ECF7FF5B-C55D-483B-88DE-51C5999DBE45">
+    <Upgrade Id="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9">
       <UpgradeVersion Property='OLDVERSION'
         MigrateFeatures="yes" 
         IncludeMinimum='yes' 
-        Minimum='5.3.0' />
-    </Upgrade>
-
-    <Upgrade Id="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9">
-      <UpgradeVersion OnlyDetect="yes" Property="NONSXSVERSION" IncludeMaximum="no" IncludeMinimum="yes" Minimum="5.2.0" />
-    </Upgrade>
-
-    <Upgrade Id="F0181ED2-F259-469F-B3C4-F74B5FDE951F">
-      <UpgradeVersion OnlyDetect="yes" Property="SXSVERSION52" IncludeMaximum="no" IncludeMinimum="yes" Minimum="5.2.0" />
-    </Upgrade>
-
-    <Upgrade Id="B4C33633-5C4B-4306-9562-D0906DC354A3">
-      <UpgradeVersion OnlyDetect="yes" Property="SXSVERSION60" IncludeMaximum="no" IncludeMinimum="yes" Minimum="6.0.0" />
+        Minimum='5.2.0' />
     </Upgrade>
 
     <Condition 
-      Message="You need to be an administrator to install PHP using this installer.">
-      <![CDATA[Privileged OR (AdminUser AND VersionNT >= 600)]]>
+	  Message="You need to be an administrator to install PHP using this installer.">
+      <![CDATA[Privileged OR (AdminUser AND VersionNT >= 600]]>
     </Condition>
     
     <Condition 
-      Message="PHP requires Windows 2000/XP/2003/Vista/2008 or later to install">
+	  Message="PHP requires Windows 2000/XP/2003/Vista/2008 or later to install">
       <![CDATA[( VersionNT <= 500 ) OR ( Version9x <> 0 )]]>
     </Condition>
 
@@ -82,43 +70,6 @@
         Name="FastCgi"
         Win64="yes"/>
     </Property>
-
-    <Property Id="PHP52WEBSERVERTYPE">
-      <RegistrySearch
-        Id="php52servertyperegistry"
-        Root="HKLM"
-        Key="Software\PHP52"
-        Type="raw"
-        Name="WebServerType" />
-    </Property>
-
-    <Property Id="PHP60WEBSERVERTYPE">
-      <RegistrySearch
-        Id="php60servertyperegistry"
-        Root="HKLM"
-        Key="Software\PHP60"
-        Type="raw"
-        Name="WebServerType" />
-    </Property>
-
-    <Property Id="PHP52INSTALLDIR">
-      <RegistrySearch
-        Id="php53installregistry"
-        Root="HKLM"
-        Key="Software\PHP52"
-        Type="raw"
-        Name="InstallDir" />
-    </Property>
-
-    <Property Id="PHP60INSTALLDIR">
-      <RegistrySearch
-        Id="php60installregistry"
-        Root="HKLM"
-        Key="Software\PHP60"
-        Type="raw"
-        Name="InstalLDir" />
-    </Property>
-
     <CustomAction Id='CheckFASTCGIINSTALLED' Property='FASTCGIINSTALLED' Value='1' />
     <CustomAction Id='CheckFASTCGINOTINSTALLED' Property='FASTCGIINSTALLED' Value='0' />
     <InstallUISequence>
@@ -133,7 +84,7 @@
     <Property Id="APACHEREGDIR">
       <RegistrySearch Id="apacheRegistry" 
         Root="HKLM" 
-        Key="Software\PHP53" 
+        Key="Software\PHP" 
         Type="raw" 
         Name="ApacheDir"
         Win64="yes"/>
@@ -149,7 +100,7 @@
     <Property Id="WEBSERVERPICKER">
       <RegistrySearch Id="webservertype" 
         Root="HKLM" 
-        Key="Software\PHP53" 
+        Key="Software\PHP" 
         Type="raw" 
         Name="WebServerType"
         Win64="yes"/>
@@ -157,7 +108,7 @@
     
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles">
-        <Directory Id="INSTALLDIR" Name="PHP53">
+        <Directory Id="INSTALLDIR" Name="PHP">
           <Component Id="gopearBAT" 
             DiskId="1" 
             Guid="C8385835-A5DD-4A90-9A44-5F49DE05B0B7">
@@ -174,7 +125,7 @@
           </Component>
           <Component Id="licenseTXT" 
             DiskId="1" 
-            Guid="3768F0C3-99C9-4A43-8DC6-721BBA4A3ECB">
+            Guid="9D6E2B5F-F334-4874-B57F-1D4B5A28D17C">
             <File Id="file8" 
               Name="license.txt" 
               Source="Files\license.txt">
@@ -215,7 +166,7 @@
           </Component>
           <Component Id="RegisterPHPFilesREG" 
             DiskId="1" 
-            Guid="950C9122-19B0-4518-8D57-25BE1CFEC1BA">
+            Guid="77825049-82F0-4394-A246-A7D2F07BC5BC">
             <ProgId Id="PHPFile" 
               Description="PHP Script">
               <Extension Id="php" 
@@ -230,17 +181,17 @@
           </Component>
           <Component Id="PHPRegistry" 
             DiskId="1" 
-            Guid="856B4C8D-09A1-4FDB-A0FE-5111D42AB777">
+            Guid="1BFEB5D8-B6C0-49E4-918C-A9D52479EC84">
             <Registry Id='PHPRegistryInstallDir' 
               Root='HKLM' 
-              Key='Software\PHP53' 
+              Key='Software\PHP' 
               Name='InstallDir'
               Action='write' 
               Type='string' 
               Value='[INSTALLDIR]' />
             <Registry Id='PHPRegistryVersion' 
               Root='HKLM' 
-              Key='Software\PHP53' 
+              Key='Software\PHP' 
               Name='Version'
               Action='write' 
               Type='string' 
@@ -258,6 +209,12 @@
               System="yes" 
               Part="first" 
               Value="[INSTALLDIR]"/>
+            <Environment Id="PHPRC"
+              Name="PHPRC"
+              Action="create"
+              System="yes"
+              Part="all"
+              Value="[INSTALLDIR]"/>
           </Component>
           <Component Id="phpGIF" 
             DiskId="1" 
@@ -268,7 +225,7 @@
           </Component>
           <Component Id="phprecommendedINI" 
             DiskId="1" 
-            Guid="3BDA4E91-A586-43D5-906E-2373749FCFF3" 
+            Guid="B32D6227-3160-4D57-9724-0B35DC128519" 
             Permanent="yes">
             <File Id="file17" 
               Name="PHP_2.INI" 
@@ -305,33 +262,33 @@
           </Component>
           <Component Id="win2003eventlog" 
             DiskId="1"
-            Guid="5C59168A-CF27-4E65-8615-2BE745A357BB">
+            Guid="E4C43E12-F31C-4A8C-A084-4E604274D4C9">
             <Registry Id="w2k3EventMessageFile" 
               Root="HKLM" 
-              Key="System\CurrentControlSet\Services\EventLog\Application\PHP53"
+              Key="System\CurrentControlSet\Services\EventLog\Application\PHP" 
               Action="write" 
               Type="string"
               Name="EventMessageFile"
-              Value="[INSTALLDIR]\dev\php5ts.dll"/>
+              Value="[!INSTALLDIR]\dev\php5ts.dll"/>
             <Registry Id="w2k3TypesSupported" 
               Root="HKLM" 
-              Key="System\CurrentControlSet\Services\EventLog\Application\PHP53" 
+              Key="System\CurrentControlSet\Services\EventLog\Application\PHP" 
               Action="write" 
               Type="integer" 
               Name="TypesSupported"
               Value="7"/>
-            <Condition>VersionNT = 502</Condition>
+            <Condition>VersionNT = 502</Condition>	
           </Component>
-          <Component Id="errorlog"
-            DiskId="1"
-            Guid="C90F9100-7234-11DE-8A39-0800200C9A66">
-            <IniFile Id="logerrorsINI" Action="addLine" 
-              Key="log_errors" Directory="INSTALLDIR" Name="php.ini"
-              Section="PHP" Value="On" />
-            <IniFile Id="errorlogINI" Action="addLine" 
-              Key="error_log" Directory="INSTALLDIR" Name="php.ini"
-              Section="PHP" Value="&quot;[%windir]\temp\php53-errors.log&quot;" />
-          </Component>
+	  <Component Id="errorlog"
+	    DiskId="1"
+	    Guid="C90F9100-7234-11DE-8A39-0800200C9A66">
+	    <IniFile Id="logerrorsINI" Action="addLine" 
+	      Key="log_errors" Directory="INSTALLDIR" Name="php.ini"
+	      Section="PHP" Value="On" />
+	    <IniFile Id="errorlogINI" Action="addLine" 
+	      Key="error_log" Directory="INSTALLDIR" Name="php.ini"
+	      Section="PHP" Value="&quot;[%windir]\temp\php-errors.log&quot;" />
+	  </Component>
           <Component Id="php5DLL" 
             DiskId="1" 
             Guid="14A95C34-564F-4BF9-BFC7-0DAA48A96BA2">
@@ -357,7 +314,7 @@
           </Component>
           <Component Id="phpCHM" 
             DiskId="1" 
-            Guid="A37C3C9F-D524-4CD6-BF19-14FE5E438F76">
+            Guid="43C45330-3624-11DC-999C-478455D89593">
             <File Id="file182" 
               Name="PHP_MA_1.DLL" 
               LongName="php_manual_en.chm" 
@@ -398,8 +355,8 @@
         Name="PMenu" 
         LongName="Programs">
         <Directory Id="ProgramMenuDir" 
-          Name="PHP5.3" 
-          LongName="PHP 5.3"/>
+          Name="PHP5" 
+          LongName="PHP 5"/>
       </Directory>
     </Directory>
     <Feature AllowAdvertise="no" 
@@ -467,7 +424,7 @@
           <ComponentRef Id="maxexecutiontime" />
           <ComponentRef Id="iis4FastCGIregistry"/>
         </Feature>
-        <Feature AllowAdvertise="no" 
+		<Feature AllowAdvertise="no" 
           Id="cgi" 
           Title="$(loc.FeaturecgiTitle)" 
           Description="$(loc.FeaturecgiDescription)" 
@@ -565,7 +522,7 @@
       Impersonate="no" />
     <CustomAction Id="iis700FastCGICmd"
       Property="iis700FastCGI"
-      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/handlers /+&quot;[\[]name='PHP53_via_FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'[\]]&quot;" />
+      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/handlers /+&quot;[\[]name='PHP_via_FastCGI',path='*.php',verb='*',modules='FastCgiModule',scriptProcessor='[INSTALLDIR]php-cgi.exe',resourceType='Either'[\]]&quot;" />
     <CustomAction Id="iis700FastCGI" 
       BinaryKey="WixCA" 
       DllEntry="CAQuietExec" 
@@ -592,7 +549,7 @@
       Impersonate="no" />
     <CustomAction Id="iis700FastCGIremoveCmd"
       Property="iis700FastCGIremove"
-      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/handlers /-&quot;[\[]name='PHP53_via_FastCGI',path='*.php',verb='*'[\]]&quot;" />
+      Value="&quot;[WindowsFolder]system32\inetsrv\APPCMD.EXE&quot; SET CONFIG -section:system.webServer/handlers /-&quot;[\[]name='PHP_via_FastCGI',path='*.php',verb='*'[\]]&quot;" />
     <CustomAction Id="iis700FastCGIremove" 
       BinaryKey="WixCA"
       DllEntry="CAQuietExec" 
@@ -601,7 +558,7 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGICmd"
       Property="fcgiconfigJSFastCGI"
-      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;php-cgi.exe&quot;" />
+      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;" />
     <CustomAction Id="fcgiconfigJSFastCGI" 
       BinaryKey="WixCA"
       DllEntry="CAQuietExec" 
@@ -610,31 +567,13 @@
       Impersonate="no" />
     <CustomAction Id="fcgiconfigJSFastCGICmdXP"
       Property="fcgiconfigJSFastCGIXP"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;php-cgi.exe&quot;" />
+      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -add -section:&quot;PHP&quot; -extension:php -path:&quot;[INSTALLDIR]php-cgi.exe&quot;" />      
     <CustomAction Id="fcgiconfigJSFastCGIXP" 
       BinaryKey="WixCA"
       DllEntry="CAQuietExec" 
       Return="ignore"
       Execute="deferred"
-      Impersonate="no" />
-    <CustomAction Id="fcgiconfigJSFastCGISetExePathCmd"
-      Property="fcgiconfigJSFastCGISetExePath"
-      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ExePath:&quot;[INSTALLDIR]php-cgi.exe&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGISetExePath"
-      BinaryKey="WixCA"
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
-    <CustomAction Id="fcgiconfigJSFastCGISetExePathCmdXP"
-      Property="fcgiconfigJSFastCGISetExePathXP"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ExePath:&quot;[INSTALLDIR]php-cgi.exe&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGISetExePathXP" 
-      BinaryKey="WixCA" 
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
+      Impersonate="no" />      
     <CustomAction Id="fcgiconfigJSFastCGISetInstanceMaxRequestsCmd"
       Property="fcgiconfigJSFastCGISetInstanceMaxRequests"
       Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -InstanceMaxRequests:10000" />
@@ -725,78 +664,6 @@
       Return="ignore"
       Execute="deferred"
       Impersonate="no" />      
-    <CustomAction Id="fcgiconfigJSFastCGIrehook52SetExePathCmd"
-      Property="fcgiconfigJSFastCGIrehook52SetExePath"
-      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ExePath:&quot;[PHP52INSTALLDIR]php-cgi.exe&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook52SetExePath"
-      BinaryKey="WixCA"
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook52SetExePathCmdXP"
-      Property="fcgiconfigJSFastCGIrehook52SetExePathXP"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ExePath:&quot;[PHP52INSTALLDIR]php-cgi.exe&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook52SetExePathXP" 
-      BinaryKey="WixCA" 
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTSCmd"
-      Property="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTS"
-      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[PHP52INSTALLDIR]&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTS" 
-      BinaryKey="WixCA" 
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTSCmdXP"
-      Property="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTSXP"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[PHP52INSTALLDIR]&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTSXP" 
-      BinaryKey="WixCA" 
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook60SetExePathCmd"
-      Property="fcgiconfigJSFastCGIrehook60SetExePath"
-      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ExePath:&quot;[PHP60INSTALLDIR]php-cgi.exe&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook60SetExePath"
-      BinaryKey="WixCA"
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook60SetExePathCmdXP"
-      Property="fcgiconfigJSFastCGIrehook60SetExePathXP"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -ExePath:&quot;[PHP60INSTALLDIR]php-cgi.exe&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook60SetExePathXP" 
-      BinaryKey="WixCA" 
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSCmd"
-      Property="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTS"
-      Value="&quot;\\localhost\admin$\system32\cscript.exe&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[PHP60INSTALLDIR]&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTS" 
-      BinaryKey="WixCA" 
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSCmdXP"
-      Property="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSXP"
-      Value="&quot;cscript&quot; &quot;[WindowsFolder]system32\inetsrv\fcgiconfig.js&quot; -set -section:&quot;PHP&quot; -EnvironmentVars:PHP_FCGI_MAX_REQUESTS:10000,PHPRC:&quot;[PHP60INSTALLDIR]&quot;" />
-    <CustomAction Id="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSXP" 
-      BinaryKey="WixCA" 
-      DllEntry="CAQuietExec" 
-      Return="ignore"
-      Execute="deferred"
-      Impersonate="no" />
     <CustomAction Id="configIIS4" 
       BinaryKey="PHPInstallerScripts" 
       Return="check" 
@@ -881,13 +748,7 @@
       <Custom Action="fcgiconfigJSFastCGI" After="fcgiconfigJSFastCGICmd">
         <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="fcgiconfigJSFastCGISetExePathCmd" After="fcgiconfigJSFastCGI">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGISetExePath" After="fcgiconfigJSFastCGISetExePathCmd">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequestsCmd" After="fcgiconfigJSFastCGISetExePath">
+      <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequestsCmd" After="fcgiconfigJSFastCGI">
         <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequests" After="fcgiconfigJSFastCGISetInstanceMaxRequestsCmd">
@@ -917,13 +778,7 @@
       <Custom Action="fcgiconfigJSFastCGIXP" After="fcgiconfigJSFastCGICmdXP">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
-      <Custom Action="fcgiconfigJSFastCGISetExePathCmdXP" After="fcgiconfigJSFastCGIXP">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGISetExePathXP" After="fcgiconfigJSFastCGISetExePathCmdXP">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequestsCmdXP" After="fcgiconfigJSFastCGISetExePathXP">
+      <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequestsCmdXP" After="fcgiconfigJSFastCGIXP">
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGISetInstanceMaxRequestsXP" After="fcgiconfigJSFastCGISetInstanceMaxRequestsCmdXP">
@@ -948,64 +803,16 @@
         <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 3]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGIremoveCmd" After="InstallInitialize">
-        <![CDATA[((VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2) AND (NOT PHP52WEBSERVERTYPE = "iis4FastCGI") AND (NOT PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGIremove" After="fcgiconfigJSFastCGIremoveCmd">
-        <![CDATA[((VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2) AND (NOT PHP52WEBSERVERTYPE = "iis4FastCGI") AND (NOT PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook60SetExePathCmd" After="InstallInitialize">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook60SetExePath" After="fcgiconfigJSFastCGIrehook60SetExePathCmd">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSCmd" After="fcgiconfigJSFastCGIrehook60SetExePath">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTS" After="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSCmd">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook52SetExePathCmd" After="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTS">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP52WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook52SetExePath" After="fcgiconfigJSFastCGIrehook52SetExePathCmd">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP52WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTSCmd" After="fcgiconfigJSFastCGIrehook52SetExePath">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP52WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTS" After="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTSCmd">
-        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP52WEBSERVERTYPE = "iis4FastCGI")]]>
+        <![CDATA[(VersionNT = 502 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGIremoveCmdXP" After="InstallInitialize">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2) AND (NOT PHP52WEBSERVERTYPE = "iis4FastCGI") AND (NOT PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="fcgiconfigJSFastCGIremoveXP" After="fcgiconfigJSFastCGIremoveCmdXP">
-        <![CDATA[((VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2) AND (NOT PHP52WEBSERVERTYPE = "iis4FastCGI") AND (NOT PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook60SetExePathCmdXP" After="InstallInitialize">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook60SetExePathXP" After="fcgiconfigJSFastCGIrehook60SetExePathCmdXP">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSCmdXP" After="fcgiconfigJSFastCGIrehook60SetExePathXP">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSXP" After="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSCmdXP">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP60WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook52SetExePathCmdXP" After="fcgiconfigJSFastCGIrehook60SetPHPRCAndMAX_REQUESTSXP">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP52WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook52SetExePathXP" After="fcgiconfigJSFastCGIrehook52SetExePathCmdXP">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP52WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTSCmdXP" After="fcgiconfigJSFastCGIrehook52SetExePathXP">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP52WEBSERVERTYPE = "iis4FastCGI")]]>
-      </Custom>
-      <Custom Action="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTSXP" After="fcgiconfigJSFastCGIrehook52SetPHPRCAndMAX_REQUESTSCmdXP">
-        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2 AND (PHP52WEBSERVERTYPE = "iis4FastCGI")]]>
+        <![CDATA[(VersionNT = 501 AND ServicePackLevel >= 2) AND &iis4FastCGI = 2]]>
       </Custom>
       <Custom Action="configIIS4CustomActionDataValue" After="WriteRegistryValues">
         <![CDATA[VersionNT < 600 AND &iis4FastCGI = 3]]>

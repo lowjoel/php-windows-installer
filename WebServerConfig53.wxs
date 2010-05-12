@@ -56,17 +56,17 @@
       </Component>
       <!--<Component Id="apache20registry" 
         DiskId="1" 
-        Guid="5CDAD824-DA5E-4F26-BE8B-53D35539A95D">
+        Guid="6B49A08E-49A4-11DC-8314-0800200C9A66">
         <Registry Id='apache20registryApacheDir' 
           Root='HKLM' 
-          Key='Software\PHP53' 
+          Key='Software\PHP' 
           Name='ApacheDir'
           Action='write' 
           Type='string' 
           Value='[APACHEDIR]' />
         <Registry Id="apache20registryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -74,17 +74,17 @@
       </Component>-->
       <Component Id="apache22registry" 
         DiskId="1" 
-        Guid="25E4FC60-16F6-47A0-BFFB-F862843CAB33">
+        Guid="6B49A08F-49A4-11DC-8314-0800200C9A66">
         <Registry Id='apache22registryApacheDir' 
           Root='HKLM' 
-          Key='Software\PHP53' 
+          Key='Software\PHP' 
           Name='ApacheDir'
           Action='write' 
           Type='string' 
           Value='[APACHEDIR]' />
         <Registry Id="apache22registryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -92,17 +92,17 @@
       </Component>
       <Component Id="apacheCGIregistry" 
         DiskId="1" 
-        Guid="6576861C-591D-43C0-AF79-1FA91AC70B65">
+        Guid="6B49A090-49A4-11DC-8314-0800200C9A66">
         <Registry Id='apacheCGIregistryApacheDir' 
           Root='HKLM' 
-          Key='Software\PHP53' 
+          Key='Software\PHP' 
           Name='ApacheDir'
           Action='write' 
           Type='string' 
           Value='[APACHEDIR]' />
         <Registry Id="apacheCGIregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -110,10 +110,10 @@
       </Component>
       <Component Id="iis4CGIregistry" 
         DiskId="1" 
-        Guid="87BE8249-2C5F-4288-9691-C29DEA725C83">
+        Guid="6B49A092-49A4-11DC-8314-0800200C9A66">
         <Registry Id="iis4CGIregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -121,10 +121,10 @@
       </Component>
       <Component Id="iis4FastCGIregistry" 
         DiskId="1" 
-        Guid="A3D85F66-1A73-4B6B-A0A2-6E46E53CA9A9">
+        Guid="36F5E036-6DDF-11DC-8314-0800200C9A66">
         <Registry Id="iis4FastCGIregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -132,10 +132,10 @@
       </Component>
       <Component Id="nsapiregistry" 
         DiskId="1" 
-        Guid="8075C15A-797F-4120-B315-A32943DA48A9">
+        Guid="6B49A093-49A4-11DC-8314-0800200C9A66">
         <Registry Id="nsapiregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -143,10 +143,10 @@
       </Component>
       <Component Id="xitamiregistry" 
         DiskId="1" 
-        Guid="BEDA3FB4-4D19-4417-A4AD-4B66BE8706FE">
+        Guid="6B49A094-49A4-11DC-8314-0800200C9A66">
         <Registry Id="xitamiregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -154,10 +154,10 @@
       </Component>
       <Component Id="cgiregistry" 
         DiskId="1" 
-        Guid="DE08568C-4968-49D5-BB7F-B7D3EE2029A9">
+        Guid="6B49A096-49A4-11DC-8314-0800200C9A66">
         <Registry Id="cgiregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -165,10 +165,10 @@
       </Component>
       <Component Id="noconfigregistry" 
         DiskId="1" 
-        Guid="E8553374-5AB9-4635-969D-5135397E62FE">
+        Guid="6B49A097-49A4-11DC-8314-0800200C9A66">
         <Registry Id="noconfigregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 

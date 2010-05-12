@@ -24,10 +24,10 @@
       </Component>
       <Component Id="iis4FastCGIregistry" 
         DiskId="1" 
-        Guid="A3D85F66-1A73-4B6B-A0A2-6E46E53CA9A9">
+        Guid="36F5E036-6DDF-11DC-8314-0800200C9A66">
         <Registry Id="iis4FastCGIregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -35,10 +35,10 @@
       </Component>
       <Component Id="cgiregistry" 
         DiskId="1" 
-        Guid="DE08568C-4968-49D5-BB7F-B7D3EE2029A9">
+        Guid="6B49A096-49A4-11DC-8314-0800200C9A66">
         <Registry Id="cgiregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 
@@ -46,10 +46,10 @@
       </Component>
       <Component Id="noconfigregistry" 
         DiskId="1" 
-        Guid="E8553374-5AB9-4635-969D-5135397E62FE">
+        Guid="6B49A097-49A4-11DC-8314-0800200C9A66">
         <Registry Id="noconfigregistryWebServerType" 
           Root="HKLM" 
-          Key="Software\PHP53" 
+          Key="Software\PHP" 
           Name="WebServerType"
           Action="write" 
           Type="string" 

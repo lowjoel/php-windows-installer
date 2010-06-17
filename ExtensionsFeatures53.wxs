@@ -194,6 +194,7 @@
 				<ComponentRef Id="php_ldap"/>
 				<ComponentRef Id="libeay32DLL"/>
 				<ComponentRef Id="ssleay32DLL"/>
+				<ComponentRef Id="libsaslDLL"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_lzf" Title="$(loc.Featureext_php_lzfTitle)" Description="$(loc.Featureext_php_lzfDescription)" Level="10">
 				<ComponentRef Id="php_lzf"/>

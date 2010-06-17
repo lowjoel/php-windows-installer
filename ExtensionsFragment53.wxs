@@ -44,6 +44,9 @@
 			<Component Id="ssleay32DLL" DiskId="1" Guid="D7E5F122-9764-4165-BDDA-922D60408C2F">
 				<File Id="filessleay32DLL" Name="ssleay32.dll" Source="Files\ssleay32.dll" />
 			</Component>
+			<Component Id="libsaslDLL" DiskId="1" Guid="5A75E72B-6871-4d40-9FB4-0EA8ABE4F041">
+				<File Id="filelibsaslDLL" Name="libsasl.dll" Source="Files\libsasl.dll" />
+			</Component>
 			<Component Id="yazDLL" DiskId="1" Guid="4C0CE69A-DBE4-4294-88CC-F6E82A3CFCD1">
 				<File Id="fileyazSLL" Name="yaz.dll" Source="Files\yaz.dll" />
 			</Component>

@@ -197,7 +197,7 @@
                   Sequence="10" 
                   Command="Run" 
                   Target="[!file13]" 
-                  Argument="&quot;%1&quot; &quot;%2&quot; &quot;%3&quot; &quot;%4&quot; &quot;%5&quot; &quot;%6&quot; &quot;%7&quot; &quot;%8&quot; &quot;%9&quot;"/>
+                  Argument="&quot;%*&quot;"/>
               </Extension>
             </ProgId>
           </Component>

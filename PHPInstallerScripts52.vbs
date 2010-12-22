@@ -14,7 +14,8 @@ Sub configApache
     If ( right(strApacheDir,1) <> "\" ) then 
         strApacheDir = strApacheDir & "\"
     End If
-    strPHPPath = Replace(strInstallDir,"\","/")
+    ' Bug 52753 - Comment out since it causes an invalid http.conf file
+    ' strPHPPath = Replace(strInstallDir,"\","/")
     
     strDirective = vbCrLf & vbCrLf & "#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
     If ( strWebServerType = "apacheCGI" ) Then

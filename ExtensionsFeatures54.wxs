@@ -6,9 +6,6 @@
 			<Feature AllowAdvertise="no" Id="pecl_php5activescript" Title="$(loc.Featurepecl_phpactivescriptTitle)" Description="$(loc.Featurepecl_phpactivescriptDescription)" Level="10">
 				<ComponentRef Id="php5activescript"/>
 			</Feature>
-			<Feature AllowAdvertise="no" Id="pecl_php6activescript" Title="$(loc.Featurepecl_phpactivescriptTitle)" Description="$(loc.Featurepecl_phpactivescriptDescription)" Level="10">
-				<ComponentRef Id="php6activescript"/>
-			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_adt" Title="$(loc.Featureext_php_adtTitle)" Description="$(loc.Featureext_php_adtDescription)" Level="10">
 				<ComponentRef Id="php_adt"/>
 			</Feature>
@@ -178,12 +175,6 @@
 				<ComponentRef Id="php_java"/>
 				<ComponentRef Id="php_javaJAR"/>
 				<ComponentRef Id="php5servlet"/>
-				<ComponentRef Id="phpsrvltJAR"/>
-			</Feature>
-            <Feature AllowAdvertise="no" Id="ext_php_java" Title="$(loc.Featureext_php_javaTitle)" Description="$(loc.Featureext_php_javaDescription)" Level="10">
-				<ComponentRef Id="php_java"/>
-				<ComponentRef Id="php_javaJAR"/>
-				<ComponentRef Id="php6servlet"/>
 				<ComponentRef Id="phpsrvltJAR"/>
 			</Feature>
 			<Feature AllowAdvertise="no" Id="ext_php_ldap" Title="$(loc.Featureext_php_ldapTitle)" Description="$(loc.Featureext_php_ldapDescription)" Level="10">

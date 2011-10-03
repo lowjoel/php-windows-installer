@@ -24,17 +24,17 @@ Sub configApache
     
     If ( strWebServerType = "apache22" ) Then
         strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-        strDirective = strDirective & "LoadModule php6_module """ & strPHPPath & "php6apache2_2.dll""" & vbCrLf
+        strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2_2.dll""" & vbCrLf
     End If
     
     If ( strWebServerType = "apache20" ) Then
         strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-        strDirective = strDirective & "LoadModule php6_module """ & strPHPPath & "php6apache2.dll""" & vbCrLf
+        strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache2.dll""" & vbCrLf
     End If
     
     If ( strWebServerType = "apache13" ) Then
         strDirective = strDirective & "PHPIniDir """ & strPHPPath & """" & vbCrLf
-        strDirective = strDirective & "LoadModule php6_module """ & strPHPPath & "php6apache.dll""" & vbCrLf
+        strDirective = strDirective & "LoadModule php5_module """ & strPHPPath & "php5apache.dll""" & vbCrLf
     End If
     
     strDirective = strDirective &  "#END PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
@@ -59,8 +59,8 @@ Sub configApache
     strText = Replace(strText,"ScriptAlias /php/","#ScriptAlias /php/")
     strText = Replace(strText,"Action application/x-httpd-php","#Action application/x-httpd-php")
     strText = Replace(strText,"PHPIniDir","#PHPIniDir")
+    strText = Replace(strText,"LoadModule _module","#LoadModule _module")
     strText = Replace(strText,"LoadModule php5_module","#LoadModule php5_module")
-    strText = Replace(strText,"LoadModule php6_module","#LoadModule php6_module")
     strText  = strText & strDirective
     
     ' backup old file
@@ -179,7 +179,7 @@ Sub configIIS4
         PHPExecutable = strPHPPath & "php-cgi.exe"
     End If
     If ( strWebServerType = "iis4ISAPI" ) Then
-        PHPExecutable = strPHPPath & "php6isapi.dll"
+        PHPExecutable = strPHPPath & "php5isapi.dll"
     End If
     If ( strWebServerType = "iis4FastCGI" ) Then
         fAddScriptMap = FALSE

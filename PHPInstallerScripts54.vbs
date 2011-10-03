@@ -14,7 +14,13 @@ Sub configApache
     If ( right(strApacheDir,1) <> "\" ) then 
         strApacheDir = strApacheDir & "\"
     End If
-    strPHPPath = strInstallDir
+    
+    ' Bug 55778 - Use forward slashes in Windows 7
+    If ( FormatNumber(GetWindowsVersion) >= FormatNumber("7.0") ) Then
+        strPHPPath = Replace(strInstallDir,"\","/")
+    Else    
+        strPHPPath = strInstallDir
+    End If
     
     strDirective = vbCrLf & vbCrLf & "#BEGIN PHP INSTALLER EDITS - REMOVE ONLY ON UNINSTALL" & vbCrLf
     If ( strWebServerType = "apacheCGI" ) Then

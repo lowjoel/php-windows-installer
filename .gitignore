@@ -1,0 +1,7 @@
+*.wixobj
+*.wixlib
+*.msi
+Files
+ExtensionsComponents.wxs
+ExtensionsFeatures.wxs
+ExtensionsFeaturesBuild.wxs

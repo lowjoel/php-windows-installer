@@ -8,7 +8,7 @@
     Manufacturer="The PHP Group">
 
 	<?if $(var.Platform) = x64?>
-		<Package Id="????????-????-????-????-????????????" 
+		<Package Id="*" 
 		  Keywords="Installer" 
 		  Description="PHP Installer" 
 		  Comments="PHP" 
@@ -17,10 +17,10 @@
 		  Languages="1033"
 		  Compressed="yes" 
 		  SummaryCodepage="1252"
-		  Platforms="x64"
+		  Platform="x64"
 		  InstallPrivileges="elevated" />
 	<?else?>
-		<Package Id="????????-????-????-????-????????????" 
+		<Package Id="*" 
 		  Keywords="Installer" 
 		  Description="PHP Installer" 
 		  Comments="PHP" 
@@ -41,7 +41,7 @@
 
     <Condition 
 	  Message="You need to be an administrator to install PHP using this installer.">
-      <![CDATA[Privileged OR (AdminUser AND VersionNT >= 600)]]>
+      <![CDATA[Privileged]]>
     </Condition>
     
     <Condition 

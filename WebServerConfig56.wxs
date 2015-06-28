@@ -7,26 +7,31 @@
         <File Id="filephp5apache2_4_DLL" Name="php5apache2_4.dll" Source="Files\php5apache2_4.dll" />
       </Component>
       <Component Id="cgiforceredirect" DiskId="1" Guid="0A2DD92F-AFCC-417B-B909-395F9D3B79F5">
+        <CreateFolder/>
         <IniFile Id="cgiforceredirectINI" Action="addLine" 
           Key="cgi.force_redirect" Directory="INSTALLDIR" Name="php.ini"
           Section="PHP" Value="0" />
       </Component>
       <Component Id="cgifixpathinfo" DiskId="1" Guid="E2DBFF96-1551-4928-9D2E-A62E536B2B60">
+        <CreateFolder/>
         <IniFile Id="cgifixpathinfoINI" Action="addLine" 
           Key="cgi.fix_pathinfo" Directory="INSTALLDIR" Name="php.ini"
           Section="PHP" Value="1" />
       </Component>
       <Component Id="fastcgiimpersonate" DiskId="1" Guid="61290EEB-616B-4434-8283-D7BDC7008D25">
+        <CreateFolder/>
         <IniFile Id="fastcgiimpersonateINI" Action="addLine"
           Key="fastcgi.impersonate" Directory="INSTALLDIR" Name="php.ini"
           Section="PHP" Value="1"/>
       </Component>
       <Component Id="fastcgilogging" DiskId="1" Guid="218C8790-7233-11DE-8A39-0800200C9A66">
+        <CreateFolder/>
         <IniFile Id="fastcgiloggingINI" Action="addLine"
           Key="fastcgi.logging" Directory="INSTALLDIR" Name="php.ini"
           Section="PHP" Value="0"/>
       </Component>
       <Component Id="maxexecutiontime" DiskId="1" Guid="5C6D1771-0D27-42C3-946B-3E0E138CF5DA">
+        <CreateFolder/>
         <IniFile Id="maxexecutiontimeINI" Action="addLine"
           Key="max_execution_time" Directory="INSTALLDIR" Name="php.ini"
           Section="PHP" Value="300"/>
@@ -41,12 +46,14 @@
         <Condition><![CDATA[VersionNT < 500]]></Condition>
       </Component>
       <Component Id="xitamiINI" DiskId="1" Guid="5C27D17C-3624-11DC-93BF-A48455D89593">
+        <CreateFolder/>
         <IniFile Id="xitamuINIFilter" Action="addLine" 
           Key=".php" Directory="XITAMIDIR" Name="defaults.cfg"
           Section="Filter" Value="[!INSTALLDIR]\php-cgi.exe" />
         <Condition>XITAMIDIR</Condition>
       </Component>
       <Component Id="sambarINI" DiskId="1" Guid="629031D0-3624-11DC-ACF8-B08455D89593">
+        <CreateFolder/>
         <IniFile Id="sambarINIMappings" Action="addLine" 
           Key="*.php" Directory="SAMBARDIR" Name="mappings.ini"
           Section="ISAPI" Value="[!INSTALLDIR]\php5isapi.dll" />

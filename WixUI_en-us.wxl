@@ -737,6 +737,8 @@
   <String Id="Featureext_php_oci8Description">Oracle 10 functions</String>
   <String Id="Featureext_php_oci8_11gTitle">Oracle (11g)</String>
   <String Id="Featureext_php_oci8_11gDescription">Oracle Driver for Oracle 11g</String>
+  <String Id="Featureext_php_oci8_12cTitle">Oracle (12c)</String>
+  <String Id="Featureext_php_oci8_12cDescription">Oracle Driver for Oracle 12c</String>
   <String Id="Featureext_php_parsekitTitle">parsekit</String>
   <String Id="Featureext_php_parsekitDescription">PHP Opcode Analyser</String>
   <String Id="Featureext_php_pdfTitle">PDFlib</String>

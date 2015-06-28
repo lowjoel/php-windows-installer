@@ -5,3 +5,5 @@ Files
 ExtensionsComponents.wxs
 ExtensionsFeatures.wxs
 ExtensionsFeaturesBuild.wxs
+PHPInstaller*.*.wxs
+WebServerConfig*.*.wxs

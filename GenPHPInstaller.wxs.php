@@ -3,7 +3,8 @@ require_once "GenFunctions.php";
 
 $basefile = $argv[1];
 $version = $argv[2];
-$includemsm = $argv[3];
+$vcver = $argv[3];
+$vcarch = $argv[4];
 
 $PHPInstallerBaseWXS = new DOMDocument;
 $PHPInstallerBaseWXS->preserveWhiteSpace = false;
@@ -26,28 +27,40 @@ while ( $i < $tags->length ) {
 }
 
 // Add in the VC9 MSM if we are building that installer
-if ( !empty($includemsm) ) {
+if ( $vcver !== 'VC6' ) {
 	$TargetDir = $PHPInstallerBaseWXS->getElementsByTagName('Directory')->item(0);
 	$Merge = $PHPInstallerBaseWXS->createElement('Merge');
 	$Merge = $TargetDir->appendChild($Merge);
 	$Merge->setAttribute('Id','VCRedist');
-	$Merge->setAttribute('SourceFile',"Microsoft_VC90_CRT_{$includemsm}.msm");
+	
+	$includemsm = '';
+	if ( $vcarch === 'x64' && $vcver === 'VC9' ) {
+		$includemsm = 'x86_x64';
+	} else {
+		$includemsm = $vcarch;
+	}
+	$msm = "Microsoft_{$vcver}0_CRT_{$includemsm}.msm";
+	$Merge->setAttribute('SourceFile',$msm);
 	$Merge->setAttribute('DiskId','1');
 	$Merge->setAttribute('Language','0');
-	$Merge = $PHPInstallerBaseWXS->createElement('Merge');
-	$Merge = $TargetDir->appendChild($Merge);
-	$Merge->setAttribute('Id','VCRedist_policy');
-	$Merge->setAttribute('SourceFile',"policy_9_0_Microsoft_VC90_CRT_{$includemsm}.msm");
-	$Merge->setAttribute('DiskId','1');
-	$Merge->setAttribute('Language','0');
-    
+	
 	$MainFeature = $PHPInstallerBaseWXS->getElementsByTagName('Feature')->item(0);
 	$MergeRef = $PHPInstallerBaseWXS->createElement('MergeRef');
 	$MergeRef = $MainFeature->appendChild($MergeRef);
 	$MergeRef->setAttribute('Id','VCRedist');
-    $MergeRef = $PHPInstallerBaseWXS->createElement('MergeRef');
-	$MergeRef = $MainFeature->appendChild($MergeRef);
-	$MergeRef->setAttribute('Id','VCRedist_policy');
+	
+	if ( $vcver === 'vc9' ) {
+		$Merge = $PHPInstallerBaseWXS->createElement('Merge');
+		$Merge = $TargetDir->appendChild($Merge);
+		$Merge->setAttribute('Id','VCRedist_policy');
+		$Merge->setAttribute('SourceFile',"policy_9_0_{$msm}");
+		$Merge->setAttribute('DiskId','1');
+		$Merge->setAttribute('Language','0');
+		
+		$MergeRef = $PHPInstallerBaseWXS->createElement('MergeRef');
+		$MergeRef = $MainFeature->appendChild($MergeRef);
+		$MergeRef->setAttribute('Id','VCRedist_policy');
+	}
 }
 
 // remove extension info from php.ini-production

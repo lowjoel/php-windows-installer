@@ -179,8 +179,6 @@ while ( $i < $files->length ) {
 	$filesSeen[] = $filename;
 }
 
-$ExtensionsWXS->save('ExtensionsComponents.wxs');
-
 // Remove features from ExtensionsFeatures.wxs that don't have the base component existing
 $ExtensionsFeaturesWXS = new DOMDocument;
 $ExtensionsFeaturesWXS->preserveWhiteSpace = false;
@@ -201,10 +199,33 @@ while ( $i < $componentRefs->length ) {
     $nodetoremove = $componentRefs->item($i)->parentNode;
     echo "Removing Feature " . $nodetoremove->getAttribute('Id') . " because of missing Component $componentRefId\n";
     $componentRefs->item($i)->parentNode->parentNode->removeChild($nodetoremove);
+	
+	$removedComponents = $nodetoremove->getElementsByTagName('ComponentRef');
+	for ( $j = 0; $j < $removedComponents->length; $j++ ) {
+		$componentRefId = $removedComponents->item($j)->getAttribute('Id');
+		$componentRefCount = 0;
+		for ( $k = 0; $k < $componentRefs->length; $k++ ) {
+			if ($componentRefs->item($k)->getAttribute('Id') === $componentRefId) {
+				$componentRefCount++;
+			}
+		}
+		if ($componentRefCount === 0) {
+			echo 'Removing Component ' . $componentRefId . ' because no Features reference it.'."\n";
+			for ( $k = 0; $k < $components->length; $k++ ) {
+				$componentId = $components->item($k)->getAttribute('Id');
+				if ( $componentId == $componentRefId ) {
+					$nodetoremove = $components->item($k);
+					$nodetoremove->parentNode->removeChild($nodetoremove);
+				}
+			}
+		}
+	}
+	
     $i = 0;
 }
-$ExtensionsFeaturesWXS->save('ExtensionsFeaturesBuild.wxs');
 
+$ExtensionsWXS->save('ExtensionsComponents.wxs');
+$ExtensionsFeaturesWXS->save('ExtensionsFeaturesBuild.wxs');
 
 exit;
 ?>

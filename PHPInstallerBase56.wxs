@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Name="PHP 5.6.0" Id="A062A356-1B4E-4367-8E5B-26363021051B" 
     UpgradeCode="91C7AD14-5A1B-4EB5-98B6-C0A9E4918CA9" 
     Language="1033" 
@@ -172,8 +172,7 @@
               Source="Files\license.txt">
               <Shortcut Id="startmenuManual" 
                 Directory="ProgramMenuDir" 
-                Name="License" 
-                LongName="License"/>
+                Name="License"/>
             </File>
           </Component>
           <Component Id="newsTXT" 
@@ -187,8 +186,7 @@
             DiskId="1" 
             Guid="23359910-5f6e-11de-8a39-0800200c9a66">
             <File Id="filereadmedistbinsTXT" 
-            Name="README_1.TXT" 
-            LongName="readme-redist-bins.txt"
+            Name="readme-redist-bins.txt"
             Source="Files\readme-redist-bins.txt"/>
           </Component>
           <Component Id="phpcgiEXE" 
@@ -213,7 +211,6 @@
               <Extension Id="php" 
                 ContentType="application/php">
                 <Verb Id="open" 
-                  Sequence="10" 
                   Command="Run" 
                   Target="[!file13]" 
                   Argument="&quot;%*&quot;"/>
@@ -246,13 +243,11 @@
               Source="Files\php.exe"/>
             <Environment Id="phpEXEAddToPath" 
               Name="PATH" 
-              Action="create" 
               System="yes" 
               Part="first" 
               Value="[INSTALLDIR]"/>
             <Environment Id="PHPRC"
               Name="PHPRC"
-              Action="create"
               System="yes"
               Part="all"
               Value="[INSTALLDIR]"/>
@@ -269,13 +264,11 @@
             Guid="B32D6227-3160-4D57-9724-0B35DC128519" 
             Permanent="yes">
             <File Id="file17" 
-              Name="PHP_2.INI" 
-              LongName="php.ini" 
+              Name="php.ini" 
               Source="Files\php.ini" >
               <Shortcut Id="startmenuPHPINI" 
                 Directory="ProgramMenuDir" 
-                Name="php.ini" 
-                LongName="php.ini"/>
+                Name="php.ini"/>
             </File>
             <IniFile Id="uploadtmpdirINI" 
               Action="addLine" 
@@ -333,29 +326,25 @@
             DiskId="1" 
             Guid="86e9a7a0-5f6c-11de-8a39-0800200c9a66">
             <File Id="filepharcommandPHAR" 
-              Name="PHARCO_1.PHA" 
-              LongName="pharcommand.phar" 
+              Name="pharcommand.phar" 
               Source="Files\pharcommand.phar"/>
           </Component>
           <Component Id="pharBAT" 
             DiskId="1" 
             Guid="d266c230-5f6c-11de-8a39-0800200c9a66">
             <File Id="filepharpharBAT" 
-              Name="PHAR.P_1.bat"
-              LongName="phar.phar.bar" 
+              Name="phar.phar.bar" 
               Source="Files\phar.phar.bat"/>
           </Component>
           <Component Id="phpCHM" 
             DiskId="1" 
             Guid="43C45330-3624-11DC-999C-478455D89593">
             <File Id="file182" 
-              Name="PHP_MA_1.DLL" 
-              LongName="php_manual_en.chm" 
+              Name="php_manual_en.chm" 
               Source="Files\php_manual_en.chm">
               <Shortcut Id="startmenuphpCMH" 
                 Directory="ProgramMenuDir" 
-                Name="Manual" 
-                LongName="PHP Manual"/>
+                Name="PHP Manual"/>
             </File>
           </Component>
           <Component Id="Empty" 
@@ -373,11 +362,9 @@
           </Directory>
         </Directory>
       <Directory Id="ProgramMenuFolder" 
-        Name="PMenu" 
-        LongName="Programs">
+        Name="Programs">
         <Directory Id="ProgramMenuDir" 
-          Name="PHP5" 
-          LongName="PHP 5.6"/>
+          Name="PHP 5.6"/>
       </Directory>
     </DirectoryRef>
     <Feature AllowAdvertise="no" 

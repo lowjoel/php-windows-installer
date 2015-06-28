@@ -55,13 +55,7 @@ foreach ( $it as $filename ) {
 	$File = $ExtensionsWXS->createElement('File');
 	$File = $Component->appendChild($File);
 	$File->setAttribute('Id','file' . str_replace('-', '_', $basename) . strtoupper($ext));
-	if ( strlen($basename) > 8 ) {
-		$File->setAttribute('Name',getshortname($filename));
-		$File->setAttribute('LongName',$filename);
-	}
-	else {	
-		$File->setAttribute('Name',$filename);
-	}
+	$File->setAttribute('Name',$filename);
 	$File->setAttribute('Source',"Files\\ext\\{$filename}");
 	if ($ext == 'dll' && stristr($basename,'php_') !== FALSE ) {
 		$IniFile = $ExtensionsWXS->createElement('IniFile');
@@ -117,13 +111,7 @@ if ( is_dir('Files\PECL') ) {
 		$File = $ExtensionsWXS->createElement('File');
 		$File = $Component->appendChild($File);
 		$File->setAttribute('Id',"file{$basename}" . strtoupper($ext));
-		if ( strlen($basename) > 8 ) {
-			$File->setAttribute('Name',getshortname("Files\\PECL\\$filename"));
-			$File->setAttribute('LongName',$filename);
-		}
-		else {	
-			$File->setAttribute('Name',$filename);
-		}
+		$File->setAttribute('Name',$filename);
 		$File->setAttribute('Source',"Files\\PECL\\{$filename}");
 	}
 }

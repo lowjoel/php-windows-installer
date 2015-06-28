@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='windows-1252'?>
-<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
   <Fragment Id='FragmentWebServerConfig'>
     <DirectoryRef Id='INSTALLDIR'>
 
       <Component Id="php5apache2_4DLL" DiskId="1" Guid="1807E57D-B573-499E-B354-9B19A0408206">
-        <File Id="filephp5apache2_4_DLL" Name="PHP5AP_4.DLL" LongName="php5apache2_4.dll" Source="Files\php5apache2_4.dll" />
+        <File Id="filephp5apache2_4_DLL" Name="php5apache2_4.dll" Source="Files\php5apache2_4.dll" />
       </Component>
       <Component Id="cgiforceredirect" DiskId="1" Guid="0A2DD92F-AFCC-417B-B909-395F9D3B79F5">
         <IniFile Id="cgiforceredirectINI" Action="addLine" 

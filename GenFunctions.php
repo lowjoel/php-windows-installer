@@ -21,10 +21,22 @@ function getshortname(
     $filename
     ) 
 {
-	$fso = new COM("Scripting.FileSystemObject");
-	$file = $fso->GetFile($filename);
-	
-	return str_replace('~','_',$file->ShortName);
+	$filename = strtoupper($filename);
+	$pathinfo = pathinfo($filename);
+	if (strlen($pathinfo['basename']) > 12)
+	{
+		if (strlen($pathinfo['filename']) > 8)
+		{
+			$pathinfo['filename'] = substr($pathinfo['filename'], 0, 6);
+			$pathinfo['filename'] .= '~1';
+		}
+		else if (strlen($pathInfo['extension']) > 3)
+		{
+			$pathinfo['extension'] = substr($pathinfo['extension'], 0, 3);
+		}
+		
+		return $pathinfo['filename'] . '.' . $pathinfo['extension'];
+	}
 }
 
 ?>

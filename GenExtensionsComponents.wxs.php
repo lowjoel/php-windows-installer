@@ -27,8 +27,8 @@ foreach ( $it as $filename ) {
         || $filename == "php_sam.dll"
         || $filename == "php_win32scheduler.dll"
         || $filename == "php_win32service.dll" ) continue;
-    list($basename,$ext) = explode('.',$filename);
-	$cid = $basename . ( $ext != 'dll' ? strtoupper($ext) : "");
+	list($basename,$ext) = array(substr($filename,0,strrpos($filename,'.')), substr($filename,strrpos($filename,'.') + 1));
+	$cid = str_replace('-', '_', $basename) . ( $ext != 'dll' ? strtoupper($ext) : "");
     $Component = $ExtensionsWXS->createElement('Component');
 	$Component = $Directory_extdirectory->appendChild($Component);
 	$Component->setAttribute('Id',$cid);
@@ -54,25 +54,31 @@ foreach ( $it as $filename ) {
 	
 	$File = $ExtensionsWXS->createElement('File');
 	$File = $Component->appendChild($File);
-	$File->setAttribute('Id',"file{$basename}" . strtoupper($ext));
+	$File->setAttribute('Id','file' . str_replace('-', '_', $basename) . strtoupper($ext));
 	if ( strlen($basename) > 8 ) {
-		$File->setAttribute('Name',getshortname("Files\\ext\\$filename"));
+		$File->setAttribute('Name',getshortname($filename));
 		$File->setAttribute('LongName',$filename);
 	}
 	else {	
 		$File->setAttribute('Name',$filename);
 	}
-	$File->setAttribute('Source',"Files\ext\\{$filename}");
-	
+	$File->setAttribute('Source',"Files\\ext\\{$filename}");
 	if ($ext == 'dll' && stristr($basename,'php_') !== FALSE ) {
 		$IniFile = $ExtensionsWXS->createElement('IniFile');
 		$IniFile = $Component->appendChild($IniFile);
-		$IniFile->setAttribute('Id',"{$basename}INI");
+		$IniFile->setAttribute('Id',str_replace('-', '_', $basename) . 'INI');
 		$IniFile->setAttribute('Action',"createLine");
-		$IniFile->setAttribute('Key',"extension");
+		if ( strtoupper($basename) == 'PHP_XDEBUG.DLL' || stristr($basename, 'PHP_XDEBUG') !== false )
+		{
+			$Component->setAttribute('Id','php_xdebug'); //Hardcoded in ExtensionsFeatures.wxs
+			$IniFile->setAttribute('Key',intval($phpver) >= 53 ? "zend_extension" : "zend_extension_ts");
+			$filename = 'ext\\' . $basename . '.' . $ext;
+		}
+		else
+			$IniFile->setAttribute('Key',"extension");
 		$IniFile->setAttribute('Directory',"INSTALLDIR");
 		$IniFile->setAttribute('Name',"php.ini");
-		$IniFile->setAttribute('Section',strtoupper($basename));
+		$IniFile->setAttribute('Section',strtoupper('php_xdebug'));
 		$IniFile->setAttribute('Value',$filename);
 	}
 }
@@ -118,22 +124,7 @@ if ( is_dir('Files\PECL') ) {
 		else {	
 			$File->setAttribute('Name',$filename);
 		}
-		$File->setAttribute('Source',"Files\PECL\\{$filename}");
-		
-		if ($ext == 'dll' && stristr($basename,'php_') !== FALSE ) {
-			$IniFile = $ExtensionsWXS->createElement('IniFile');
-			$IniFile = $Component->appendChild($IniFile);
-			$IniFile->setAttribute('Id',"{$basename}INI");
-			$IniFile->setAttribute('Action',"createLine");
-			if ( strtoupper($basename) == 'PHP_XDEBUG.DLL')
-				$IniFile->setAttribute('Key',"zend_extension_ts");
-			else
-				$IniFile->setAttribute('Key',"extension");
-			$IniFile->setAttribute('Directory',"INSTALLDIR");
-			$IniFile->setAttribute('Name',"php.ini");
-			$IniFile->setAttribute('Section',strtoupper($basename));
-			$IniFile->setAttribute('Value',$filename);
-		}
+		$File->setAttribute('Source',"Files\\PECL\\{$filename}");
 	}
 }
 
@@ -180,7 +171,7 @@ while ( $i < $files->length ) {
 	if ( !is_file( realpath($files->item($i)->getAttribute('Source')) ) 
             && $files->item($i)->parentNode->getAttribute('Id') != 'mibsdir' ) {
         $nodetoremove = $files->item($i)->parentNode;
-        echo "Removing File " . $nodetoremove->getAttribute('Id') . " because " . realpath($files->item($i)->getAttribute('Source')) . " doesn't exist\n";
+        echo "Removing File " . $nodetoremove->getAttribute('Id') . " because " . $files->item($i)->getAttribute('Source') . " doesn't exist\n";
         $files->item($i)->parentNode->parentNode->removeChild($nodetoremove);
         if ($i>0) $i--;
     }

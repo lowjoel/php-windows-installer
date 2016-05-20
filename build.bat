@@ -25,6 +25,7 @@ if %3==nts set extrants="nts-"
 if %3==nts set suffix="NTS"
 if %3==vc9 set vcver=VC9
 if %3==vc11 set vcver=VC11
+if %3==vc14 set vcver=VC14
 if %3==x64 set vcarch=x64
 if %3==snapshot set extrasnaps="-latest"
 
@@ -33,6 +34,7 @@ if %4==nts set extrants="nts-"
 if %4==nts set suffix="NTS"
 if %4==vc9 set vcver=VC9
 if %4==vc11 set vcver=VC11
+if %4==vc14 set vcver=VC14
 if %4==x64 set vcarch=x64
 if %4==snapshot set extrasnaps="-latest"
 

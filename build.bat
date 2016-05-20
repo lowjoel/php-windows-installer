@@ -54,13 +54,13 @@ echo Building WebServerConfig%1.wxs
 copy WebServerConfig%phpver%%suffix%.wxs WebServerConfig%1.wxs
 
 echo Compiling UI....
-Wix\candle.exe -out PHPInstallerCommon.wixobj PHPInstallerCommon%phpver%%suffix%.wxs
+candle.exe -out PHPInstallerCommon.wixobj PHPInstallerCommon%phpver%%suffix%.wxs
 
 echo Building UI....
-Wix\lit.exe -out PHPInstallerCommon.wixlib PHPInstallerCommon.wixobj 
+lit.exe -out PHPInstallerCommon.wixlib PHPInstallerCommon.wixobj 
 
 echo Compiling Installer....
-Wix\candle.exe ExtensionsComponents.wxs ExtensionsFeaturesBuild.wxs WebServerConfig%1.wxs PHPInstaller%1.wxs 
+candle.exe -dPlatform="!vcarch!" ExtensionsComponents.wxs ExtensionsFeaturesBuild.wxs WebServerConfig%1.wxs PHPInstaller%1.wxs 
 
 echo Linking Installer....
-Wix\light.exe -out "%msiname%" ExtensionsComponents.wixobj ExtensionsFeaturesBuild.wixobj WebServerConfig%1.wixobj PHPInstaller%1.wixobj PHPInstallerCommon.wixlib -loc WixUI_en-us.wxl
+light.exe -out "%msiname%" ExtensionsComponents.wixobj ExtensionsFeaturesBuild.wixobj WebServerConfig%1.wixobj PHPInstaller%1.wixobj PHPInstallerCommon.wixlib -loc WixUI_en-us.wxl
